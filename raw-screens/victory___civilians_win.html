@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-lowest": "#ffffff",
+              "surface-bright": "#e0fee1",
+              "on-surface": "#1b3420",
+              "secondary-container": "#f9e534",
+              "surface": "#e0fee1",
+              "on-surface-variant": "#47624b",
+              "primary-fixed": "#91f78e",
+              "on-background": "#1b3420",
+              "on-primary": "#d1ffc8",
+              "on-tertiary-fixed-variant": "#563000",
+              "on-secondary-container": "#5b5300",
+              "on-tertiary-container": "#4a2800",
+              "secondary-fixed-dim": "#ead723",
+              "on-tertiary-fixed": "#271300",
+              "surface-container-highest": "#bee7c1",
+              "tertiary": "#874e00",
+              "secondary-fixed": "#f9e534",
+              "tertiary-fixed-dim": "#ec8c00",
+              "error-container": "#f95630",
+              "surface-dim": "#b3dfb8",
+              "inverse-primary": "#91f78e",
+              "primary-fixed-dim": "#83e881",
+              "surface-tint": "#006b1b",
+              "on-secondary-fixed-variant": "#665c00",
+              "primary-dim": "#005d16",
+              "on-secondary-fixed": "#474000",
+              "error": "#b02500",
+              "secondary": "#665c00",
+              "on-primary-container": "#005e17",
+              "on-error": "#ffefec",
+              "on-error-container": "#520c00",
+              "on-secondary": "#fff4b0",
+              "background": "#e0fee1",
+              "primary-container": "#91f78e",
+              "surface-container-high": "#c6ecc8",
+              "primary": "#006b1b",
+              "inverse-surface": "#001204",
+              "surface-container": "#cdf1cf",
+              "outline": "#627d65",
+              "surface-container-low": "#d8f9d9",
+              "on-primary-fixed-variant": "#00691a",
+              "tertiary-dim": "#764400",
+              "on-primary-fixed": "#00480f",
+              "error-dim": "#b92902",
+              "surface-variant": "#bee7c1",
+              "tertiary-container": "#ff9800",
+              "on-tertiary": "#fff0e5",
+              "outline-variant": "#98b499",
+              "secondary-dim": "#595000",
+              "tertiary-fixed": "#ff9800",
+              "inverse-on-surface": "#88a48a"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Plus Jakarta Sans"],
+              "label": ["Plus Jakarta Sans"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .curled-corner {
+        border-bottom-right-radius: 3rem;
+      }
+      .sticky-note-shadow {
+        shadow-[12px_12px_24px_rgba(27,52,32,0.08)];
+      }
+      .puffy-button {
+        box-shadow: 0 4px 0 #005d16;
+      }
+      .puffy-button:active {
+        transform: translateY(2px);
+        box-shadow: 0 0px 0 #005d16;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface min-h-screen flex flex-col items-center overflow-x-hidden selection:bg-secondary-container">
+<!-- Top Navigation Shell -->
+<header class="w-full top-0 z-50 bg-[#e0fee1] dark:bg-[#1b3420] flex items-center justify-between px-6 h-16 max-w-none">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#006b1b] dark:text-[#7BC67E] hover:opacity-80 transition-opacity active:scale-95 duration-150 cursor-pointer" data-icon="menu">menu</span>
+<h1 class="font-['Plus_Jakarta_Sans'] font-bold tracking-tight uppercase text-sm text-[#006b1b] dark:text-[#7BC67E]">WHO IS SPY?</h1>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden border-2 border-primary-container">
+<img alt="Profile" data-alt="minimalist geometric avatar of a happy game player with circular head and simple hair shapes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwCF_P8oh-dWk52mdkx6qN1_sNDsRfgNKyetzh93jIK8jvJrBw0kf5unYL6NHZxE5tHnuNXhZaSRr8qoKRi8MIv638bKRrn-KBWLSGQ_fCt-BTjkyxymqWIuLs8hYY5f2P3bmsJ83N1tU8i31O8h-9W3Wf4R3xkGsIIZmpahy9yl1US2iAEAOmUUVNbOAtE6nPSWZ07R2bBcR3k3Mw35uQV3VbJMuGk7Iv3Aycxl4jIed0x7cqMAUa9EndCNMat9CkZFH-EQoTves"/>
+</div>
+</header>
+<!-- Main Victory Content -->
+<main class="flex-1 w-full max-w-md px-6 py-8 flex flex-col items-center justify-center gap-12 text-center relative">
+<!-- Victory Headline Section -->
+<div class="space-y-2">
+<span class="font-label text-xs font-black tracking-[0.2em] text-on-surface-variant opacity-60 uppercase">DEDUCTION COMPLETE</span>
+<h2 class="font-headline text-5xl font-extrabold tracking-tighter text-on-surface leading-none">THE SPY WAS <span class="text-tertiary">CAUGHT!</span></h2>
+</div>
+<!-- The "Sticky Note" Hero Card -->
+<div class="relative w-full max-w-sm transform -rotate-1">
+<div class="bg-secondary-container p-8 rounded-DEFAULT curled-corner shadow-[12px_12px_32px_rgba(27,52,32,0.12)] flex flex-col items-center gap-8 border-none">
+<!-- Hero Illustration Container -->
+<div class="w-full aspect-square rounded-xl bg-surface-container-lowest/40 p-4 relative overflow-hidden">
+<img alt="Winning Civilians" class="w-full h-full object-contain drop-shadow-lg" data-alt="stylized vector illustration of diverse joyful characters in a paper-cut aesthetic celebrating together with confetti and simple geometric shapes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAd51pvyrB223qJ3HMnr5DnWW9QRcNYfAGzyawxtxG2cYpH9EkuX0tw63GgasE9sF2AZ_elakiju0vHLDh-PXn3NXJ0Q5hkQ1wHSA6EFncLVh_Kll2iNdepq8c5VYcUIHpHaHiG46eEpUHkHn-2yjf48X81MCcc8nI_fZ1vHbF4UfFc7qJWy-BYo6ixHxTBCubhUo8CU03QlFRkw_mXfEyFC8D3b1qVhPFm629J-WSZLG4-nrQoUF4lHl625I7smdJClwt4Z1xRUls"/>
+<!-- Decorative Element -->
+<div class="absolute top-2 right-2 bg-primary text-on-primary rounded-full px-4 py-1 font-bold text-sm -rotate-6 shadow-md">
+                        MISSION SUCCESS
+                    </div>
+</div>
+<!-- Card Content -->
+<div class="space-y-2">
+<h3 class="font-headline text-4xl font-black text-on-secondary-container leading-none uppercase tracking-tight">CIVILIANS WIN!</h3>
+<p class="text-on-secondary-container/70 font-medium italic">"Teamwork makes the dream work (and catches spies)."</p>
+</div>
+</div>
+<!-- Floating Decorative Paper Clips/Elements -->
+<div class="absolute -top-4 -left-2 w-12 h-12 text-tertiary transform -rotate-12">
+<span class="material-symbols-outlined text-5xl" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div class="absolute -bottom-4 -right-2 w-12 h-12 text-primary transform rotate-12">
+<span class="material-symbols-outlined text-5xl" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+</div>
+<!-- Player MVP / Catch Stats Bento Grid -->
+<div class="w-full grid grid-cols-2 gap-4">
+<div class="bg-surface-container-low p-5 rounded-lg text-left flex flex-col gap-2 shadow-sm">
+<span class="material-symbols-outlined text-primary" data-icon="person_search">person_search</span>
+<div>
+<div class="text-[10px] font-black uppercase text-on-surface-variant opacity-60">Master Detective</div>
+<div class="font-bold text-on-surface">Alex_G</div>
+</div>
+</div>
+<div class="bg-surface-container-low p-5 rounded-lg text-left flex flex-col gap-2 shadow-sm">
+<span class="material-symbols-outlined text-tertiary" data-icon="timer">timer</span>
+<div>
+<div class="text-[10px] font-black uppercase text-on-surface-variant opacity-60">Catch Time</div>
+<div class="font-bold text-on-surface">04:22s</div>
+</div>
+</div>
+</div>
+<!-- Action Button Section -->
+<div class="w-full pt-4 pb-20">
+<button class="w-full bg-primary hover:bg-primary-dim text-on-primary font-headline text-xl font-extrabold py-5 rounded-full puffy-button transition-all active:translate-y-[2px] active:shadow-none flex items-center justify-center gap-3 uppercase tracking-wider">
+<span class="material-symbols-outlined" data-icon="replay">replay</span>
+                PLAY AGAIN
+            </button>
+<button class="mt-4 text-on-surface-variant font-bold text-sm uppercase tracking-widest hover:opacity-70 transition-opacity">
+                BACK TO LOBBY
+            </button>
+</div>
+</main>
+<!-- Bottom Navigation Shell (Fixed) -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-[#e0fee1] dark:bg-[#1b3420] rounded-t-[2rem] z-50 shadow-[0_-4px_12px_rgba(27,52,32,0.08)]">
+<!-- Game Tab -->
+<div class="flex flex-col items-center justify-center text-[#1b3420] dark:text-[#e0fee1] opacity-70 hover:translate-y-[-2px] transition-transform active:translate-y-[2px] cursor-pointer">
+<span class="material-symbols-outlined" data-icon="videogame_asset">videogame_asset</span>
+<span class="font-['Plus_Jakarta_Sans'] font-medium text-[10px] tracking-wide uppercase">Game</span>
+</div>
+<!-- Players Tab (Active Focus) -->
+<div class="flex flex-col items-center justify-center bg-[#006b1b] text-[#e0fee1] rounded-full px-6 py-2 shadow-[0_4px_0_#005d16] hover:translate-y-[-2px] transition-transform active:translate-y-[2px] cursor-pointer">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-['Plus_Jakarta_Sans'] font-medium text-[10px] tracking-wide uppercase">Players</span>
+</div>
+<!-- Rules Tab -->
+<div class="flex flex-col items-center justify-center text-[#1b3420] dark:text-[#e0fee1] opacity-70 hover:translate-y-[-2px] transition-transform active:translate-y-[2px] cursor-pointer">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-['Plus_Jakarta_Sans'] font-medium text-[10px] tracking-wide uppercase">Rules</span>
+</div>
+</nav>
+<!-- Visual Decor for "Analog" feel -->
+<div class="fixed top-20 -left-10 w-40 h-40 bg-secondary-container/10 rounded-full blur-3xl pointer-events-none"></div>
+<div class="fixed bottom-20 -right-10 w-60 h-60 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+</body></html>

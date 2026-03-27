@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Who is Spy - Role Distribution</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-error": "#ffefec",
+              "surface-container-low": "#d8f9d9",
+              "error-dim": "#b92902",
+              "on-primary-container": "#005e17",
+              "primary-fixed": "#91f78e",
+              "primary-container": "#91f78e",
+              "surface-container-high": "#c6ecc8",
+              "primary-fixed-dim": "#83e881",
+              "on-secondary": "#fff4b0",
+              "surface-container-highest": "#bee7c1",
+              "primary-dim": "#005d16",
+              "surface-tint": "#006b1b",
+              "on-tertiary-fixed-variant": "#563000",
+              "tertiary-container": "#ff9800",
+              "surface-container": "#cdf1cf",
+              "surface-dim": "#b3dfb8",
+              "inverse-on-surface": "#88a48a",
+              "secondary": "#665c00",
+              "on-primary-fixed": "#00480f",
+              "background": "#e0fee1",
+              "on-tertiary-fixed": "#271300",
+              "on-secondary-fixed-variant": "#665c00",
+              "on-secondary-container": "#5b5300",
+              "on-tertiary-container": "#4a2800",
+              "surface": "#e0fee1",
+              "on-surface": "#1b3420",
+              "on-error-container": "#520c00",
+              "on-secondary-fixed": "#474000",
+              "tertiary-fixed": "#ff9800",
+              "tertiary-fixed-dim": "#ec8c00",
+              "outline": "#627d65",
+              "surface-container-lowest": "#ffffff",
+              "secondary-dim": "#595000",
+              "primary": "#006b1b",
+              "tertiary": "#874e00",
+              "on-tertiary": "#fff0e5",
+              "error-container": "#f95630",
+              "secondary-container": "#f9e534",
+              "tertiary-dim": "#764400",
+              "on-background": "#1b3420",
+              "error": "#b02500",
+              "on-primary": "#d1ffc8",
+              "inverse-surface": "#001204",
+              "outline-variant": "#98b499",
+              "inverse-primary": "#91f78e",
+              "on-surface-variant": "#47624b",
+              "surface-bright": "#e0fee1",
+              "secondary-fixed-dim": "#ead723",
+              "secondary-fixed": "#f9e534",
+              "on-primary-fixed-variant": "#00691a",
+              "surface-variant": "#bee7c1"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Plus Jakarta Sans"],
+              "label": ["Plus Jakarta Sans"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .paper-lift {
+            box-shadow: 8px 8px 0px 0px rgba(27, 52, 32, 0.1);
+        }
+        .puffy-button {
+            box-shadow: 0 4px 0 0 #005d16;
+        }
+        .puffy-button:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px 0 0 #005d16;
+        }
+        .sticky-note-tilt-1 { transform: rotate(-1deg); }
+        .sticky-note-tilt-2 { transform: rotate(1.5deg); }
+        .sticky-note-tilt-3 { transform: rotate(-0.5deg); }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background font-body text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="w-full top-0 z-50 bg-[#e0fee1] dark:bg-[#1b3420] flex items-center justify-between px-6 py-4 w-full">
+<div class="flex items-center gap-4">
+<button class="text-[#006b1b] dark:text-[#7BC67E] hover:opacity-80 transition-opacity active:scale-95 duration-200">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-['Plus_Jakarta_Sans'] font-bold tracking-tight text-[#006b1b] dark:text-[#7BC67E] text-xl">Who is Spy</h1>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center border-2 border-primary overflow-hidden">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="Minimalist geometric character avatar with simple shapes and vibrant colors on a clean background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAUnhUFMzOKXcDUtJ-0vtVFBCY3J9-9XoLet4ZN1yRRPtCxW4ZElugeGQPI20HgpkGhXhUEBXhMcDQ09mDr0BJDM7Ag1Uc7lJeBPD4ahEDF3xAyDkxNZ1N6x3y_hNhfIKfDMoGVjRZ3L2-TCQiKASc5K9DZyXy1-t1283j1ZL9mnKOjr-uYypwdwlE95Su_eE478XsflaVx9JFK2pHs2thJx8Lt6MpmDSBH2HZ7XFfKQESyyRDOx_TWZIDiCxYXBhS0UoLfoPuUks"/>
+</div>
+</header>
+<main class="px-6 pt-8 max-w-2xl mx-auto">
+<!-- Instructions Header -->
+<section class="mb-10 text-center">
+<span class="text-label font-bold uppercase tracking-widest text-primary mb-2 block">Mission Briefing</span>
+<h2 class="text-headline-lg font-extrabold text-3xl mb-4 leading-tight tracking-tight">SELECT YOUR OPERATIVE TO REVEAL KEYWORD</h2>
+<p class="text-on-surface-variant font-medium">Each operative holds a secret identity. Tap your character card to see your role. Keep it hidden from others!</p>
+</section>
+<!-- Operative Grid -->
+<div class="grid grid-cols-2 gap-6 md:gap-8">
+<!-- Operative 1: Selected State -->
+<button class="relative bg-secondary-container p-6 rounded-DEFAULT rounded-xl-br paper-lift sticky-note-tilt-1 transition-all active:scale-95 text-left group">
+<div class="absolute top-3 right-3 bg-primary text-on-primary rounded-full p-1 shadow-sm">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="w-20 h-20 mx-auto mb-4 bg-surface-dim rounded-full flex items-center justify-center relative overflow-hidden">
+<img alt="Operative" class="w-full h-full object-cover grayscale-0" data-alt="Stylized paper-cut style character illustration with bold outlines and flat pastel colors" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDidxYZuwmarI7-NaoOgF1qeAmbE02clMj6kodbwrgZriNCorDssrmSI3-ZG4oCHUGN561NM2FkdUUwuScp21s_4pYhXOcv4iofjwlLu6a2zvkazR1dM5z2KwOoToZ1mwATpyJeD8pVuPHCLbPLsYzKSix42pYS9n1k7nVzgH3aKBr_oOBm4E5XDPq_CmCY7_fCKSBCMkJ8QeLFlsEq4I9VmagS65yR0WGhK_IFlGs65C7FeiAYlsIR47ZwWBDQOKJGJkvXoDW9Xic"/>
+<div class="absolute inset-0 bg-primary/10"></div>
+</div>
+<div class="text-center">
+<span class="block text-xs font-black uppercase tracking-tighter text-on-secondary-container/60 mb-1">Operative 01</span>
+<span class="block font-bold text-on-secondary-container">ALEXANDER</span>
+</div>
+</button>
+<!-- Operative 2: Hidden State -->
+<button class="relative bg-surface-container-low p-6 rounded-DEFAULT rounded-xl-br paper-lift sticky-note-tilt-2 transition-all hover:bg-secondary-container active:scale-95 text-left group">
+<div class="w-20 h-20 mx-auto mb-4 bg-surface-container-highest rounded-full flex items-center justify-center relative">
+<span class="material-symbols-outlined text-4xl text-outline-variant" data-icon="lock">lock</span>
+</div>
+<div class="text-center">
+<span class="block text-xs font-black uppercase tracking-tighter text-on-surface-variant/60 mb-1">Operative 02</span>
+<span class="block font-bold text-on-surface">???</span>
+</div>
+</button>
+<!-- Operative 3: Hidden State -->
+<button class="relative bg-surface-container-low p-6 rounded-DEFAULT rounded-xl-br paper-lift sticky-note-tilt-3 transition-all hover:bg-secondary-container active:scale-95 text-left group">
+<div class="w-20 h-20 mx-auto mb-4 bg-surface-container-highest rounded-full flex items-center justify-center relative">
+<span class="material-symbols-outlined text-4xl text-outline-variant" data-icon="lock">lock</span>
+</div>
+<div class="text-center">
+<span class="block text-xs font-black uppercase tracking-tighter text-on-surface-variant/60 mb-1">Operative 03</span>
+<span class="block font-bold text-on-surface">???</span>
+</div>
+</button>
+<!-- Operative 4: Hidden State -->
+<button class="relative bg-surface-container-low p-6 rounded-DEFAULT rounded-xl-br paper-lift sticky-note-tilt-1 transition-all hover:bg-secondary-container active:scale-95 text-left group">
+<div class="w-20 h-20 mx-auto mb-4 bg-surface-container-highest rounded-full flex items-center justify-center relative">
+<span class="material-symbols-outlined text-4xl text-outline-variant" data-icon="lock">lock</span>
+</div>
+<div class="text-center">
+<span class="block text-xs font-black uppercase tracking-tighter text-on-surface-variant/60 mb-1">Operative 04</span>
+<span class="block font-bold text-on-surface">???</span>
+</div>
+</button>
+<!-- Operative 5: Hidden State -->
+<button class="relative bg-surface-container-low p-6 rounded-DEFAULT rounded-xl-br paper-lift sticky-note-tilt-2 transition-all hover:bg-secondary-container active:scale-95 text-left group">
+<div class="w-20 h-20 mx-auto mb-4 bg-surface-container-highest rounded-full flex items-center justify-center relative">
+<span class="material-symbols-outlined text-4xl text-outline-variant" data-icon="lock">lock</span>
+</div>
+<div class="text-center">
+<span class="block text-xs font-black uppercase tracking-tighter text-on-surface-variant/60 mb-1">Operative 05</span>
+<span class="block font-bold text-on-surface">???</span>
+</div>
+</button>
+<!-- Operative 6: Hidden State -->
+<button class="relative bg-surface-container-low p-6 rounded-DEFAULT rounded-xl-br paper-lift sticky-note-tilt-3 transition-all hover:bg-secondary-container active:scale-95 text-left group">
+<div class="w-20 h-20 mx-auto mb-4 bg-surface-container-highest rounded-full flex items-center justify-center relative">
+<span class="material-symbols-outlined text-4xl text-outline-variant" data-icon="lock">lock</span>
+</div>
+<div class="text-center">
+<span class="block text-xs font-black uppercase tracking-tighter text-on-surface-variant/60 mb-1">Operative 06</span>
+<span class="block font-bold text-on-surface">???</span>
+</div>
+</button>
+</div>
+<!-- Action Area -->
+<div class="mt-12 mb-8 flex flex-col items-center gap-4">
+<button class="w-full max-w-xs bg-primary text-on-primary font-black py-4 rounded-full puffy-button text-lg uppercase tracking-widest transition-all">
+                Reveal My Identity
+            </button>
+<p class="text-xs font-bold text-primary/60 uppercase tracking-widest">Player 1 of 6 Ready</p>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-[#e0fee1] dark:bg-[#1b3420] rounded-t-[2rem] shadow-[0_-4px_12px_rgba(27,52,32,0.08)]">
+<a class="flex flex-col items-center justify-center bg-[#006b1b] text-[#e0fee1] rounded-full px-6 py-2 shadow-[0_4px_0_0_#005d16] hover:scale-105 transition-transform active:translate-y-1 active:shadow-none" href="#">
+<span class="material-symbols-outlined" data-icon="videogame_asset">videogame_asset</span>
+<span class="text-[10px] font-bold uppercase tracking-widest font-['Plus_Jakarta_Sans']">Game</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#1b3420] dark:text-[#e0fee1] opacity-70 hover:scale-105 transition-transform active:translate-y-1 active:shadow-none" href="#">
+<span class="material-symbols-outlined" data-icon="group">group</span>
+<span class="text-[10px] font-bold uppercase tracking-widest font-['Plus_Jakarta_Sans']">Players</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#1b3420] dark:text-[#e0fee1] opacity-70 hover:scale-105 transition-transform active:translate-y-1 active:shadow-none" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="text-[10px] font-bold uppercase tracking-widest font-['Plus_Jakarta_Sans']">Rules</span>
+</a>
+</nav>
+<!-- Background Decor (Tactile Elements) -->
+<div class="fixed top-20 -left-10 w-32 h-32 bg-secondary-container/20 rounded-full blur-3xl -z-10"></div>
+<div class="fixed bottom-40 -right-10 w-48 h-48 bg-primary-container/20 rounded-full blur-3xl -z-10"></div>
+</body></html>

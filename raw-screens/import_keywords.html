@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Who is Spy - Import Intel</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,700;0,800;1,800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container": "#cdf1cf",
+              "surface": "#e0fee1",
+              "secondary-dim": "#595000",
+              "tertiary": "#874e00",
+              "primary-fixed": "#91f78e",
+              "on-surface-variant": "#47624b",
+              "on-secondary-container": "#5b5300",
+              "error-dim": "#b92902",
+              "tertiary-container": "#ff9800",
+              "surface-container-highest": "#bee7c1",
+              "background": "#e0fee1",
+              "on-error-container": "#520c00",
+              "secondary-fixed": "#f9e534",
+              "outline-variant": "#98b499",
+              "surface-variant": "#bee7c1",
+              "inverse-on-surface": "#88a48a",
+              "on-primary-fixed": "#00480f",
+              "tertiary-fixed": "#ff9800",
+              "outline": "#627d65",
+              "primary": "#006b1b",
+              "surface-container-high": "#c6ecc8",
+              "on-surface": "#1b3420",
+              "on-primary": "#d1ffc8",
+              "surface-dim": "#b3dfb8",
+              "surface-container-lowest": "#ffffff",
+              "on-error": "#ffefec",
+              "inverse-primary": "#91f78e",
+              "on-tertiary-container": "#4a2800",
+              "inverse-surface": "#001204",
+              "on-tertiary": "#fff0e5",
+              "on-primary-container": "#005e17",
+              "surface-tint": "#006b1b",
+              "secondary-container": "#f9e534",
+              "on-secondary-fixed": "#474000",
+              "on-tertiary-fixed-variant": "#563000",
+              "error-container": "#f95630",
+              "secondary": "#665c00",
+              "surface-container-low": "#d8f9d9",
+              "tertiary-fixed-dim": "#ec8c00",
+              "on-secondary-fixed-variant": "#665c00",
+              "error": "#b02500",
+              "on-tertiary-fixed": "#271300",
+              "primary-dim": "#005d16",
+              "on-primary-fixed-variant": "#00691a",
+              "secondary-fixed-dim": "#ead723",
+              "tertiary-dim": "#764400",
+              "on-background": "#1b3420",
+              "primary-fixed-dim": "#83e881",
+              "primary-container": "#91f78e",
+              "on-secondary": "#fff4b0",
+              "surface-bright": "#e0fee1"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Plus Jakarta Sans"],
+              "label": ["Plus Jakarta Sans"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .paper-curl {
+            box-shadow: 8px 8px 20px rgba(27, 52, 32, 0.08);
+            position: relative;
+        }
+        .paper-curl::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, transparent 50%, rgba(27, 52, 32, 0.05) 50%, rgba(27, 52, 32, 0.1) 100%);
+            border-bottom-right-radius: 3rem;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary-container selection:text-on-primary-container min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-50 bg-[#d8f9d9] dark:bg-[#254a2b] shadow-[0_4px_0_0_rgba(27,52,32,0.08)]">
+<div class="flex items-center justify-between px-6 py-4 w-full max-w-2xl mx-auto">
+<button class="text-[#006b1b] opacity-70 hover:bg-[#bee7c1] transition-all duration-200 active:translate-y-0.5 rounded-full p-2">
+<span class="material-symbols-outlined" data-icon="arrow_back">arrow_back</span>
+</button>
+<h1 class="font-['Plus_Jakarta_Sans'] font-bold tracking-tight uppercase text-2xl text-[#006b1b]">IMPORT INTEL</h1>
+<button class="text-[#006b1b] opacity-70 hover:bg-[#bee7c1] transition-all duration-200 active:translate-y-0.5 rounded-full p-2">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+</button>
+</div>
+</header>
+<main class="max-w-2xl mx-auto px-6 pt-8 space-y-12">
+<!-- Instructional Content -->
+<section class="space-y-4">
+<div class="bg-secondary-container p-6 rounded-lg paper-curl -rotate-1">
+<h2 class="font-headline font-bold text-xl mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="info">info</span>
+                    DEBRIEFING: MISSION PREP
+                </h2>
+<p class="text-on-secondary-container leading-relaxed font-medium">
+                    Agents, upload your intelligence data. Ensure your file has two columns: <span class="underline decoration-wavy">Civilian Word</span> and <span class="underline decoration-wavy">Undercover Word</span>.
+                </p>
+<div class="mt-4 flex gap-4 text-xs font-bold tracking-widest opacity-70 uppercase">
+<span>FORMAT: .XLSX / .CSV</span>
+<span>MAX: 100 PAIRS</span>
+</div>
+</div>
+</section>
+<!-- Upload Area (Manila Folder Aesthetic) -->
+<section class="relative group">
+<div class="absolute -top-4 left-8 bg-on-surface-variant/10 px-6 py-2 rounded-t-xl font-bold text-sm tracking-widest uppercase">
+                INTEL DROP ZONE
+            </div>
+<div class="bg-surface-container-high border-4 border-dashed border-outline-variant/30 rounded-xl p-12 text-center transition-all group-hover:bg-surface-container-highest flex flex-col items-center justify-center space-y-4 cursor-pointer relative overflow-hidden">
+<div class="bg-primary text-on-primary w-20 h-20 rounded-full flex items-center justify-center shadow-[0_8px_0_0_#005d16] mb-4">
+<span class="material-symbols-outlined text-4xl" data-icon="upload_file">upload_file</span>
+</div>
+<h3 class="font-headline font-extrabold text-2xl tracking-tight">DRAG &amp; DROP INTEL</h3>
+<p class="text-on-surface-variant max-w-xs mx-auto">Click to browse your local archives or drop the file right onto this desk.</p>
+<!-- Large Paper Clip Decorative Element -->
+<div class="absolute top-4 right-8 transform rotate-12 opacity-40">
+<span class="material-symbols-outlined text-6xl text-on-surface" data-icon="attach_file">attach_file</span>
+</div>
+</div>
+</section>
+<!-- Preview Section (Sticky Notes / Torn Paper) -->
+<section class="space-y-6">
+<div class="flex items-center justify-between">
+<h2 class="font-headline font-bold text-lg tracking-widest uppercase opacity-80">STAGED KEYWORDS</h2>
+<span class="bg-surface-dim px-3 py-1 rounded-full text-xs font-bold uppercase">4 PAIRS LOADED</span>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Word Pair 1 -->
+<div class="bg-secondary-container p-6 rounded-lg paper-curl rotate-1 flex flex-col justify-between min-h-[140px]">
+<div class="flex justify-between items-start">
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-secondary-container/60">ID: 082</span>
+<span class="material-symbols-outlined text-on-secondary-container/40" data-icon="close">close</span>
+</div>
+<div class="flex items-center justify-between gap-4 mt-2">
+<div class="flex-1">
+<p class="text-xs font-bold text-primary uppercase mb-1">Civilian</p>
+<p class="text-xl font-extrabold tracking-tight">APPLE</p>
+</div>
+<div class="w-px h-12 bg-on-secondary-container/10"></div>
+<div class="flex-1 text-right">
+<p class="text-xs font-bold text-tertiary uppercase mb-1">Spy</p>
+<p class="text-xl font-extrabold tracking-tight">PEAR</p>
+</div>
+</div>
+</div>
+<!-- Word Pair 2 -->
+<div class="bg-secondary-container p-6 rounded-lg paper-curl -rotate-2 flex flex-col justify-between min-h-[140px]">
+<div class="flex justify-between items-start">
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-secondary-container/60">ID: 083</span>
+<span class="material-symbols-outlined text-on-secondary-container/40" data-icon="close">close</span>
+</div>
+<div class="flex items-center justify-between gap-4 mt-2">
+<div class="flex-1">
+<p class="text-xs font-bold text-primary uppercase mb-1">Civilian</p>
+<p class="text-xl font-extrabold tracking-tight">BEACH</p>
+</div>
+<div class="w-px h-12 bg-on-secondary-container/10"></div>
+<div class="flex-1 text-right">
+<p class="text-xs font-bold text-tertiary uppercase mb-1">Spy</p>
+<p class="text-xl font-extrabold tracking-tight">POOL</p>
+</div>
+</div>
+</div>
+<!-- Word Pair 3 -->
+<div class="bg-secondary-container p-6 rounded-lg paper-curl rotate-1 flex flex-col justify-between min-h-[140px]">
+<div class="flex justify-between items-start">
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-secondary-container/60">ID: 084</span>
+<span class="material-symbols-outlined text-on-secondary-container/40" data-icon="close">close</span>
+</div>
+<div class="flex items-center justify-between gap-4 mt-2">
+<div class="flex-1">
+<p class="text-xs font-bold text-primary uppercase mb-1">Civilian</p>
+<p class="text-xl font-extrabold tracking-tight">SNEAKER</p>
+</div>
+<div class="w-px h-12 bg-on-secondary-container/10"></div>
+<div class="flex-1 text-right">
+<p class="text-xs font-bold text-tertiary uppercase mb-1">Spy</p>
+<p class="text-xl font-extrabold tracking-tight">BOOT</p>
+</div>
+</div>
+</div>
+<!-- Word Pair 4 -->
+<div class="bg-secondary-container p-6 rounded-lg paper-curl -rotate-1 flex flex-col justify-between min-h-[140px]">
+<div class="flex justify-between items-start">
+<span class="text-[10px] font-bold uppercase tracking-widest text-on-secondary-container/60">ID: 085</span>
+<span class="material-symbols-outlined text-on-secondary-container/40" data-icon="close">close</span>
+</div>
+<div class="flex items-center justify-between gap-4 mt-2">
+<div class="flex-1">
+<p class="text-xs font-bold text-primary uppercase mb-1">Civilian</p>
+<p class="text-xl font-extrabold tracking-tight">PIZZA</p>
+</div>
+<div class="w-px h-12 bg-on-secondary-container/10"></div>
+<div class="flex-1 text-right">
+<p class="text-xs font-bold text-tertiary uppercase mb-1">Spy</p>
+<p class="text-xl font-extrabold tracking-tight">PASTA</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Primary Action -->
+<div class="flex justify-center pt-8">
+<button class="bg-primary text-on-primary rounded-full px-12 py-5 font-headline font-extrabold text-xl uppercase tracking-wider shadow-[0_8px_0_0_#005d16] active:translate-y-1 active:shadow-[0_4px_0_0_#005d16] transition-all flex items-center gap-3">
+<span class="material-symbols-outlined" data-icon="check_circle">check_circle</span>
+                CONFIRM IMPORT
+            </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-8 pt-4 bg-[#e0fee1] dark:bg-[#1b3420] shadow-[0_-8px_20px_rgba(27,52,32,0.1)] rounded-t-[3rem]">
+<a class="flex flex-col items-center justify-center text-[#1b3420] dark:text-[#e0fee1] opacity-60 hover:opacity-100 hover:scale-105 transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="Assignment">assignment</span>
+<span class="font-['Plus_Jakarta_Sans'] font-bold text-[10px] tracking-widest uppercase mt-1">DEBRIEF</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#006b1b] text-white rounded-full px-6 py-2 shadow-[0_4px_0_0_#005d16] hover:scale-105 transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="videogame_asset">videogame_asset</span>
+<span class="font-['Plus_Jakarta_Sans'] font-bold text-[10px] tracking-widest uppercase mt-1">MISSION</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#1b3420] dark:text-[#e0fee1] opacity-60 hover:opacity-100 hover:scale-105 transition-all active:scale-90 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="folder_open">folder_open</span>
+<span class="font-['Plus_Jakarta_Sans'] font-bold text-[10px] tracking-widest uppercase mt-1">FILES</span>
+</a>
+</nav>
+<!-- Decorative Bottom Elements -->
+<div class="fixed bottom-32 right-8 opacity-20 pointer-events-none select-none">
+<span class="material-symbols-outlined text-8xl" data-icon="draw">draw</span>
+</div>
+</body></html>

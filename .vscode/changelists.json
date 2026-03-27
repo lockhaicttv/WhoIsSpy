@@ -1,0 +1,20 @@
+{
+  "changelists": [
+    {
+      "name": "Default",
+      "files": [
+        "app/(tabs)/index.tsx",
+        "package.json",
+        "tsconfig.json",
+        "global.css",
+        "metro.config.js",
+        "nativewind-env.d.ts",
+        "package-lock.json",
+        "tailwind.config.js",
+        ".skill/react-native-style.md",
+        ".vscode/changelists.json"
+      ]
+    }
+  ],
+  "active": "Default"
+}

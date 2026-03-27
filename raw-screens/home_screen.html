@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Who is Spy? - Tactical Tactility</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed": "#ff9800",
+              "on-tertiary-fixed-variant": "#563000",
+              "on-primary-fixed": "#00480f",
+              "surface-tint": "#006b1b",
+              "on-primary": "#d1ffc8",
+              "outline-variant": "#98b499",
+              "error": "#b02500",
+              "on-primary-fixed-variant": "#00691a",
+              "inverse-primary": "#91f78e",
+              "on-surface-variant": "#47624b",
+              "surface-container-high": "#c6ecc8",
+              "on-secondary": "#fff4b0",
+              "on-tertiary-container": "#4a2800",
+              "surface-container-highest": "#bee7c1",
+              "on-secondary-fixed": "#474000",
+              "on-surface": "#1b3420",
+              "primary-fixed": "#91f78e",
+              "primary-container": "#91f78e",
+              "error-container": "#f95630",
+              "on-primary-container": "#005e17",
+              "tertiary-dim": "#764400",
+              "inverse-on-surface": "#88a48a",
+              "surface": "#e0fee1",
+              "outline": "#627d65",
+              "surface-variant": "#bee7c1",
+              "secondary-fixed-dim": "#ead723",
+              "primary": "#006b1b",
+              "primary-fixed-dim": "#83e881",
+              "tertiary-fixed-dim": "#ec8c00",
+              "tertiary-container": "#ff9800",
+              "on-error": "#ffefec",
+              "on-error-container": "#520c00",
+              "on-background": "#1b3420",
+              "secondary-dim": "#595000",
+              "secondary-fixed": "#f9e534",
+              "primary-dim": "#005d16",
+              "surface-container-low": "#d8f9d9",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary-fixed-variant": "#665c00",
+              "secondary-container": "#f9e534",
+              "on-secondary-container": "#5b5300",
+              "surface-bright": "#e0fee1",
+              "error-dim": "#b92902",
+              "inverse-surface": "#001204",
+              "background": "#e0fee1",
+              "secondary": "#665c00",
+              "on-tertiary": "#fff0e5",
+              "surface-container": "#cdf1cf",
+              "tertiary": "#874e00",
+              "on-tertiary-fixed": "#271300",
+              "surface-dim": "#b3dfb8"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Plus Jakarta Sans"],
+              "label": ["Plus Jakarta Sans"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        display: inline-block;
+        line-height: 1;
+      }
+      .puffy-shadow {
+        box-shadow: 0 4px 0 0 #005d16;
+      }
+      .puffy-shadow:active {
+        box-shadow: 0 0px 0 0 #005d16;
+        transform: translateY(4px);
+      }
+      .sticky-note-shadow {
+        box-shadow: 12px 12px 24px rgba(27, 52, 32, 0.08);
+      }
+      .curled-corner {
+        border-bottom-right-radius: 3rem;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface selection:bg-primary-container selection:text-on-primary-container min-h-screen flex flex-col overflow-x-hidden">
+<!-- Top Navigation Anchor (Shared Component) -->
+<nav class="w-full top-0 sticky z-50 bg-[#e0fee1] dark:bg-[#1b3420] flex items-center justify-between px-6 py-4 w-full">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#006b1b] dark:text-[#7BC67E] text-2xl" data-icon="menu">menu</span>
+</div>
+<h1 class="font-['Plus_Jakarta_Sans'] font-bold tracking-tight text-2xl text-[#006b1b] dark:text-[#7BC67E] font-black tracking-tighter uppercase">WHO IS SPY?</h1>
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center overflow-hidden shadow-sm border-2 border-primary/10">
+<img alt="User profile avatar" class="w-full h-full object-cover" data-alt="minimalist geometric avatar illustration of a secret agent with sunglasses on a green background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCqQXauBT1ISmg5Mp5C23xCNj6nZ-yb3L4O2qu5e5xQvCJ0Swpl2rv1W5bMgE6Hxs6nhM3SpwL1FO5cTLSAXZERiUsd-qXW_udu9vcCUnay5glDoFtNOdGSnIie7pKppFXXePneWOU98mNAkjYnBclpVz95QtPGl1vFEPbkv8Zu7cY6GVWCS67uP8sJrpUeODT_bLOxKsNtg5KpcShjosd8x2hDBh-nNYMdSYQO7fpdbtsysloC-y9kgCr-owYLBlLXL5zrzkrnH3g"/>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex flex-col items-center px-6 pt-8 pb-32 max-w-4xl mx-auto w-full relative">
+<!-- Hero Section: The "Tabletop" Visual -->
+<div class="relative w-full aspect-video md:aspect-[21/9] mb-12 transform -rotate-1">
+<div class="absolute inset-0 bg-surface-container-high rounded-xl rotate-2 translate-x-2 translate-y-2 opacity-50"></div>
+<div class="relative w-full h-full rounded-xl overflow-hidden sticky-note-shadow border-4 border-surface-container-lowest">
+<img class="w-full h-full object-cover" data-alt="Cinematic mystery scene with a detective magnifying glass, hidden documents, and a top-secret file folder on a tactical green desk surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD3vJC-6OcWhw7zKqlGNJMaLO6PAHb7nNonoDA0Y-fX29O1zCJZkmofNH9MIr1Lq--8o8a1eNkMAaesKEDH3CjagVTRDtoWhicauQ5vY2FwUUljAez6nhogY7HzBTzeDWsfBVS79bCQvRAR5qPG4aCdudhHE3noAYbW4OXAuNrwFcUEciqMLf3oIQ4eZ-TQQdxorN5KO2kq4CLj51DgmvF6nDK9lDM7afTNnEx4a5F6ej7PMv4HaOBish8OSqzwpdMhEPq_zRLWMzU"/>
+<div class="absolute inset-0 bg-gradient-to-t from-on-surface/40 to-transparent"></div>
+<div class="absolute bottom-6 left-6 flex items-center gap-2 bg-secondary-container px-4 py-2 rounded-full rotate-[-2deg] shadow-lg">
+<span class="material-symbols-outlined text-on-secondary-container text-sm" data-icon="priority_high">priority_high</span>
+<span class="font-label font-bold text-[10px] tracking-widest text-on-secondary-container uppercase">TOP SECRET INTEL</span>
+</div>
+</div>
+</div>
+<!-- Headline Area -->
+<div class="text-center mb-12 relative">
+<div class="absolute -top-8 -left-12 rotate-[-15deg] opacity-20">
+<span class="material-symbols-outlined text-8xl" data-icon="fingerprint">fingerprint</span>
+</div>
+<h2 class="font-headline font-extrabold text-5xl md:text-7xl text-on-surface tracking-tighter leading-none mb-4 uppercase">
+                WHO IS <span class="text-primary italic">SPY?</span>
+</h2>
+<p class="font-body text-lg md:text-xl text-on-surface-variant max-w-md mx-auto leading-relaxed">
+                Trust no one. Question everything. Find the infiltrator before they reveal your location.
+            </p>
+</div>
+<!-- Action Grid: Tactile Interaction -->
+<div class="w-full grid grid-cols-1 md:grid-cols-2 gap-6 items-start">
+<!-- Primary Action -->
+<div class="md:col-span-2 flex flex-col items-center">
+<button class="group w-full md:w-auto min-w-[320px] bg-primary text-on-primary font-headline font-bold text-2xl py-6 px-12 rounded-full flex items-center justify-center gap-4 puffy-shadow transition-all hover:opacity-90 active:scale-95">
+<span class="material-symbols-outlined text-3xl" data-icon="play_arrow" style="font-variation-settings: 'FILL' 1;">play_arrow</span>
+                    START MISSION
+                </button>
+</div>
+<!-- Bento Cards for Secondary Actions -->
+<button class="group relative bg-secondary-container p-8 rounded-xl sticky-note-shadow curled-corner text-left transition-transform hover:-translate-y-1 rotate-1 active:scale-[0.98]">
+<div class="absolute top-4 right-6 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl" data-icon="groups">groups</span>
+</div>
+<div class="flex flex-col gap-4">
+<div class="w-12 h-12 rounded-full bg-on-secondary-container/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-secondary-container" data-icon="diversity_3">diversity_3</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-xl text-on-secondary-container">PLAY WITH FRIENDS</h3>
+<p class="font-body text-sm text-on-secondary-container/70 mt-1">Create a room and invite your squad for local or remote play.</p>
+</div>
+</div>
+</button>
+<button class="group relative bg-surface-container-high p-8 rounded-xl sticky-note-shadow text-left transition-transform hover:-translate-y-1 -rotate-1 active:scale-[0.98]">
+<div class="absolute top-4 right-6 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-6xl" data-icon="menu_book">menu_book</span>
+</div>
+<div class="flex flex-col gap-4">
+<div class="w-12 h-12 rounded-full bg-on-surface-variant/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="help">help</span>
+</div>
+<div>
+<h3 class="font-headline font-bold text-xl text-on-surface">RULES &amp; HOW TO PLAY</h3>
+<p class="font-body text-sm text-on-surface-variant mt-1">New recruit? Learn the basics of espionage and deduction.</p>
+</div>
+</div>
+</button>
+</div>
+<!-- Floating Decorative Element -->
+<div class="hidden lg:block absolute -right-20 top-1/4 rotate-12 bg-tertiary-container p-4 rounded-lg shadow-xl max-w-[180px]">
+<p class="font-label text-[10px] text-on-tertiary-container font-black mb-2 uppercase border-b border-on-tertiary-container/20 pb-1">Current Active Cases</p>
+<div class="flex -space-x-2">
+<div class="w-8 h-8 rounded-full border-2 border-tertiary-container bg-surface flex items-center justify-center text-[10px] font-bold">JD</div>
+<div class="w-8 h-8 rounded-full border-2 border-tertiary-container bg-primary flex items-center justify-center text-[10px] font-bold text-on-primary">SK</div>
+<div class="w-8 h-8 rounded-full border-2 border-tertiary-container bg-secondary flex items-center justify-center text-[10px] font-bold">MK</div>
+</div>
+<p class="text-[9px] mt-2 italic text-on-tertiary-container/80">"3 agents are currently undercover in Moscow..."</p>
+</div>
+</main>
+<!-- Bottom Navigation Shell (Shared Component) -->
+<footer class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-[#e0fee1] dark:bg-[#1b3420] rounded-t-[2rem] border-t-2 border-[#d8f9d9] dark:border-[#254a2b] shadow-[0_-4px_12px_rgba(27,52,32,0.08)]">
+<!-- Missions Tab (Active) -->
+<button class="flex flex-col items-center justify-center bg-[#006b1b] text-[#e0fee1] rounded-full px-5 py-2 shadow-[0_4px_0_0_#005d16] active:translate-y-0.5 active:shadow-none transition-all">
+<span class="material-symbols-outlined" data-icon="videogame_asset" style="font-variation-settings: 'FILL' 1;">videogame_asset</span>
+<span class="font-['Plus_Jakarta_Sans'] font-bold text-[10px] uppercase mt-1">Missions</span>
+</button>
+<!-- Intel Tab -->
+<button class="flex flex-col items-center justify-center text-[#1b3420] opacity-70 hover:bg-[#d8f9d9] dark:hover:bg-[#254a2b] rounded-full px-4 py-2 transition-all">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-['Plus_Jakarta_Sans'] font-bold text-[10px] uppercase mt-1">Intel</span>
+</button>
+<!-- Briefing Tab -->
+<button class="flex flex-col items-center justify-center text-[#1b3420] opacity-70 hover:bg-[#d8f9d9] dark:hover:bg-[#254a2b] rounded-full px-4 py-2 transition-all">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-['Plus_Jakarta_Sans'] font-bold text-[10px] uppercase mt-1">Briefing</span>
+</button>
+</footer>
+</body></html>

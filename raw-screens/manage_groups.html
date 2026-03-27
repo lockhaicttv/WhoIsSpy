@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface": "#e0fee1",
+              "secondary-dim": "#595000",
+              "secondary-fixed": "#f9e534",
+              "on-tertiary": "#fff0e5",
+              "on-secondary": "#fff4b0",
+              "surface-bright": "#e0fee1",
+              "on-tertiary-fixed": "#271300",
+              "secondary": "#665c00",
+              "tertiary": "#874e00",
+              "on-primary-fixed": "#00480f",
+              "error-container": "#f95630",
+              "on-tertiary-container": "#4a2800",
+              "surface-dim": "#b3dfb8",
+              "tertiary-fixed-dim": "#ec8c00",
+              "inverse-on-surface": "#88a48a",
+              "surface-container-high": "#c6ecc8",
+              "on-secondary-fixed-variant": "#665c00",
+              "on-primary": "#d1ffc8",
+              "tertiary-dim": "#764400",
+              "primary-fixed": "#91f78e",
+              "on-secondary-fixed": "#474000",
+              "on-primary-fixed-variant": "#00691a",
+              "error": "#b02500",
+              "outline-variant": "#98b499",
+              "surface-container-low": "#d8f9d9",
+              "primary": "#006b1b",
+              "inverse-surface": "#001204",
+              "primary-fixed-dim": "#83e881",
+              "tertiary-fixed": "#ff9800",
+              "on-surface": "#1b3420",
+              "secondary-container": "#f9e534",
+              "on-error-container": "#520c00",
+              "background": "#e0fee1",
+              "on-background": "#1b3420",
+              "primary-container": "#91f78e",
+              "primary-dim": "#005d16",
+              "outline": "#627d65",
+              "on-surface-variant": "#47624b",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary-container": "#5b5300",
+              "surface-tint": "#006b1b",
+              "surface-variant": "#bee7c1",
+              "on-primary-container": "#005e17",
+              "on-error": "#ffefec",
+              "secondary-fixed-dim": "#ead723",
+              "tertiary-container": "#ff9800",
+              "surface-container": "#cdf1cf",
+              "error-dim": "#b92902",
+              "surface-container-highest": "#bee7c1",
+              "inverse-primary": "#91f78e",
+              "on-tertiary-fixed-variant": "#563000"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Plus Jakarta Sans"],
+              "label": ["Plus Jakarta Sans"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .paper-lift {
+            box-shadow: 8px 8px 0px 0px rgba(27, 52, 32, 0.1);
+        }
+        .puffy-shadow {
+            box-shadow: 0px 4px 0px 0px #005d16;
+        }
+        .curled-corner {
+            border-bottom-right-radius: 3rem;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="w-full top-0 sticky z-40 bg-[#e0fee1] dark:bg-[#1b3420] shadow-[0px_4px_0px_0px_rgba(27,52,32,0.08)]">
+<div class="flex items-center justify-between px-6 py-4 w-full">
+<button class="text-[#006b1b] dark:text-[#7BC67E] hover:opacity-80 transition-opacity active:translate-y-0.5 transition-transform">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-['Plus_Jakarta_Sans'] font-bold tracking-tight uppercase text-2xl font-black text-[#1b3420] dark:text-[#e0fee1]">OPERATIVES</h1>
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center border-2 border-primary overflow-hidden">
+<img alt="User Profile" data-alt="minimalist geometric avatar head on a soft green background representing a user profile icon" src="https://lh3.googleusercontent.com/aida-public/AB6AXuARUWqw5Otu2Aa-YvpqIac3AbluCGRrvFd6wq991Xh3FzAxhRvxao13KEofng8Tm7WuzlzKLwy9x4YGZ-5dH_NfUERxeD44S9uHBmev59MsTRcHMIoBjPxemtg6VLs0PFtd_3mnqu0spp5sY2bYHDsTZLcgpXEb-CqxHntS2iQar59Yzoms_1GBgS_aLXQDWFNpIEqOlapQu_ABbWdiihGP_fPYM6-cW81CKoC9efYJPrbRqwgibzuuohiH2isnVoL-dE2o9Rnqpao"/>
+</div>
+</div>
+</header>
+<main class="max-w-md mx-auto px-6 pt-8 space-y-8">
+<!-- Add Group Action -->
+<section class="flex flex-col items-center">
+<button class="group w-full bg-primary text-on-primary rounded-full py-5 px-8 flex items-center justify-center gap-3 puffy-shadow hover:translate-y-0.5 active:translate-y-1 active:shadow-none transition-all">
+<span class="material-symbols-outlined text-2xl" data-icon="add_circle">add_circle</span>
+<span class="font-headline font-extrabold text-lg tracking-tight uppercase">Add New Group</span>
+</button>
+</section>
+<!-- Groups List -->
+<div class="space-y-10">
+<!-- Group Card: Family & Friends -->
+<article class="relative bg-secondary-container p-6 paper-lift curled-corner -rotate-1 transform transition-transform hover:rotate-0">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h2 class="font-headline font-bold text-2xl text-on-secondary-container leading-tight">Family &amp; Friends</h2>
+<span class="font-label text-[10px] font-extrabold tracking-widest uppercase opacity-60">12 Players Total</span>
+</div>
+<div class="flex gap-2">
+<button class="p-2 bg-on-secondary-container/10 rounded-lg hover:bg-on-secondary-container/20 transition-colors">
+<span class="material-symbols-outlined text-on-secondary-container" data-icon="edit">edit</span>
+</button>
+<button class="p-2 bg-error/10 rounded-lg hover:bg-error/20 transition-colors">
+<span class="material-symbols-outlined text-error" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+<!-- Player Sub-List -->
+<div class="bg-surface-dim/30 rounded-xl p-4 mb-4">
+<div class="flex items-center justify-between mb-3">
+<span class="font-label text-[10px] font-black uppercase text-on-surface-variant">Active Squad</span>
+<button class="text-primary font-bold text-xs flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-sm" data-icon="person_add">person_add</span>
+                            Add Player
+                        </button>
+</div>
+<div class="flex overflow-x-auto pb-2 gap-4 no-scrollbar">
+<!-- Player Avatar 1 -->
+<div class="flex-shrink-0 flex flex-col items-center gap-1">
+<div class="relative w-12 h-12 bg-surface-bright rounded-full flex items-center justify-center border-2 border-primary-dim/20 shadow-sm">
+<span class="material-symbols-outlined text-primary-dim" data-icon="face">face</span>
+<button class="absolute -top-1 -right-1 bg-error text-white rounded-full w-5 h-5 flex items-center justify-center border-2 border-secondary-container">
+<span class="material-symbols-outlined text-[10px]" data-icon="close">close</span>
+</button>
+</div>
+<span class="text-[10px] font-bold">Dad</span>
+</div>
+<!-- Player Avatar 2 -->
+<div class="flex-shrink-0 flex flex-col items-center gap-1">
+<div class="relative w-12 h-12 bg-surface-bright rounded-full flex items-center justify-center border-2 border-primary-dim/20 shadow-sm">
+<span class="material-symbols-outlined text-primary-dim" data-icon="face_3">face_3</span>
+<button class="absolute -top-1 -right-1 bg-error text-white rounded-full w-5 h-5 flex items-center justify-center border-2 border-secondary-container">
+<span class="material-symbols-outlined text-[10px]" data-icon="close">close</span>
+</button>
+</div>
+<span class="text-[10px] font-bold">Mom</span>
+</div>
+<!-- Player Avatar 3 -->
+<div class="flex-shrink-0 flex flex-col items-center gap-1">
+<div class="relative w-12 h-12 bg-surface-bright rounded-full flex items-center justify-center border-2 border-primary-dim/20 shadow-sm">
+<span class="material-symbols-outlined text-primary-dim" data-icon="face_6">face_6</span>
+<button class="absolute -top-1 -right-1 bg-error text-white rounded-full w-5 h-5 flex items-center justify-center border-2 border-secondary-container">
+<span class="material-symbols-outlined text-[10px]" data-icon="close">close</span>
+</button>
+</div>
+<span class="text-[10px] font-bold">Leo</span>
+</div>
+<!-- Player Avatar 4 -->
+<div class="flex-shrink-0 flex flex-col items-center gap-1">
+<div class="relative w-12 h-12 bg-surface-bright rounded-full flex items-center justify-center border-2 border-primary-dim/20 shadow-sm">
+<span class="material-symbols-outlined text-primary-dim" data-icon="face_2">face_2</span>
+<button class="absolute -top-1 -right-1 bg-error text-white rounded-full w-5 h-5 flex items-center justify-center border-2 border-secondary-container">
+<span class="material-symbols-outlined text-[10px]" data-icon="close">close</span>
+</button>
+</div>
+<span class="text-[10px] font-bold">Sara</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Group Card: Office Crew -->
+<article class="relative bg-tertiary-container p-6 paper-lift rounded-lg rotate-1 transform transition-transform hover:rotate-0">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h2 class="font-headline font-bold text-2xl text-on-tertiary-container leading-tight">Office Crew</h2>
+<span class="font-label text-[10px] font-extrabold tracking-widest uppercase opacity-70">8 Players Total</span>
+</div>
+<div class="flex gap-2">
+<button class="p-2 bg-on-tertiary-container/10 rounded-lg">
+<span class="material-symbols-outlined text-on-tertiary-container" data-icon="edit">edit</span>
+</button>
+<button class="p-2 bg-error/10 rounded-lg">
+<span class="material-symbols-outlined text-error" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+<div class="bg-surface-bright/40 rounded-xl p-4 mb-4">
+<div class="flex items-center justify-between mb-3">
+<span class="font-label text-[10px] font-black uppercase text-on-tertiary-container/60">The Spies</span>
+<button class="text-on-tertiary-container font-bold text-xs flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-sm" data-icon="person_add">person_add</span>
+                            Add Player
+                        </button>
+</div>
+<div class="flex overflow-x-auto pb-2 gap-4 no-scrollbar">
+<div class="flex-shrink-0 flex flex-col items-center gap-1">
+<div class="relative w-12 h-12 bg-surface-bright rounded-full flex items-center justify-center border-2 border-tertiary shadow-sm">
+<span class="material-symbols-outlined text-tertiary" data-icon="face_5">face_5</span>
+<button class="absolute -top-1 -right-1 bg-error text-white rounded-full w-5 h-5 flex items-center justify-center border-2 border-tertiary-container">
+<span class="material-symbols-outlined text-[10px]" data-icon="close">close</span>
+</button>
+</div>
+<span class="text-[10px] font-bold">Dave</span>
+</div>
+<div class="flex-shrink-0 flex flex-col items-center gap-1">
+<div class="relative w-12 h-12 bg-surface-bright rounded-full flex items-center justify-center border-2 border-tertiary shadow-sm">
+<span class="material-symbols-outlined text-tertiary" data-icon="face_4">face_4</span>
+<button class="absolute -top-1 -right-1 bg-error text-white rounded-full w-5 h-5 flex items-center justify-center border-2 border-tertiary-container">
+<span class="material-symbols-outlined text-[10px]" data-icon="close">close</span>
+</button>
+</div>
+<span class="text-[10px] font-bold">Alex</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Group Card: Friday Night Boardgamers -->
+<article class="relative bg-surface-container p-6 paper-lift rounded-lg -rotate-1 transform transition-transform hover:rotate-0">
+<div class="flex justify-between items-start mb-4">
+<div>
+<h2 class="font-headline font-bold text-2xl text-on-surface leading-tight">Friday Night Boardgamers</h2>
+<span class="font-label text-[10px] font-extrabold tracking-widest uppercase opacity-60">24 Players Total</span>
+</div>
+<div class="flex gap-2">
+<button class="p-2 bg-on-surface/10 rounded-lg">
+<span class="material-symbols-outlined text-on-surface" data-icon="edit">edit</span>
+</button>
+<button class="p-2 bg-error/10 rounded-lg">
+<span class="material-symbols-outlined text-error" data-icon="delete">delete</span>
+</button>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-xl p-4 mb-4">
+<div class="flex items-center justify-between mb-3">
+<span class="font-label text-[10px] font-black uppercase text-on-surface-variant">The Crew</span>
+<button class="text-primary font-bold text-xs flex items-center gap-1 hover:underline">
+<span class="material-symbols-outlined text-sm" data-icon="person_add">person_add</span>
+                            Add Player
+                        </button>
+</div>
+<div class="py-4 border-2 border-dashed border-outline-variant/30 rounded-lg flex flex-col items-center justify-center opacity-60">
+<span class="material-symbols-outlined text-3xl mb-1" data-icon="group_add">group_add</span>
+<span class="text-[10px] font-bold">No players added yet</span>
+</div>
+</div>
+</article>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-8 pt-4 bg-[#e0fee1] dark:bg-[#1b3420] shadow-[0_-8px_16px_rgba(27,52,32,0.05)] rounded-t-[2rem]">
+<!-- MODES -->
+<a class="flex flex-col items-center justify-center text-[#1b3420] dark:text-[#e0fee1] opacity-70 hover:scale-105 transition-transform active:translate-y-1 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="videogame_asset">videogame_asset</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold tracking-widest uppercase">MODES</span>
+</a>
+<!-- PLAYERS (ACTIVE) -->
+<a class="flex flex-col items-center justify-center bg-[#006b1b] dark:bg-[#7BC67E] text-[#e0fee1] dark:text-[#1b3420] rounded-full px-6 py-2 shadow-[0_4px_0_0_#005d16] hover:scale-105 transition-transform active:translate-y-1 active:shadow-none transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="group" style="font-variation-settings: 'FILL' 1;">group</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold tracking-widest uppercase">PLAYERS</span>
+</a>
+<!-- SETTINGS -->
+<a class="flex flex-col items-center justify-center text-[#1b3420] dark:text-[#e0fee1] opacity-70 hover:scale-105 transition-transform active:translate-y-1 transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold tracking-widest uppercase">SETTINGS</span>
+</a>
+</nav>
+<style>
+        .no-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .no-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</body></html>

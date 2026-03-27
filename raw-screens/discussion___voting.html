@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Who Is Spy? - Discussion &amp; Voting</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-lowest": "#ffffff",
+              "surface-bright": "#e0fee1",
+              "on-surface": "#1b3420",
+              "secondary-container": "#f9e534",
+              "surface": "#e0fee1",
+              "on-surface-variant": "#47624b",
+              "primary-fixed": "#91f78e",
+              "on-background": "#1b3420",
+              "on-primary": "#d1ffc8",
+              "on-tertiary-fixed-variant": "#563000",
+              "on-secondary-container": "#5b5300",
+              "on-tertiary-container": "#4a2800",
+              "secondary-fixed-dim": "#ead723",
+              "on-tertiary-fixed": "#271300",
+              "surface-container-highest": "#bee7c1",
+              "tertiary": "#874e00",
+              "secondary-fixed": "#f9e534",
+              "tertiary-fixed-dim": "#ec8c00",
+              "error-container": "#f95630",
+              "surface-dim": "#b3dfb8",
+              "inverse-primary": "#91f78e",
+              "primary-fixed-dim": "#83e881",
+              "surface-tint": "#006b1b",
+              "on-secondary-fixed-variant": "#665c00",
+              "primary-dim": "#005d16",
+              "on-secondary-fixed": "#474000",
+              "error": "#b02500",
+              "secondary": "#665c00",
+              "on-primary-container": "#005e17",
+              "on-error": "#ffefec",
+              "on-error-container": "#520c00",
+              "on-secondary": "#fff4b0",
+              "background": "#e0fee1",
+              "primary-container": "#91f78e",
+              "surface-container-high": "#c6ecc8",
+              "primary": "#006b1b",
+              "inverse-surface": "#001204",
+              "surface-container": "#cdf1cf",
+              "outline": "#627d65",
+              "surface-container-low": "#d8f9d9",
+              "on-primary-fixed-variant": "#00691a",
+              "tertiary-dim": "#764400",
+              "on-primary-fixed": "#00480f",
+              "error-dim": "#b92902",
+              "surface-variant": "#bee7c1",
+              "tertiary-container": "#ff9800",
+              "on-tertiary": "#fff0e5",
+              "outline-variant": "#98b499",
+              "secondary-dim": "#595000",
+              "tertiary-fixed": "#ff9800",
+              "inverse-on-surface": "#88a48a"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Plus Jakarta Sans"],
+              "label": ["Plus Jakarta Sans"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .puffy-button {
+            box-shadow: 0 4px 0 #005d16;
+        }
+        .puffy-button:active {
+            transform: translateY(2px);
+            box-shadow: 0 0px 0 #005d16;
+        }
+        .sticky-note-shadow {
+            box-shadow: 8px 8px 12px rgba(27, 52, 32, 0.08);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="w-full top-0 z-50 bg-[#e0fee1] dark:bg-[#1b3420] flex items-center justify-between px-6 h-16 max-w-none">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#006b1b] dark:text-[#7BC67E] hover:opacity-80 transition-opacity active:scale-95 duration-150 cursor-pointer">menu</span>
+<h1 class="text-2xl font-black text-[#006b1b] dark:text-[#7BC67E] tracking-tighter uppercase">WHO IS SPY?</h1>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest flex items-center justify-center overflow-hidden border-2 border-primary">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="minimalist geometric avatar of a player with a simple green circle head and rounded shoulders on a white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC31kCHM1wayXDMGpuDDpzmk3ZfFoplt6C_zxdiqjeKCLmlcg-tV4NpURpMRkY4Ldi1IqDSqKvPFcx5J3LJDb0xXff3uMbvcNhrozMKzGVFn4bYvKuMJTh4kf7sdNdwgulBzXuPs0zYEe5eLCSWbSFehXIOl27yjMPbg-nA6YqSYDIurP23JqfH4gvAVAZ0JaO7bOgOgyXW1z4olDt6ADRYeDnrkHf2bLZRXYTbEjdn-BYzByT-N3ICrk1yRmktB_NXMuF9g0eDhZw"/>
+</div>
+</header>
+<main class="flex-1 px-6 pt-4 pb-32">
+<!-- Countdown Section -->
+<section class="flex flex-col items-center mb-10">
+<div class="bg-surface-container-low px-8 py-4 rounded-xl flex flex-col items-center justify-center">
+<span class="font-headline font-bold text-xs tracking-[0.2em] text-on-surface-variant uppercase mb-1">DISCUSSION TIME</span>
+<div class="flex items-baseline gap-1">
+<span class="text-6xl font-black text-primary tracking-tighter leading-none">00:42</span>
+</div>
+</div>
+<p class="mt-4 text-on-surface-variant font-medium text-center max-w-xs">
+                Discuss with others and find out who doesn't belong!
+            </p>
+</section>
+<!-- Player Grid -->
+<div class="grid grid-cols-2 gap-6">
+<!-- Player Card 1 (Active/Self) -->
+<div class="bg-secondary-container p-4 rounded-DEFAULT rounded-br-xl sticky-note-shadow rotate-[-1deg] relative">
+<div class="absolute -top-3 -right-2 bg-primary text-on-primary text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-tighter">You</div>
+<div class="flex flex-col items-center text-center gap-3">
+<div class="w-16 h-16 rounded-full bg-surface-dim flex items-center justify-center shadow-sm">
+<img alt="Player 1" class="w-12 h-12" data-alt="minimalist paper-cut style animal avatar fox in vibrant orange and white simple shapes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACHpqjD-C0Vrq9PD9FLNaDKoZbkV-lqZy_nMLzjRX4crb57AsJ70ox_0Hhs3FbN_hmdtq7nmZ3r1nABA7KxH0pxEMOyN20PGp-zpblU1t_XYhPH4w5Rz3ZissMBbhSbp3eBtAwf2Umku-hLfNwbiMM0QR0oljbndU0zaSGoD-jHIyVW9k94rkKSOOALz05CftofUaU9oUpWVWuXFL9GIVlQeAtBkLI-SMf1o1cko5tgmSK9ZKPTAZMKRSP380fGA62wgDJ_bsmrYs"/>
+</div>
+<div>
+<h3 class="font-headline font-bold text-lg text-on-secondary-container leading-tight">Alex</h3>
+<span class="text-[10px] font-bold text-on-secondary-container/60 uppercase tracking-widest">READY</span>
+</div>
+</div>
+</div>
+<!-- Player Card 2 (Voting) -->
+<div class="bg-secondary-container p-4 rounded-DEFAULT rounded-bl-xl sticky-note-shadow rotate-[2deg]">
+<div class="flex flex-col items-center text-center gap-3">
+<div class="w-16 h-16 rounded-full bg-surface-dim flex items-center justify-center shadow-sm">
+<img alt="Player 2" class="w-12 h-12" data-alt="minimalist paper-cut style animal avatar bear in soft brown and cream simple shapes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_r5z81i-jlsY28FtO3b1Hp48rk5xP7C2lZ9ltgmooscpPoPDes4Mvus557uh4qZRrJI4M2_iL-Ydo1MBga6dv9dcSB8LLfcxZy4IkXK1M7ROV3Avey76eUtAIQ0GJpGUKW8m1rcCUod3OKbsb3W02drT3kKog5NRJjBm3l-i7PbM37ItKWHGB_YwyUn0PfvCCno2-y09oeivNw7x6sHhI-b33XklIQ9QKyvnmbtIW77e918vZoKJLHPs54TVj_DYqRVvVTDtkgDw"/>
+</div>
+<div>
+<h3 class="font-headline font-bold text-lg text-on-secondary-container leading-tight">Jordan</h3>
+<span class="text-[10px] font-bold text-primary animate-pulse uppercase tracking-widest">VOTING...</span>
+</div>
+</div>
+</div>
+<!-- Player Card 3 -->
+<div class="bg-secondary-container p-4 rounded-DEFAULT rounded-tr-xl sticky-note-shadow rotate-[-2deg]">
+<div class="flex flex-col items-center text-center gap-3">
+<div class="w-16 h-16 rounded-full bg-surface-dim flex items-center justify-center shadow-sm">
+<img alt="Player 3" class="w-12 h-12" data-alt="minimalist paper-cut style animal avatar panda in black and white simple geometric shapes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAm_LIhwUT0Uc3jtvEbLC6uVRgI5aNJufN28vgzV30yMjG0Yi1h0tTIiHX15WGu4mg-yvpLSItCKe0XbpFhQ8q_jsP2iZmQUEZOOm0jxGjROrwsdYLhQlrc9mv-Zzlg8wYG3bl9Yb2NdPYTrOXPd03SR9lGflD8VJ-PrcJjAfm4CVxoqokzYb8kljFTVlBqH4XVyt2vS8L7MgKcUWzxxo55U_MN2NUPGfS4KRA-_6w7rBCQQGf1kxFMaLnPJXbMfV50TDZiwHGzg2Y"/>
+</div>
+<div>
+<h3 class="font-headline font-bold text-lg text-on-secondary-container leading-tight">Casey</h3>
+<span class="text-[10px] font-bold text-on-secondary-container/60 uppercase tracking-widest">READY</span>
+</div>
+</div>
+</div>
+<!-- Player Card 4 -->
+<div class="bg-secondary-container p-4 rounded-DEFAULT rounded-br-xl sticky-note-shadow rotate-[1deg]">
+<div class="flex flex-col items-center text-center gap-3">
+<div class="w-16 h-16 rounded-full bg-surface-dim flex items-center justify-center shadow-sm">
+<img alt="Player 4" class="w-12 h-12" data-alt="minimalist paper-cut style animal avatar koala in soft grey and white simple geometric shapes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC3jCvZQpc7gaXE9VSBMmNdiyDw0RixRwLSOYZYYz6ASEUgujTYgeaCQ1eRQjhOakLYsbXwILawRlSAoMvru8FS1M6kzgq2wAYuHSH0DW7hPh3o3-73fQhyGQjNF-FJk2-B4Flsfnm10C-QwxtTbyNfpXtHoRHEP7JGWWXvoQYDhTUYUysTjPw3pSulIw32Dwa3U70FlKSzk5M2A8vs2o50XcOVMCN5gOAeZqF-he-mLU9xgDFJ4PZtqKtOzFbKAsySdGQN9xF1dy4"/>
+</div>
+<div>
+<h3 class="font-headline font-bold text-lg text-on-secondary-container leading-tight">Riley</h3>
+<span class="text-[10px] font-bold text-on-secondary-container/60 uppercase tracking-widest">READY</span>
+</div>
+</div>
+</div>
+<!-- Player Card 5 -->
+<div class="bg-secondary-container p-4 rounded-DEFAULT rounded-bl-xl sticky-note-shadow rotate-[-1deg]">
+<div class="flex flex-col items-center text-center gap-3">
+<div class="w-16 h-16 rounded-full bg-surface-dim flex items-center justify-center shadow-sm">
+<img alt="Player 5" class="w-12 h-12" data-alt="minimalist paper-cut style animal avatar tiger in orange and black simple geometric shapes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAvvp79feiyNyLn_2uIO07So-MaK7twl3LbBi4OaOD4GOFJ2_DHQAZqfhw8X9zj2JEbj_JK4kOt-YjBro_uCfahx_Cb62bBsaH1UX6V54I_KAYkSW1A9obO9Z53dDh9MldQpicwMrJenwCrTptkd4Fn_K-AV_6fj4jre7sksVNZihppbC5u08pBJCWGLd3lGZngSj3ORfnLgySRFLiRYmsFWO1oXmpC1_Bwg-dZuSmhdwMRP0k_ndiPcL4hTVTnpoc6VNa5usv-7f4"/>
+</div>
+<div>
+<h3 class="font-headline font-bold text-lg text-on-secondary-container leading-tight">Morgan</h3>
+<span class="text-[10px] font-bold text-on-secondary-container/60 uppercase tracking-widest">READY</span>
+</div>
+</div>
+</div>
+<!-- Player Card 6 -->
+<div class="bg-secondary-container p-4 rounded-DEFAULT rounded-tr-xl sticky-note-shadow rotate-[2deg]">
+<div class="flex flex-col items-center text-center gap-3">
+<div class="w-16 h-16 rounded-full bg-surface-dim flex items-center justify-center shadow-sm">
+<img alt="Player 6" class="w-12 h-12" data-alt="minimalist paper-cut style animal avatar lion in golden yellow simple geometric shapes" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1PoZKpEdVxlt5XKsbNxq0MEdA5w9IpjyNnZwEk7YnJ11SAnkxMzTE9xrLjbVgusowYXY2fujCcbbdUBMcKurJ_LZ43PAs7lNB3iMdeg4O6LGWF84nmvPy8yfRYORWX6euPIAxib-cb8jqxRXD8Y4DNvscpw3lbvlZTsn0luMdULGobG75rBrC3wxVFP48F1JSIWHK1sHlI6mQT6E5Z9X7YTkLkx2y8pnhWYYU-oCq8QqYukgXfPWgH682i4pEgLaTYbWSkYeAHig"/>
+</div>
+<div>
+<h3 class="font-headline font-bold text-lg text-on-secondary-container leading-tight">Taylor</h3>
+<span class="text-[10px] font-bold text-on-secondary-container/60 uppercase tracking-widest">READY</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Sticky Vote Button (Appears when ready/timed out) -->
+<div class="fixed bottom-28 left-0 w-full px-6 flex justify-center">
+<button class="puffy-button bg-primary text-on-primary font-headline font-extrabold text-xl py-4 px-12 rounded-full w-full max-w-xs transition-all flex items-center justify-center gap-3">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">how_to_reg</span>
+                VOTE NOW
+            </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full flex justify-around items-center px-4 pb-6 pt-3 bg-[#e0fee1] dark:bg-[#1b3420] rounded-t-[2rem] z-50 shadow-[0_-4px_12px_rgba(27,52,32,0.08)]">
+<a class="flex flex-col items-center justify-center bg-[#006b1b] text-[#e0fee1] rounded-full px-6 py-2 shadow-[0_4px_0_#005d16] transition-all active:translate-y-[2px] active:shadow-none" href="#">
+<span class="material-symbols-outlined" data-icon="videogame_asset">videogame_asset</span>
+<span class="font-['Plus_Jakarta_Sans'] font-medium text-[10px] tracking-wide uppercase">Game</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#1b3420] dark:text-[#e0fee1] opacity-70 hover:translate-y-[-2px] transition-transform active:translate-y-[2px] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-['Plus_Jakarta_Sans'] font-medium text-[10px] tracking-wide uppercase">Players</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#1b3420] dark:text-[#e0fee1] opacity-70 hover:translate-y-[-2px] transition-transform active:translate-y-[2px] transition-all" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-['Plus_Jakarta_Sans'] font-medium text-[10px] tracking-wide uppercase">Rules</span>
+</a>
+</nav>
+</body></html>
