@@ -41,10 +41,10 @@ const RoleDistributionScreen = () => {
             <Text className="font-bold text-xs tracking-widest text-[#006b1b] uppercase">Mission Briefing</Text>
           </View>
           <Text className="text-3xl font-black text-[#1b3420] mb-4 leading-tight tracking-tight text-center uppercase">
-            SELECT YOUR OPERATIVE{'\n'}TO REVEAL KEYWORD
+            TAP TO VIEW{'\n'}YOUR KEYWORD
           </Text>
           <Text className="text-[#47624b] font-medium text-center max-w-sm">
-            Each operative holds a secret identity. Tap your character card to see your role. Keep it hidden from others!
+            Each player will receive a keyword. Tap your card to see yours privately. Keep it secret from others!
           </Text>
         </View>
 
@@ -100,7 +100,7 @@ const RoleDistributionScreen = () => {
         {/* Action Area */}
         <View className="mb-32 items-center">
           <Button 
-            label="Reveal My Identity"
+            label="START DISCUSSION"
             variant="primary"
             onPress={handleStartDiscussion} 
             disabled={!allSeen}

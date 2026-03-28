@@ -57,7 +57,7 @@ const RoleRevealScreen = () => {
           <View className="mb-8 text-center">
             <View className="bg-[#c6ecc8] px-4 py-1.5 rounded-full">
               <Text className="font-bold text-xs tracking-widest text-[#47624b] uppercase">
-                MISSION ASSIGNED
+                YOUR KEYWORD
               </Text>
             </View>
           </View>
@@ -76,28 +76,23 @@ const RoleRevealScreen = () => {
                   TAP TO REVEAL
                 </Text>
                 <Text className="text-[#5b5300] font-medium text-sm max-w-[200px] leading-relaxed text-center">
-                  Ensure perimeter is secure before viewing.
+                  Ensure no one is watching before viewing your keyword.
                 </Text>
               </>
             ) : (
               <>
                 <View className="mb-6">
-                  <Ionicons name="eye" size={64} color="#5b5300" style={{ opacity: 0.2 }} />
+                  <Ionicons name="key" size={64} color="#5b5300" style={{ opacity: 0.2 }} />
                 </View>
                 <Text className="font-bold text-[#5b5300]/60 tracking-tighter text-lg mb-2 uppercase">
-                  YOU ARE THE
+                  YOUR KEYWORD
                 </Text>
-                <Text className="font-black text-5xl md:text-6xl text-[#5b5300] tracking-tight leading-none mb-6 uppercase">
-                  {isSpy ? 'SPY' : 'CIVILIAN'}
-                </Text>
-                <View className="w-16 h-1 bg-[#5b5300]/10 rounded-full mb-8" />
-                <Text className="text-4xl font-black text-[#006b1b] text-center mb-6 tracking-tighter uppercase">
+                <Text className="text-5xl font-black text-[#006b1b] text-center mb-8 tracking-tighter uppercase">
                   {getRoleWord()}
                 </Text>
-                <Text className="text-[#5b5300] font-medium text-sm max-w-[200px] leading-relaxed text-center">
-                  {isSpy 
-                    ? 'Blend in with the civilians and discover the secret location before they find you.' 
-                    : 'Work with other civilians to identify the spy among you.'}
+                <View className="w-16 h-1 bg-[#5b5300]/10 rounded-full mb-6" />
+                <Text className="text-[#5b5300] font-medium text-sm max-w-[240px] leading-relaxed text-center">
+                  Remember your keyword. Try to figure out who has a different word without revealing yours!
                 </Text>
               </>
             )}
@@ -110,14 +105,14 @@ const RoleRevealScreen = () => {
                 <Ionicons name="bulb" size={20} color="#006b1b" />
                 <Text className="text-[10px] font-bold text-[#47624b] uppercase">Strategy</Text>
                 <Text className="text-xs font-semibold text-[#1b3420]">
-                  {isSpy ? 'Be vague but confident.' : 'Ask specific questions.'}
+                  Describe your word carefully without being too obvious.
                 </Text>
               </View>
               <View className="flex-1 bg-[#d8f9d9] p-4 rounded-lg flex-col gap-2 ml-2">
                 <Ionicons name="warning" size={20} color="#ff9800" />
                 <Text className="text-[10px] font-bold text-[#47624b] uppercase">Caution</Text>
                 <Text className="text-xs font-semibold text-[#1b3420]">
-                  {isSpy ? 'Watch your wording.' : 'Stay alert to lies.'}
+                  Listen carefully to what others say about their words.
                 </Text>
               </View>
             </View>
@@ -129,7 +124,7 @@ const RoleRevealScreen = () => {
       <View className="w-full flex-col items-center px-6 pb-24 gap-6">
         {!revealed ? (
           <Button 
-            label="TAP TO SHOW INTEL" 
+            label="TAP TO SHOW KEYWORD" 
             variant="secondary" 
             onPress={() => setRevealed(true)} 
           />
@@ -142,7 +137,7 @@ const RoleRevealScreen = () => {
               icon="arrow-forward"
             />
             <Text className="text-[10px] text-[#47624b]/60 uppercase tracking-widest text-center">
-              Wait for others to confirm their roles
+              Wait for all players to view their keywords
             </Text>
           </>
         )}
