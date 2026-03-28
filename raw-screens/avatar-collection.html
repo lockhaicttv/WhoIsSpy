@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>WHO IS SPY? - Field Dossier</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "surface-variant": "#bee7c1",
+              "surface-container-lowest": "#ffffff",
+              "error-container": "#f95630",
+              "surface-tint": "#006b1b",
+              "inverse-on-surface": "#88a48a",
+              "on-tertiary-container": "#4a2800",
+              "on-background": "#1b3420",
+              "surface-dim": "#b3dfb8",
+              "on-primary-fixed-variant": "#00691a",
+              "on-surface-variant": "#47624b",
+              "tertiary-container": "#ff9800",
+              "primary-fixed-dim": "#83e881",
+              "surface-container-low": "#d8f9d9",
+              "outline-variant": "#98b499",
+              "on-tertiary-fixed-variant": "#563000",
+              "surface": "#e0fee1",
+              "tertiary-dim": "#764400",
+              "error": "#b02500",
+              "error-dim": "#b92902",
+              "surface-bright": "#e0fee1",
+              "on-error-container": "#520c00",
+              "on-surface": "#1b3420",
+              "secondary-fixed": "#f9e534",
+              "secondary-fixed-dim": "#ead723",
+              "primary-container": "#91f78e",
+              "on-error": "#ffefec",
+              "surface-container-high": "#c6ecc8",
+              "secondary-dim": "#595000",
+              "primary": "#006b1b",
+              "on-secondary-fixed-variant": "#665c00",
+              "surface-container-highest": "#bee7c1",
+              "on-secondary-fixed": "#474000",
+              "on-tertiary": "#fff0e5",
+              "on-secondary": "#fff4b0",
+              "primary-dim": "#005d16",
+              "surface-container": "#cdf1cf",
+              "on-primary": "#d1ffc8",
+              "inverse-primary": "#91f78e",
+              "secondary": "#665c00",
+              "outline": "#627d65",
+              "on-secondary-container": "#5b5300",
+              "primary-fixed": "#91f78e",
+              "on-tertiary-fixed": "#271300",
+              "tertiary-fixed": "#ff9800",
+              "on-primary-container": "#005e17",
+              "tertiary": "#874e00",
+              "background": "#e0fee1",
+              "on-primary-fixed": "#00480f",
+              "inverse-surface": "#001204",
+              "tertiary-fixed-dim": "#ec8c00",
+              "secondary-container": "#f9e534"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Plus Jakarta Sans"],
+              "label": ["Plus Jakarta Sans"]
+            },
+            borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .paper-cut-shadow {
+            box-shadow: 4px 4px 0px 0px rgba(0, 107, 27, 0.2);
+        }
+        .curled-corner {
+            border-bottom-right-radius: 3rem;
+        }
+        .puffy-button {
+            box-shadow: 0 4px 0 0 #005D16;
+        }
+        .puffy-button:active {
+            transform: translateY(4px);
+            box-shadow: 0 0px 0 0 #005D16;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface font-body text-on-surface selection:bg-secondary-container">
+<!-- TopAppBar -->
+<header class="bg-[#E0FEE1] dark:bg-black docked full-width top-0 z-50">
+<div class="flex justify-between items-center w-full px-6 py-4">
+<button class="text-[#006B1B] dark:text-[#FAE634] active:translate-y-1 transition-all">
+<span class="material-symbols-outlined" data-icon="menu">menu</span>
+</button>
+<h1 class="font-['Plus_Jakarta_Sans'] font-extrabold tracking-tighter uppercase text-2xl font-black text-[#006B1B] dark:text-[#FAE634]">WHO IS SPY?</h1>
+<button class="text-[#006B1B] dark:text-[#FAE634] active:translate-y-1 transition-all">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+</button>
+</div>
+<div class="bg-[#C6ECC8] dark:bg-[#1A1A1A] h-1 shadow-[0_4px_0_0_#005D16]"></div>
+</header>
+<main class="max-w-4xl mx-auto px-6 pt-12 pb-32">
+<!-- Classification Header -->
+<div class="mb-12 rotate-[-1deg]">
+<span class="bg-tertiary-container text-on-tertiary-container px-3 py-1 font-label text-[10px] font-bold tracking-[0.2em] uppercase rounded-sm">Classified Briefing</span>
+<h2 class="text-5xl font-headline font-extrabold tracking-tighter text-primary mt-4 leading-none">THE FIELD <br/> OPERATIVES</h2>
+<p class="text-on-surface-variant mt-4 max-w-md font-medium italic">Select your identity for the upcoming infiltration. Each dossier is unique and non-transferable.</p>
+</div>
+<!-- Avatar Grid (2x3) -->
+<div class="grid grid-cols-2 md:grid-cols-3 gap-8 md:gap-12">
+<!-- 1. Secret Agent -->
+<div class="flex flex-col items-center rotate-1">
+<div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-surface-container-high border-4 border-primary p-2 paper-cut-shadow relative overflow-hidden flex items-center justify-center">
+<div class="w-24 h-24 md:w-28 md:h-28 rounded-full bg-secondary flex items-center justify-center overflow-hidden">
+<div class="relative w-full h-full flex flex-col items-center justify-center">
+<div class="w-16 h-10 bg-black rounded-full flex items-center justify-center gap-1 shadow-inner">
+<div class="w-6 h-6 bg-zinc-800 rounded-full"></div>
+<div class="w-6 h-6 bg-zinc-800 rounded-full"></div>
+</div>
+<div class="w-12 h-4 bg-primary rounded-b-full mt-2"></div>
+</div>
+</div>
+</div>
+<span class="mt-4 font-label text-[10px] font-bold tracking-[0.2em] uppercase text-primary bg-secondary-container px-4 py-1 -rotate-1">SECRET AGENT</span>
+</div>
+<!-- 2. Detective -->
+<div class="flex flex-col items-center -rotate-2">
+<div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-surface-container-high border-4 border-primary p-2 paper-cut-shadow flex items-center justify-center">
+<div class="w-24 h-24 md:w-28 md:h-28 rounded-full bg-tertiary flex items-center justify-center relative">
+<!-- Detective Face -->
+<div class="w-16 h-16 bg-on-tertiary rounded-full absolute"></div>
+<!-- Magnifying Glass -->
+<div class="absolute bottom-2 right-2 flex flex-col items-center">
+<div class="w-10 h-10 rounded-full border-4 border-black bg-white/20 backdrop-blur-sm"></div>
+<div class="w-2 h-6 bg-black -mt-1 rounded-full"></div>
+</div>
+</div>
+</div>
+<span class="mt-4 font-label text-[10px] font-bold tracking-[0.2em] uppercase text-primary bg-secondary-container px-4 py-1 rotate-2">DETECTIVE</span>
+</div>
+<!-- 3. Spy -->
+<div class="flex flex-col items-center rotate-1">
+<div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-surface-container-high border-4 border-primary p-2 paper-cut-shadow flex items-center justify-center overflow-hidden">
+<div class="w-24 h-24 md:w-28 md:h-28 rounded-full bg-primary flex flex-col items-center justify-center relative">
+<!-- Hat -->
+<div class="absolute top-4 w-32 h-8 bg-black rounded-full"></div>
+<div class="absolute top-2 w-16 h-12 bg-black rounded-t-xl"></div>
+<!-- Mask Area -->
+<div class="w-20 h-8 bg-on-primary absolute top-12 flex items-center justify-center gap-4">
+<div class="w-3 h-3 bg-primary rounded-full"></div>
+<div class="w-3 h-3 bg-primary rounded-full"></div>
+</div>
+</div>
+</div>
+<span class="mt-4 font-label text-[10px] font-bold tracking-[0.2em] uppercase text-primary bg-secondary-container px-4 py-1 -rotate-1">SPY</span>
+</div>
+<!-- 4. Agent -->
+<div class="flex flex-col items-center -rotate-1">
+<div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-surface-container-high border-4 border-primary p-2 paper-cut-shadow flex items-center justify-center overflow-hidden">
+<div class="w-24 h-24 md:w-28 md:h-28 rounded-full bg-secondary-container flex flex-col items-center justify-center relative">
+<div class="w-14 h-18 bg-primary rounded-t-full rounded-b-lg"></div>
+<!-- Earpiece -->
+<div class="absolute top-1/2 right-4 w-4 h-4 bg-primary-dim rounded-full flex items-center justify-center">
+<div class="w-2 h-2 bg-on-primary rounded-full"></div>
+</div>
+<div class="absolute top-1/2 right-4 w-6 h-1 bg-primary-dim -rotate-45 translate-x-1 translate-y-3"></div>
+</div>
+</div>
+<span class="mt-4 font-label text-[10px] font-bold tracking-[0.2em] uppercase text-primary bg-secondary-container px-4 py-1 rotate-1">AGENT</span>
+</div>
+<!-- 5. Mysterious Figure -->
+<div class="flex flex-col items-center rotate-2">
+<div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-surface-container-high border-4 border-primary p-2 paper-cut-shadow flex items-center justify-center overflow-hidden">
+<div class="w-24 h-24 md:w-28 md:h-28 rounded-full bg-on-background flex items-center justify-center relative">
+<!-- Hood Shape -->
+<div class="w-0 h-0 border-l-[40px] border-l-transparent border-r-[40px] border-r-transparent border-b-[60px] border-b-primary absolute top-4"></div>
+<!-- Glowing Eyes -->
+<div class="flex gap-4 mt-8 z-10">
+<div class="w-2 h-1 bg-secondary-fixed rounded-full shadow-[0_0_8px_#FAE634]"></div>
+<div class="w-2 h-1 bg-secondary-fixed rounded-full shadow-[0_0_8px_#FAE634]"></div>
+</div>
+</div>
+</div>
+<span class="mt-4 font-label text-[10px] font-bold tracking-[0.2em] uppercase text-primary bg-secondary-container px-4 py-1 -rotate-2">MYSTERIOUS FIGURE</span>
+</div>
+<!-- 6. Investigator -->
+<div class="flex flex-col items-center -rotate-1">
+<div class="w-32 h-32 md:w-40 md:h-40 rounded-full bg-surface-container-high border-4 border-primary p-2 paper-cut-shadow flex items-center justify-center overflow-hidden">
+<div class="w-24 h-24 md:w-28 md:h-28 rounded-full bg-tertiary-container flex flex-col items-center justify-center relative">
+<div class="w-14 h-14 bg-white rounded-full"></div>
+<!-- Rectangular Notepad -->
+<div class="absolute bottom-2 bg-on-tertiary w-14 h-16 rounded-sm border-2 border-primary rotate-12 flex flex-col p-1 gap-1">
+<div class="w-full h-1 bg-surface-variant"></div>
+<div class="w-full h-1 bg-surface-variant"></div>
+<div class="w-4/5 h-1 bg-surface-variant"></div>
+</div>
+</div>
+</div>
+<span class="mt-4 font-label text-[10px] font-bold tracking-[0.2em] uppercase text-primary bg-secondary-container px-4 py-1 rotate-1">INVESTIGATOR</span>
+</div>
+</div>
+<!-- Call to Action -->
+<div class="mt-16 flex justify-center">
+<button class="bg-primary text-on-primary px-10 py-5 rounded-full font-headline font-extrabold text-xl puffy-button flex items-center gap-3 transition-all hover:scale-105">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+                CONFIRM IDENTITY
+            </button>
+</div>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-2 bg-[#E0FEE1] dark:bg-black rounded-t-[2rem] shadow-[0_-4px_12px_rgba(27,52,32,0.08)]">
+<div class="flex flex-col items-center justify-center text-[#006B1B] dark:text-[#E0FEE1] p-3 hover:bg-[#C6ECC8] dark:hover:bg-zinc-800 rounded-xl transition-all active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="assignment">assignment</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold tracking-[0.1em] uppercase">MISSIONS</span>
+</div>
+<div class="flex flex-col items-center justify-center bg-[#FAE634] text-black rounded-2xl p-3 rotate-1 scale-105 active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="account_circle" style="font-variation-settings: 'FILL' 1;">account_circle</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold tracking-[0.1em] uppercase">DOSSIER</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#006B1B] dark:text-[#E0FEE1] p-3 hover:bg-[#C6ECC8] dark:hover:bg-zinc-800 rounded-xl transition-all active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="visibility">visibility</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold tracking-[0.1em] uppercase">INTEL</span>
+</div>
+<div class="flex flex-col items-center justify-center text-[#006B1B] dark:text-[#E0FEE1] p-3 hover:bg-[#C6ECC8] dark:hover:bg-zinc-800 rounded-xl transition-all active:scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="domain">domain</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold tracking-[0.1em] uppercase">HQ</span>
+</div>
+</nav>
+</body></html>

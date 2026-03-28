@@ -5,7 +5,8 @@ import { useRouter } from 'expo-router';
 import { useStore } from '../../store';
 import Button from '../../components/Button/Button';
 import Card from '../../components/Card/Card';
-import { Ionicons } from '@expo/vector-icons';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { getAvatarIcon, getAvatarColor } from '../../utils/avatarUtils';
 
 const ManageGroupsScreen = () => {
   const router = useRouter();
@@ -95,7 +96,7 @@ const ManageGroupsScreen = () => {
               {players.map((item, index) => (
                 <View key={item.id} className="flex-col items-center gap-1">
                   <View className="w-16 h-16 bg-[#e0fee1] rounded-full items-center justify-center border-2 border-[#005d16]/20 shadow-sm relative">
-                    <Text className="text-[#005d16] font-black text-xl">{index + 1}</Text>
+                    <MaterialCommunityIcons name={getAvatarIcon(index)} size={32} color={getAvatarColor(index)} />
                     <TouchableOpacity 
                       onPress={() => removePlayer(item.id)}
                       className="absolute -top-1 -right-1 bg-[#b02500] rounded-full w-6 h-6 items-center justify-center border-2 border-[#f9e534]"
