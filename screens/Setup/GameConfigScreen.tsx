@@ -187,7 +187,7 @@ const GameConfigScreen = () => {
 
         <View className="mb-32">
           <Button 
-            label="CONTINUE TO KEYWORDS" 
+            label="START GAME" 
             variant="tertiary"
             onPress={handleContinue} 
             disabled={!canContinue}

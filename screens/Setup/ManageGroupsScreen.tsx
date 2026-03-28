@@ -312,6 +312,7 @@ const ManageGroupsScreen = () => {
                 <Button 
                   label="Cancel"
                   variant="secondary"
+                  size="small"
                   onPress={() => {
                     setShowSaveModal(false);
                     setGroupName('');
@@ -323,6 +324,7 @@ const ManageGroupsScreen = () => {
                 <Button 
                   label={editingGroupId ? "Update" : "Save"}
                   variant="primary"
+                  size="small"
                   onPress={handleSaveGroup}
                   disabled={!groupName.trim()}
                   icon="checkmark-circle"
@@ -432,6 +434,7 @@ const ManageGroupsScreen = () => {
             <Button 
               label="Close"
               variant="secondary"
+              size="small"
               onPress={() => setShowLoadModal(false)}
             />
 
