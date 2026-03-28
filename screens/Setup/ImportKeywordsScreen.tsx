@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, TextInput } from 'react-native';
-import { useRouter } from 'expo-router';
+import { View, Text, ScrollView, TouchableOpacity, TextInput } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { useRouter, useLocalSearchParams } from 'expo-router';
 import { useStore } from '../../store';
 import Button from '../../components/Button/Button';
 import Card from '../../components/Card/Card';
@@ -8,6 +9,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 const ImportKeywordsScreen = () => {
   const router = useRouter();
+  const params = useLocalSearchParams<{ numSpies?: string; numBlanks?: string }>();
   const getRandomKeyword = useStore((state) => state.getRandomKeyword);
   const setWords = useStore((state) => state.setWords);
   const assignRoles = useStore((state) => state.assignRoles);
@@ -16,9 +18,13 @@ const ImportKeywordsScreen = () => {
   const [civWord, setCivWord] = useState('');
   const [spyWord, setSpyWord] = useState('');
 
+  // Get the configured number of spies and blanks
+  const numSpies = params.numSpies ? parseInt(params.numSpies) : 1;
+  const numBlanks = params.numBlanks ? parseInt(params.numBlanks) : 0;
+
   const startGameWithWord = (civ: string, spy: string) => {
     setWords(civ, spy);
-    assignRoles(1); 
+    assignRoles(numSpies, numBlanks); 
     setPhase('role_distribution');
     router.push('/role-distribution');
   };

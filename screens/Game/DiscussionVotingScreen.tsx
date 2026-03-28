@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, Alert } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, Alert } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { useStore } from '../../store';
 import Button from '../../components/Button/Button';
-import Card from '../../components/Card/Card';
 import { Ionicons } from '@expo/vector-icons';
 
 const DiscussionVotingScreen = () => {
@@ -60,69 +60,122 @@ const DiscussionVotingScreen = () => {
     );
   };
 
+  const rotations = ['-rotate-1', 'rotate-2', '-rotate-2', 'rotate-1', '-rotate-1', 'rotate-2'];
+
   return (
-    <SafeAreaView className="flex-1 bg-[#e0fee1]">
-      <View className="flex-row justify-between items-center px-6 py-4 z-40 bg-[#e0fee1]">
-        <View className="w-10 h-10 border-2 border-transparent" />
-        <Text className="font-black tracking-tight uppercase text-2xl text-[#1b3420]">VOTING</Text>
-        <View className="w-10 h-10 rounded-full bg-[#f9e534] border-2 border-[#665c00] items-center justify-center shadow-sm">
-          <Ionicons name="chatbubbles" size={20} color="#665c00" />
+    <View className="flex-1 bg-[#e0fee1]">
+      <SafeAreaView className="flex-1 flex-col">
+      {/* TopAppBar */}
+      <View className="w-full flex-row items-center gap-3 px-6 py-4 h-16">
+        <Ionicons name="menu" size={28} color="#006b1b" />
+        <Text className="text-2xl font-black text-[#006b1b] tracking-tighter uppercase">WHO IS SPY?</Text>
+        <View className="flex-1" />
+        <View className="w-10 h-10 rounded-full bg-[#bee7c1] items-center justify-center overflow-hidden border-2 border-[#006b1b]">
+          <Ionicons name="person" size={20} color="#006b1b" />
         </View>
       </View>
 
-      <ScrollView className="flex-1 px-6 pt-2" showsVerticalScrollIndicator={false}>
-        <View className="items-center mb-8 mt-4">
-          <Text className="text-4xl font-black text-[#b02500] text-center tracking-tight uppercase">ELIMINATION</Text>
-          <Text className="text-sm font-bold text-[#47624b] mt-2 text-center">Vote out the suspected spy.</Text>
+      <ScrollView className="flex-1 px-6 pt-4 pb-32" showsVerticalScrollIndicator={false}>
+        {/* Countdown Section */}
+        <View className="flex-col items-center mb-10">
+          <View className="bg-[#d8f9d9] px-8 py-4 rounded-xl flex-col items-center justify-center">
+            <Text className="font-bold text-xs tracking-[0.2em] text-[#47624b] uppercase mb-1">DISCUSSION TIME</Text>
+            <View className="flex-row items-baseline gap-1">
+              <Text className="text-6xl font-black text-[#006b1b] tracking-tighter leading-none">∞</Text>
+            </View>
+          </View>
+          <Text className="mt-4 text-[#47624b] font-medium text-center max-w-xs">
+            Discuss with others and find out who doesn't belong!
+          </Text>
         </View>
 
-        <Card className="mb-8 p-6" rotated>
-          <View className="flex-row justify-between items-center mb-6">
-            <Text className="font-bold text-2xl text-[#1b3420] uppercase tracking-tight">Suspects</Text>
-          </View>
-
-          <View className="space-y-4">
-            {players.map((item) => {
-              const isDead = !item.isAlive;
-              const isSelected = selectedId === item.id;
-              
-              return (
-                <TouchableOpacity 
-                  key={item.id}
-                  onPress={() => !isDead && setSelectedId(item.id)}
-                  disabled={isDead}
-                  className={`flex-row justify-between items-center py-4 border-b-2 border-dashed border-[#c6ecc8] ${isDead ? 'opacity-40' : ''}`}
-                >
-                  <View className="flex-row items-center flex-1">
-                    <View className={`w-8 h-8 rounded-full border-4 mr-4 items-center justify-center shadow-sm ${isSelected ? 'border-[#ff9800] bg-[#fff0e5]' : 'border-[#98b499] bg-[#e0fee1]'}`}>
-                      {isSelected && <View className="w-4 h-4 rounded-full bg-[#ff9800]" />}
-                    </View>
-                    <Text className={`text-2xl font-bold uppercase tracking-tight ${isDead ? 'line-through text-[#47624b]' : 'text-[#1b3420]'}`}>{item.name}</Text>
+        {/* Player Grid */}
+        <View className="flex-row flex-wrap justify-between gap-6">
+          {players.map((item, index) => {
+            const isDead = !item.isAlive;
+            const isSelected = selectedId === item.id;
+            const rotation = rotations[index % rotations.length];
+            
+            return (
+              <TouchableOpacity 
+                key={item.id}
+                onPress={() => !isDead && setSelectedId(item.id)}
+                disabled={isDead}
+                className={`w-[45%] bg-[#f9e534] p-4 rounded-xl ${rotation} ${isDead ? 'opacity-40' : ''} ${isSelected ? 'border-4 border-[#006b1b]' : ''}`}
+                style={{
+                  shadowColor: '#1b3420',
+                  shadowOffset: { width: 0, height: 0 },
+                  shadowOpacity: 0,
+                  shadowRadius: 0,
+                  elevation: 0,
+                  borderBottomLeftRadius: index % 2 === 0 ? 12 : 48,
+                  borderBottomRightRadius: index % 2 === 0 ? 48 : 12,
+                }}
+              >
+                {isSelected && !isDead && (
+                  <View className="absolute -top-3 -right-2 bg-[#006b1b] text-[#e0fee1] text-[10px] font-bold px-2 py-1 rounded-full">
+                    <Text className="text-[10px] font-bold uppercase tracking-tighter text-[#e0fee1]">You</Text>
                   </View>
-                  {isDead && (
-                    <View className="bg-[#b3dfb8] px-3 py-1 rounded-full border border-[#627d65]">
-                      <Text className={`font-black tracking-widest text-[10px] uppercase ${item.role === 'spy' ? 'text-[#ff9800]' : 'text-[#006b1b]'}`}>
-                        {item.role.toUpperCase()}
-                      </Text>
-                    </View>
-                  )}
-                </TouchableOpacity>
-              );
-            })}
-          </View>
-        </Card>
-
-        <View className="mb-12 mt-4">
-          <Button 
-            label={selectedId ? "VOTE TO ELIMINATE" : "SELECT A SUSPECT"}
-            variant={selectedId ? "tertiary" : "secondary"}
-            onPress={handleVote} 
-            disabled={!selectedId}
-            className={!selectedId ? 'opacity-50' : ''}
-          />
+                )}
+                
+                <View className="flex-col items-center text-center gap-3">
+                  <View className="w-16 h-16 rounded-full bg-[#b3dfb8] flex items-center justify-center">
+                    <Text className="text-3xl">{index === 0 ? '🦊' : index === 1 ? '🐻' : index === 2 ? '🐼' : index === 3 ? '🐨' : index === 4 ? '🐯' : '🦁'}</Text>
+                  </View>
+                  <View>
+                    <Text className={`font-bold text-lg text-[#5b5300] leading-tight ${isDead ? 'line-through' : ''}`}>
+                      {item.name}
+                    </Text>
+                    <Text className="text-[10px] font-bold text-[#5b5300]/60 uppercase tracking-widest">
+                      {isDead ? (item.role === 'spy' ? '🕵️ SPY' : '👤 CIVILIAN') : 'READY'}
+                    </Text>
+                  </View>
+                </View>
+              </TouchableOpacity>
+            );
+          })}
         </View>
       </ScrollView>
-    </SafeAreaView>
+      </SafeAreaView>
+
+      {/* Sticky Vote Button */}
+      <View className="w-full px-6 py-3 bg-[#e0fee1]">
+        <Button 
+          label="VOTE NOW"
+          variant="primary"
+          onPress={handleVote} 
+          disabled={!selectedId}
+          icon="checkmark-circle"
+          className={!selectedId ? 'opacity-50' : ''}
+        />
+      </View>
+
+      {/* BottomNavBar - Fixed at bottom */}
+      <View className="w-full flex-row justify-around items-center px-4 pb-6 pt-3 bg-[#e0fee1] rounded-t-[32px]"
+            style={{
+              shadowColor: '#1b3420',
+              shadowOffset: { width: 0, height: -4 },
+              shadowOpacity: 0.08,
+              shadowRadius: 12,
+              elevation: 8
+            }}>
+        <TouchableOpacity className="flex-col items-center justify-center bg-[#006b1b] rounded-full px-6 py-2"
+                          style={{ borderBottomWidth: 4, borderBottomColor: '#005d16' }}>
+          <Ionicons name="game-controller" size={24} color="#e0fee1" />
+          <Text className="text-[10px] font-medium tracking-wide uppercase text-[#e0fee1]">Game</Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity className="flex-col items-center justify-center opacity-70">
+          <Ionicons name="people" size={24} color="#1b3420" />
+          <Text className="text-[10px] font-medium tracking-wide uppercase text-[#1b3420]">Players</Text>
+        </TouchableOpacity>
+        
+        <TouchableOpacity className="flex-col items-center justify-center opacity-70">
+          <Ionicons name="document-text" size={24} color="#1b3420" />
+          <Text className="text-[10px] font-medium tracking-wide uppercase text-[#1b3420]">Rules</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   );
 };
 export default DiscussionVotingScreen;

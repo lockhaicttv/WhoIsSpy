@@ -1,5 +1,6 @@
 import React from 'react';
-import { View, Text, SafeAreaView, ScrollView, TouchableOpacity, ImageBackground } from 'react-native';
+import { View, Text, ScrollView, TouchableOpacity, ImageBackground, Image } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -10,7 +11,8 @@ const HomeScreen = () => {
   const router = useRouter();
 
   return (
-    <SafeAreaView className="flex-1 bg-[#e0fee1]">
+    <View className="flex-1 bg-[#e0fee1]">
+      <SafeAreaView className="flex-1">
       <View className="w-full flex-row items-center justify-between px-6 py-4 bg-[#e0fee1]">
         <TouchableOpacity className="p-2 -ml-2">
           <Ionicons name="menu" size={28} color="#006b1b" />
@@ -19,7 +21,11 @@ const HomeScreen = () => {
           WHO IS SPY?
         </Text>
         <View className="w-10 h-10 rounded-full bg-[#bee7c1] items-center justify-center overflow-hidden border-2 border-[#006b1b]/10">
-          <Ionicons name="person" size={20} color="#006b1b" />
+          <Image 
+            source={require('../../assets/images/avatar-user.png')} 
+            className="w-full h-full object-cover"
+            resizeMode="cover"
+          />
         </View>
       </View>
 
@@ -36,7 +42,7 @@ const HomeScreen = () => {
                   elevation: 8
                 }}>
             <ImageBackground
-              source={{ uri: 'https://images.unsplash.com/photo-1516841273335-e39b37888115?w=800&q=80' }}
+              source={require('../../assets/images/hero-detective-scene.jpg')}
               className="w-full h-full"
               resizeMode="cover"
             >
@@ -120,8 +126,10 @@ const HomeScreen = () => {
         </View>
       </ScrollView>
 
-      {/* Bottom Navigation */}
-      <View className="absolute bottom-0 left-0 w-full flex-row justify-around items-center px-4 pb-6 pt-3 bg-[#e0fee1] rounded-t-[32px] border-t-2 border-[#d8f9d9]"
+      </SafeAreaView>
+      
+      {/* Bottom Navigation - Fixed at bottom */}
+      <View className="w-full flex-row justify-around items-center px-4 pb-6 pt-3 bg-[#e0fee1] rounded-t-[32px] border-t-2 border-[#d8f9d9]"
             style={{
               shadowColor: '#1b3420',
               shadowOffset: { width: 0, height: -4 },
@@ -145,7 +153,7 @@ const HomeScreen = () => {
           <Text className="text-[10px] font-bold tracking-widest mt-1 text-[#1b3420] uppercase">Briefing</Text>
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 export default HomeScreen;
