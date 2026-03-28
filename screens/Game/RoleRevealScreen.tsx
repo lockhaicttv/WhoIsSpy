@@ -16,7 +16,7 @@ const RoleRevealScreen = () => {
   const civWord = useStore((state) => state.civilianWord);
   const spyWord = useStore((state) => state.spyWord);
 
-  const [revealed, setRevealed] = useState(false);
+  const [revealed, setRevealed] = useState(true); // Changed to true - show immediately
 
   if (!player) return null;
 
@@ -48,8 +48,8 @@ const RoleRevealScreen = () => {
 
       {/* Main Content */}
       <ScrollView 
-        className="flex-1 px-6" 
-        contentContainerStyle={{ paddingTop: 48, paddingBottom: 32 }}
+        className="flex-1" 
+        contentContainerStyle={{ paddingHorizontal: 24, paddingTop: 48, paddingBottom: 32 }}
         showsVerticalScrollIndicator={false}
       >
         {/* Decorative Background Blurs */}
@@ -71,78 +71,50 @@ const RoleRevealScreen = () => {
             variant="secondary" 
             className="w-full aspect-square p-8 items-center justify-center -rotate-1"
           >
-            {!revealed ? (
-              <>
-                <View className="mb-6">
-                  <Ionicons name="eye-off" size={64} color="#5b5300" style={{ opacity: 0.2 }} />
-                </View>
-                <Text className="font-bold text-[#5b5300]/60 tracking-tighter text-lg mb-2 uppercase">
-                  TAP TO REVEAL
-                </Text>
-                <Text className="text-[#5b5300] font-medium text-sm max-w-[200px] leading-relaxed text-center">
-                  Ensure no one is watching before viewing your keyword.
-                </Text>
-              </>
-            ) : (
-              <>
-                <View className="mb-6">
-                  <Ionicons name="key" size={64} color="#5b5300" style={{ opacity: 0.2 }} />
-                </View>
-                <Text className="font-bold text-[#5b5300]/60 tracking-tighter text-lg mb-2 uppercase">
-                  YOUR KEYWORD
-                </Text>
-                <Text className="text-5xl font-black text-[#006b1b] text-center mb-8 tracking-tighter uppercase">
-                  {getRoleWord()}
-                </Text>
-                <View className="w-16 h-1 bg-[#5b5300]/10 rounded-full mb-6" />
-                <Text className="text-[#5b5300] font-medium text-sm max-w-[240px] leading-relaxed text-center">
-                  Remember your keyword. Try to figure out who has a different word without revealing yours!
-                </Text>
-              </>
-            )}
+            <View className="mb-6">
+              <Ionicons name="key" size={64} color="#5b5300" style={{ opacity: 0.2 }} />
+            </View>
+            <Text className="font-bold text-[#5b5300]/60 tracking-tighter text-lg mb-2 uppercase">
+              YOUR KEYWORD
+            </Text>
+            <Text className="text-5xl font-black text-[#006b1b] text-center mb-8 tracking-tighter uppercase">
+              {getRoleWord()}
+            </Text>
+            <View className="w-16 h-1 bg-[#5b5300]/10 rounded-full mb-6" />
+            <Text className="text-[#5b5300] font-medium text-sm max-w-[240px] leading-relaxed text-center">
+              Remember your keyword. Try to figure out who has a different word without revealing yours!
+            </Text>
           </Card>
 
           {/* Hint Cards */}
-          {revealed && (
-            <View className="mt-8 w-full flex-row gap-4 mb-8">
-              <View className="flex-1 bg-[#d8f9d9] p-4 rounded-lg flex-col gap-2">
-                <Ionicons name="bulb" size={20} color="#006b1b" />
-                <Text className="text-[10px] font-bold text-[#47624b] uppercase">Strategy</Text>
-                <Text className="text-xs font-semibold text-[#1b3420]">
-                  Describe your word carefully without being too obvious.
-                </Text>
-              </View>
-              <View className="flex-1 bg-[#d8f9d9] p-4 rounded-lg flex-col gap-2">
-                <Ionicons name="warning" size={20} color="#ff9800" />
-                <Text className="text-[10px] font-bold text-[#47624b] uppercase">Caution</Text>
-                <Text className="text-xs font-semibold text-[#1b3420]">
-                  Listen carefully to what others say about their words.
-                </Text>
-              </View>
+          <View className="mt-8 w-full flex-row gap-4 mb-8">
+            <View className="flex-1 bg-[#d8f9d9] p-4 rounded-lg flex-col gap-2">
+              <Ionicons name="bulb" size={20} color="#006b1b" />
+              <Text className="text-[10px] font-bold text-[#47624b] uppercase">Strategy</Text>
+              <Text className="text-xs font-semibold text-[#1b3420]">
+                Describe your word carefully without being too obvious.
+              </Text>
             </View>
-          )}
+            <View className="flex-1 bg-[#d8f9d9] p-4 rounded-lg flex-col gap-2">
+              <Ionicons name="warning" size={20} color="#ff9800" />
+              <Text className="text-[10px] font-bold text-[#47624b] uppercase">Caution</Text>
+              <Text className="text-xs font-semibold text-[#1b3420]">
+                Listen carefully to what others say about their words.
+              </Text>
+            </View>
+          </View>
 
           {/* Action Button */}
           <View className="w-full flex-col items-center gap-4 mb-8">
-            {!revealed ? (
-              <Button 
-                label="TAP TO SHOW KEYWORD" 
-                variant="secondary" 
-                onPress={() => setRevealed(true)} 
-              />
-            ) : (
-              <>
-                <Button 
-                  label="READY" 
-                  variant="primary" 
-                  onPress={handleUnderstand}
-                  icon="arrow-forward"
-                />
-                <Text className="text-[10px] text-[#47624b]/60 uppercase tracking-widest text-center">
-                  Wait for all players to view their keywords
-                </Text>
-              </>
-            )}
+            <Button 
+              label="READY" 
+              variant="primary" 
+              onPress={handleUnderstand}
+              icon="arrow-forward"
+            />
+            <Text className="text-[10px] text-[#47624b]/60 uppercase tracking-widest text-center">
+              Wait for all players to view their keywords
+            </Text>
           </View>
         </View>
       </ScrollView>

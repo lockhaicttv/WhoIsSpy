@@ -55,7 +55,13 @@ const ImportKeywordsScreen = () => {
           <Text className="text-center text-[#00691a] mb-8 text-sm font-bold opacity-80">
             Let HQ assign a classified keyword pair from the secured vault.
           </Text>
-          <Button label="RANDOMIZE" variant="primary" className="w-full" onPress={handleRandom} />
+          <Button
+            label="RANDOMIZE"
+            variant="primary"
+            icon="shuffle"
+            className="w-full"
+            onPress={handleRandom}
+          />
         </Card>
 
         <Card className="mb-8" rotated>

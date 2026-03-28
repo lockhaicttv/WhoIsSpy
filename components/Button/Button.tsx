@@ -61,10 +61,10 @@ const Button: React.FC<ButtonProps> = ({
   };
 
   return (
-    <Pressable {...props}>
+    <Pressable className='w-full' {...props}>
       {({ pressed }) => (
         <View 
-          className={`w-full py-6 px-12 rounded-full flex flex-row items-center justify-center gap-4 ${getVariantStyles()} ${className}`}
+          className={`py-6 px-12 rounded-full flex flex-row items-center justify-center gap-4 ${getVariantStyles()} ${className}`}
           style={[
             {
               borderBottomWidth: pressed ? 0 : 4,
