@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity } from 'react-native';
+import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
 import { useStore } from '../../store';
@@ -47,12 +47,16 @@ const RoleRevealScreen = () => {
       </View>
 
       {/* Main Content */}
-      <View className="flex-1 flex-col items-center justify-center px-6 py-12">
+      <ScrollView 
+        className="flex-1 px-6" 
+        contentContainerStyle={{ paddingTop: 48, paddingBottom: 32 }}
+        showsVerticalScrollIndicator={false}
+      >
         {/* Decorative Background Blurs */}
         <View className="absolute top-1/4 -left-12 w-48 h-48 bg-[#d8f9d9] rounded-full opacity-50" style={{ filter: 'blur(48px)' }} />
         <View className="absolute bottom-1/4 -right-12 w-64 h-64 bg-[#91f78e] rounded-full opacity-20" style={{ filter: 'blur(48px)' }} />
 
-        <View className="w-full max-w-md flex-col items-center">
+        <View className="w-full max-w-md mx-auto flex-col items-center">
           {/* Badge */}
           <View className="mb-8 text-center">
             <View className="bg-[#c6ecc8] px-4 py-1.5 rounded-full">
@@ -100,15 +104,15 @@ const RoleRevealScreen = () => {
 
           {/* Hint Cards */}
           {revealed && (
-            <View className="mt-8 w-full grid grid-cols-2 gap-4 flex-row">
-              <View className="flex-1 bg-[#d8f9d9] p-4 rounded-lg flex-col gap-2 mr-2">
+            <View className="mt-8 w-full flex-row gap-4 mb-8">
+              <View className="flex-1 bg-[#d8f9d9] p-4 rounded-lg flex-col gap-2">
                 <Ionicons name="bulb" size={20} color="#006b1b" />
                 <Text className="text-[10px] font-bold text-[#47624b] uppercase">Strategy</Text>
                 <Text className="text-xs font-semibold text-[#1b3420]">
                   Describe your word carefully without being too obvious.
                 </Text>
               </View>
-              <View className="flex-1 bg-[#d8f9d9] p-4 rounded-lg flex-col gap-2 ml-2">
+              <View className="flex-1 bg-[#d8f9d9] p-4 rounded-lg flex-col gap-2">
                 <Ionicons name="warning" size={20} color="#ff9800" />
                 <Text className="text-[10px] font-bold text-[#47624b] uppercase">Caution</Text>
                 <Text className="text-xs font-semibold text-[#1b3420]">
@@ -117,31 +121,31 @@ const RoleRevealScreen = () => {
               </View>
             </View>
           )}
-        </View>
-      </View>
 
-      {/* Footer */}
-      <View className="w-full flex-col items-center px-6 pb-24 gap-6">
-        {!revealed ? (
-          <Button 
-            label="TAP TO SHOW KEYWORD" 
-            variant="secondary" 
-            onPress={() => setRevealed(true)} 
-          />
-        ) : (
-          <>
-            <Button 
-              label="READY" 
-              variant="primary" 
-              onPress={handleUnderstand}
-              icon="arrow-forward"
-            />
-            <Text className="text-[10px] text-[#47624b]/60 uppercase tracking-widest text-center">
-              Wait for all players to view their keywords
-            </Text>
-          </>
-        )}
-      </View>
+          {/* Action Button */}
+          <View className="w-full flex-col items-center gap-4 mb-8">
+            {!revealed ? (
+              <Button 
+                label="TAP TO SHOW KEYWORD" 
+                variant="secondary" 
+                onPress={() => setRevealed(true)} 
+              />
+            ) : (
+              <>
+                <Button 
+                  label="READY" 
+                  variant="primary" 
+                  onPress={handleUnderstand}
+                  icon="arrow-forward"
+                />
+                <Text className="text-[10px] text-[#47624b]/60 uppercase tracking-widest text-center">
+                  Wait for all players to view their keywords
+                </Text>
+              </>
+            )}
+          </View>
+        </View>
+      </ScrollView>
 
       </SafeAreaView>
 
