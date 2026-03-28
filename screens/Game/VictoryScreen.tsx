@@ -16,7 +16,10 @@ const VictoryScreen = () => {
   const resetPlayers = useStore((state) => state.resetPlayers);
 
   const spies = players.filter(p => p.role === 'spy');
+  const blanks = players.filter(p => p.role === 'blank');
   const isCivsWin = winner === 'civilians';
+  const isBlankWin = winner === 'blank';
+  const isSpyWin = winner === 'spies';
 
   const handlePlayAgain = () => {
     resetPlayers(); 
@@ -29,7 +32,7 @@ const VictoryScreen = () => {
   };
 
   return (
-    <View className={`flex-1 ${isCivsWin ? 'bg-[#e0fee1]' : 'bg-[#fff0e5]'}`}>
+    <View className={`flex-1 ${isBlankWin ? 'bg-[#fff8e5]' : isCivsWin ? 'bg-[#e0fee1]' : 'bg-[#fff0e5]'}`}>
       <SafeAreaView className="flex-1 flex-col items-center">
       {/* Top Navigation Shell */}
       <View className="w-full flex-row items-center gap-4 px-6 py-4 h-16">
@@ -38,9 +41,11 @@ const VictoryScreen = () => {
         <View className="flex-1" />
         <View className="w-10 h-10 rounded-full bg-[#bee7c1] overflow-hidden border-2 border-[#91f78e]">
           <Image 
-            source={isCivsWin 
-              ? require('../../assets/images/victory-civs-avatar.png')
-              : require('../../assets/images/victory-spies-avatar.png')
+            source={isBlankWin
+              ? require('../../assets/images/victory-blank-avatar.png')
+              : isCivsWin 
+                ? require('../../assets/images/victory-civs-avatar.png')
+                : require('../../assets/images/victory-spies-avatar.png')
             }
             className="w-full h-full object-cover"
             resizeMode="cover"
@@ -53,13 +58,18 @@ const VictoryScreen = () => {
         {/* Victory Headline Section */}
         <View className="items-center gap-2">
           <Text className="text-xs font-black tracking-[0.2em] text-[#47624b] opacity-60 uppercase">
-            DEDUCTION COMPLETE
+            {isBlankWin ? 'BRILLIANT DEDUCTION' : 'DEDUCTION COMPLETE'}
           </Text>
           <Text className="text-5xl font-black tracking-tighter text-[#1b3420] leading-none text-center">
-            THE SPY WAS{'\n'}
-            <Text className={isCivsWin ? 'text-[#ff9800]' : 'text-[#006b1b]'}>
-              {isCivsWin ? 'CAUGHT!' : 'VICTORIOUS!'}
-            </Text>
+            {isBlankWin ? (
+              <>BLANK PLAYER{'\n'}<Text className="text-[#f9a825]">WINS!</Text></>
+            ) : (
+              <>THE SPY WAS{'\n'}
+                <Text className={isCivsWin ? 'text-[#ff9800]' : 'text-[#006b1b]'}>
+                  {isCivsWin ? 'CAUGHT!' : 'VICTORIOUS!'}
+                </Text>
+              </>
+            )}
           </Text>
         </View>
 
@@ -72,15 +82,19 @@ const VictoryScreen = () => {
             {/* Hero Illustration Container */}
             <View className="w-full aspect-square rounded-xl bg-white/40 p-4 relative overflow-hidden">
               <ImageBackground
-                source={isCivsWin 
-                  ? require('../../assets/images/victory-civilians-hero.jpg')
-                  : require('../../assets/images/victory-spies-hero.jpg')
+                source={isBlankWin
+                  ? require('../../assets/images/victory-blank-hero.jpg')
+                  : isCivsWin 
+                    ? require('../../assets/images/victory-civilians-hero.jpg')
+                    : require('../../assets/images/victory-spies-hero.jpg')
                 }
                 className="w-full h-full rounded-lg"
                 resizeMode="cover"
               >
                 {/* Decorative Element */}
-                <View className="absolute top-2 right-2 bg-[#006b1b] px-4 py-1 rounded-full -rotate-6"
+                <View className={`absolute top-2 right-2 px-4 py-1 rounded-full -rotate-6 ${
+                  isBlankWin ? 'bg-[#f9a825]' : 'bg-[#006b1b]'
+                }`}
                       style={{
                         shadowColor: '#000',
                         shadowOffset: { width: 0, height: 2 },
@@ -89,7 +103,7 @@ const VictoryScreen = () => {
                         elevation: 4
                       }}>
                   <Text className="text-[#d1ffc8] font-bold text-sm">
-                    MISSION {isCivsWin ? 'SUCCESS' : 'FAILED'}
+                    {isBlankWin ? 'GENIUS!' : isCivsWin ? 'MISSION SUCCESS' : 'MISSION FAILED'}
                   </Text>
                 </View>
               </ImageBackground>
@@ -98,41 +112,70 @@ const VictoryScreen = () => {
             {/* Card Content */}
             <View className="items-center gap-2">
               <Text className="text-4xl font-black text-[#5b5300] leading-none uppercase tracking-tight text-center">
-                {isCivsWin ? 'CIVILIANS WIN!' : 'SPIES WIN!'}
+                {isBlankWin ? 'BLANK WINS!' : isCivsWin ? 'CIVILIANS WIN!' : 'SPIES WIN!'}
               </Text>
               <Text className="text-[#5b5300]/70 font-medium italic text-center">
-                {isCivsWin 
-                  ? '"Teamwork makes the dream work (and catches spies)."'
-                  : '"The perfect infiltration. Nobody suspected a thing."'}
+                {isBlankWin
+                  ? '"Against all odds, the underdog prevails with brilliant deduction!"'
+                  : isCivsWin 
+                    ? '"Teamwork makes the dream work (and catches spies)."'
+                    : '"The perfect infiltration. Nobody suspected a thing."'}
               </Text>
             </View>
           </Card>
 
           {/* Floating Decorative Elements */}
           <View className="absolute -top-4 -left-2 -rotate-12">
-            <Ionicons name={isCivsWin ? "star" : "skull"} size={48} color={isCivsWin ? "#ff9800" : "#b02500"} />
+            <Ionicons 
+              name={isBlankWin ? "bulb" : isCivsWin ? "star" : "skull"} 
+              size={48} 
+              color={isBlankWin ? "#f9a825" : isCivsWin ? "#ff9800" : "#b02500"} 
+            />
           </View>
           <View className="absolute -bottom-4 -right-2 rotate-12">
-            <Ionicons name={isCivsWin ? "checkmark-circle" : "close-circle"} size={48} color="#006b1b" />
+            <Ionicons 
+              name={isBlankWin ? "trophy" : isCivsWin ? "checkmark-circle" : "close-circle"} 
+              size={48} 
+              color={isBlankWin ? "#f9a825" : "#006b1b"} 
+            />
           </View>
         </View>
 
         {/* Player Stats Bento Grid */}
         <View className="w-full flex-row gap-4">
-          <View className="flex-1 bg-[#d8f9d9] p-5 rounded-lg items-start gap-2"
-                style={{
-                  shadowColor: '#1b3420',
-                  shadowOffset: { width: 0, height: 2 },
-                  shadowOpacity: 0.05,
-                  shadowRadius: 4,
-                  elevation: 2
-                }}>
-            <Ionicons name="search" size={24} color="#006b1b" />
-            <View>
-              <Text className="text-[10px] font-black uppercase text-[#47624b] opacity-60">The Spy</Text>
-              <Text className="font-bold text-[#1b3420]">{spies[0]?.name || 'Unknown'}</Text>
+          {isBlankWin ? (
+            // Show blank winner
+            <View className="flex-1 bg-[#f9e534] p-5 rounded-lg items-start gap-2"
+                  style={{
+                    shadowColor: '#1b3420',
+                    shadowOffset: { width: 0, height: 2 },
+                    shadowOpacity: 0.05,
+                    shadowRadius: 4,
+                    elevation: 2
+                  }}>
+              <Ionicons name="bulb" size={24} color="#5b5300" />
+              <View>
+                <Text className="text-[10px] font-black uppercase text-[#5b5300] opacity-60">The Genius</Text>
+                <Text className="font-bold text-[#1b3420]">{blanks[0]?.name || 'Unknown'}</Text>
+              </View>
             </View>
-          </View>
+          ) : (
+            // Show spy
+            <View className="flex-1 bg-[#d8f9d9] p-5 rounded-lg items-start gap-2"
+                  style={{
+                    shadowColor: '#1b3420',
+                    shadowOffset: { width: 0, height: 2 },
+                    shadowOpacity: 0.05,
+                    shadowRadius: 4,
+                    elevation: 2
+                  }}>
+              <Ionicons name="search" size={24} color="#006b1b" />
+              <View>
+                <Text className="text-[10px] font-black uppercase text-[#47624b] opacity-60">The Spy</Text>
+                <Text className="font-bold text-[#1b3420]">{spies[0]?.name || 'Unknown'}</Text>
+              </View>
+            </View>
+          )}
           <View className="flex-1 bg-[#d8f9d9] p-5 rounded-lg items-start gap-2"
                 style={{
                   shadowColor: '#1b3420',

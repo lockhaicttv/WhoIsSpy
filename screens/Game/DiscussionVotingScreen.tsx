@@ -75,9 +75,9 @@ const DiscussionVotingScreen = () => {
     const isCorrect = blankGuess.trim().toLowerCase() === civWord.toLowerCase();
     
     if (isCorrect) {
-      // Blank wins by guessing correctly!
+      // Blank wins by guessing correctly! (Blank is third team)
       setShowRolePopup(false);
-      setWinner('spies'); // Blank is on spy team in this implementation
+      setWinner('blank'); // Blank is a third team - they win alone!
       setPhase('victory');
       router.push('/victory');
     } else {

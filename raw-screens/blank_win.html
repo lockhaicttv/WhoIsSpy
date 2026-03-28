@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,400;0,600;0,700;0,800;1,800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "surface-dim": "#b3dfb8",
+                "inverse-surface": "#001204",
+                "on-secondary": "#fff4b0",
+                "on-background": "#1b3420",
+                "tertiary": "#874e00",
+                "surface-container-high": "#c6ecc8",
+                "secondary-fixed": "#f9e534",
+                "tertiary-fixed-dim": "#ec8c00",
+                "inverse-on-surface": "#88a48a",
+                "on-primary-container": "#005e17",
+                "on-secondary-fixed-variant": "#665c00",
+                "primary-dim": "#005d16",
+                "on-surface-variant": "#47624b",
+                "surface-container-highest": "#bee7c1",
+                "secondary": "#665c00",
+                "tertiary-container": "#ff9800",
+                "primary-fixed": "#91f78e",
+                "primary-container": "#91f78e",
+                "on-tertiary-fixed": "#271300",
+                "outline": "#627d65",
+                "background": "#e0fee1",
+                "tertiary-fixed": "#ff9800",
+                "surface-container-low": "#d8f9d9",
+                "on-primary-fixed-variant": "#00691a",
+                "on-surface": "#1b3420",
+                "surface-container": "#cdf1cf",
+                "surface-variant": "#bee7c1",
+                "on-tertiary-container": "#4a2800",
+                "error-dim": "#b92902",
+                "on-tertiary": "#fff0e5",
+                "secondary-dim": "#595000",
+                "primary": "#006b1b",
+                "on-primary": "#d1ffc8",
+                "on-error": "#ffefec",
+                "error-container": "#f95630",
+                "secondary-container": "#f9e534",
+                "surface-tint": "#006b1b",
+                "surface-container-lowest": "#ffffff",
+                "surface": "#e0fee1",
+                "inverse-primary": "#91f78e",
+                "secondary-fixed-dim": "#ead723",
+                "tertiary-dim": "#764400",
+                "surface-bright": "#e0fee1",
+                "outline-variant": "#98b499",
+                "primary-fixed-dim": "#83e881",
+                "error": "#b02500",
+                "on-secondary-container": "#5b5300",
+                "on-primary-fixed": "#00480f",
+                "on-error-container": "#520c00",
+                "on-secondary-fixed": "#474000",
+                "on-tertiary-fixed-variant": "#563000"
+              },
+              fontFamily: {
+                "headline": ["Plus Jakarta Sans"],
+                "body": ["Plus Jakarta Sans"],
+                "label": ["Plus Jakarta Sans"]
+              },
+              borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+            },
+          },
+        }
+    </script>
+<style>
+        .curled-corner {
+            position: relative;
+        }
+        .curled-corner::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 0 48px 48px;
+            border-color: transparent transparent rgba(0,0,0,0.08) transparent;
+            pointer-events: none;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background font-body min-h-screen selection:bg-secondary-container selection:text-on-secondary-container overflow-x-hidden">
+<!-- TopAppBar Shell -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center justify-between px-6 py-4 bg-[#E0FEE1] dark:bg-[#001F05] shadow-[0_4px_0_0_#005D16]">
+<div class="flex items-center gap-4">
+<span class="material-symbols-outlined text-[#006B1B] dark:text-[#6EEB83] cursor-pointer" data-icon="menu">menu</span>
+<h1 class="text-[24px] font-black text-[#006B1B] dark:text-[#6EEB83] italic font-['Plus_Jakarta_Sans'] tracking-tighter uppercase">WHO IS SPY?</h1>
+</div>
+<div class="w-10 h-10 rounded-full bg-surface-container-highest overflow-hidden border-2 border-[#006B1B]">
+<img alt="Profile" class="w-full h-full object-cover" data-alt="a minimalist agent silhouette icon with sharp geometric lines on a muted green tactical background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDBqEi5qWCX0TgchgdSEUUvCEpK64v3kScY69Lcn9FuL-hxjVL6O8IQPgRBR4vvT7z2kWfQ2OvgSbMo0UydAuTofq0WnBtaZSqE0u4n9RJamdEfzgp9Gx93zgd0tBdDa2IkEiwvRsJu5xu4Hq2ilYGI1k5M7OeJUqg3_c0chPB5H3ddam7-Ym8cXF8AwFLo-9iQFON0uYGKpTiBfGfCSKryexj4wwNWlJPiR9E68fOWfeNYTODuN6wX6gCKGXGe9xQnSUM06axNA9Q"/>
+</div>
+</header>
+<!-- Separation Logic -->
+<div class="fixed top-[72px] left-0 bg-[#C6ECC8] dark:bg-[#003B0A] h-[4px] w-full z-50"></div>
+<!-- Background Decorative Blurs -->
+<div class="fixed inset-0 overflow-hidden pointer-events-none z-0">
+<div class="absolute top-[20%] left-[-10%] w-[400px] h-[400px] bg-primary-container rounded-full blur-[100px] opacity-40"></div>
+<div class="absolute bottom-[10%] right-[-10%] w-[350px] h-[350px] bg-secondary-container rounded-full blur-[120px] opacity-30"></div>
+</div>
+<!-- Main Content Canvas -->
+<main class="relative pt-32 pb-40 px-6 flex flex-col items-center justify-center min-h-screen z-10">
+<!-- Main Victory Card (Sticky Note Style) -->
+<div class="w-full max-w-md bg-secondary-container p-8 shadow-[12px_12px_24px_rgba(27,52,32,0.08)] -rotate-1 rounded-bl-lg rounded-tl-lg rounded-tr-lg border-b-right-3xl curled-corner transition-transform hover:rotate-0 duration-300">
+<!-- Decorative corner icons -->
+<div class="absolute -top-4 -left-4 bg-tertiary-container text-on-tertiary-container p-2 rounded-lg rotate-12 shadow-md">
+<span class="material-symbols-outlined" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+<div class="absolute -bottom-4 -right-4 bg-primary text-on-primary p-2 rounded-full -rotate-12 shadow-md">
+<span class="material-symbols-outlined" data-icon="check_circle" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<div class="flex flex-col items-center text-center space-y-6">
+<!-- Label -->
+<span class="font-label text-[10px] font-bold uppercase tracking-[0.3em] text-on-secondary-container opacity-60">GAME OVER</span>
+<!-- Headline -->
+<h2 class="font-headline text-5xl md:text-6xl font-extrabold tracking-tighter text-on-secondary-container leading-[0.9]">
+                    BLANK<br/><span class="italic">WINS!</span>
+</h2>
+<!-- Illustration Container -->
+<div class="relative w-48 h-48 bg-surface-container-lowest rounded-full flex items-center justify-center overflow-hidden border-4 border-on-secondary-container shadow-inner">
+<!-- Abstract Paper Cut Style Figure -->
+<div class="absolute inset-0 bg-gradient-to-tr from-surface-container-high to-background"></div>
+<img alt="Mystery Figure" class="w-40 h-40 relative z-10" data-alt="paper-cut style illustration of a mysterious hooded silhouette with sharp geometric shadows and colorful floating confetti circles" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAO0kPqzJ9enWlBb2c9Li5ZUeprcJfqn-6L1erxxjE_-enYWkg-js2sLLAjNMMy7nv-o2-TS4x1glJ4TFyARFt2C2xdLC6IZRjw3zybTpLPvvWm6nNL18XWP4nqlowvKZZwHLIOPGs4blDz-a2rOPoeJXH8D3YO6iWeiNPKyDIyHVjxthZKfGkH-KqP8j0T051gO6qcDHGPJCikOry8pgTOWlAJDJza5RRxbCaeWDuVOkc8aAQ_ybWvvJGhQHJ68kJXXttBQPt_sp4"/>
+</div>
+<!-- Subtitle -->
+<div class="space-y-2">
+<p class="font-body text-lg font-bold text-on-secondary-container uppercase tracking-tight">THEY SOLVED THE MYSTERY</p>
+<!-- Badge -->
+<div class="inline-flex items-center px-4 py-1 bg-on-secondary-container text-secondary-container rounded-full font-bold text-sm rotate-1 shadow-sm">
+                        OPERATIVE X
+                    </div>
+</div>
+</div>
+</div>
+<!-- Stats Section (2-column Grid) -->
+<div class="w-full max-w-md mt-10 grid grid-cols-2 gap-4">
+<div class="bg-surface-container-high p-4 rounded-lg rotate-1 shadow-sm border-l-4 border-primary">
+<p class="font-label text-[9px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Deduction Accuracy</p>
+<p class="font-headline text-2xl font-extrabold text-primary">100%</p>
+</div>
+<div class="bg-surface-container-high p-4 rounded-lg -rotate-1 shadow-sm border-l-4 border-tertiary-fixed">
+<p class="font-label text-[9px] font-bold text-on-surface-variant uppercase tracking-widest mb-1">Time Remaining</p>
+<p class="font-headline text-2xl font-extrabold text-on-background">02:45</p>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="w-full max-w-md mt-10 flex flex-col gap-4">
+<!-- Primary Puffy Button -->
+<button class="w-full py-5 bg-primary text-on-primary rounded-full font-headline font-extrabold text-xl tracking-tight shadow-[0_4px_0_0_#005D16] active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-3">
+<span class="material-symbols-outlined" data-icon="replay" style="font-variation-settings: 'FILL' 1;">replay</span>
+                PLAY AGAIN
+            </button>
+<!-- Secondary Action -->
+<button class="w-full py-3 text-on-background font-bold text-sm uppercase tracking-widest opacity-60 hover:opacity-100 transition-opacity">
+                BACK TO LOBBY
+            </button>
+</div>
+</main>
+<!-- BottomNavBar Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 py-3 bg-[#E0FEE1] dark:bg-[#001F05] rounded-t-[2rem] shadow-[0_-8px_24px_rgba(27,52,32,0.1)]">
+<!-- Tonal Shift Separator -->
+<div class="absolute top-0 left-0 w-full h-1 bg-[#C6ECC8] dark:bg-[#003B0A] rounded-full opacity-50"></div>
+<a class="flex flex-col items-center justify-center bg-[#FAE634] text-black rounded-xl px-6 py-2 -rotate-1 shadow-[4px_4px_0_0_#000000] transition-transform active:scale-95 duration-100" href="#">
+<span class="material-symbols-outlined" data-icon="videogame_asset" style="font-variation-settings: 'FILL' 1;">videogame_asset</span>
+<span class="font-['Plus_Jakarta_Sans'] font-bold text-[10px] uppercase tracking-widest mt-1">Game</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#006B1B] dark:text-[#afe0c7] opacity-70 hover:opacity-100 hover:scale-105 transition-transform active:scale-95 duration-100" href="#">
+<span class="material-symbols-outlined" data-icon="groups">groups</span>
+<span class="font-['Plus_Jakarta_Sans'] font-bold text-[10px] uppercase tracking-widest mt-1">Players</span>
+</a>
+<a class="flex flex-col items-center justify-center text-[#006B1B] dark:text-[#afe0c7] opacity-70 hover:opacity-100 hover:scale-105 transition-transform active:scale-95 duration-100" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+<span class="font-['Plus_Jakarta_Sans'] font-bold text-[10px] uppercase tracking-widest mt-1">Rules</span>
+</a>
+</nav>
+</body></html>

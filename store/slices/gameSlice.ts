@@ -9,8 +9,8 @@ export type GameSlice = {
   civilianWord: string;
   spyWord: string;
   setWords: (civ: string, spy: string) => void;
-  winner: 'civilians' | 'spies' | null;
-  setWinner: (winner: 'civilians' | 'spies' | null) => void;
+  winner: 'civilians' | 'spies' | 'blank' | null;
+  setWinner: (winner: 'civilians' | 'spies' | 'blank' | null) => void;
 }
 
 const createGameSlice: StateCreator<MyState, [], [], GameSlice> = (set) => ({
