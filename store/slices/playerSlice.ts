@@ -24,12 +24,7 @@ export type PlayerSlice = {
 }
 
 const createPlayerSlice: StateCreator<MyState, [], [], PlayerSlice> = (set, get) => ({
-  players: [
-    { id: '1', name: 'Player 1', role: 'civilian', isAlive: true, hasSeenRole: false },
-    { id: '2', name: 'Player 2', role: 'civilian', isAlive: true, hasSeenRole: false },
-    { id: '3', name: 'Player 3', role: 'civilian', isAlive: true, hasSeenRole: false },
-    { id: '4', name: 'Player 4', role: 'civilian', isAlive: true, hasSeenRole: false },
-  ],
+  players: [],
   addPlayer: (name) => set((state) => ({
     players: [...state.players, { id: Date.now().toString(), name, role: 'civilian', isAlive: true, hasSeenRole: false }]
   })),
