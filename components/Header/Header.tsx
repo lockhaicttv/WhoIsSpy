@@ -124,10 +124,10 @@ const Header: React.FC = () => {
       );
     }
     
-    // Menu icon for home
+    // Home icon instead of menu
     return (
-      <TouchableOpacity className="p-2 -ml-2">
-        <Ionicons name="menu" size={28} color="#006b1b" />
+      <TouchableOpacity onPress={() => router.push('/')} className="p-2 -ml-2">
+        <Ionicons name="home" size={28} color="#006b1b" />
       </TouchableOpacity>
     );
   };
@@ -179,7 +179,9 @@ const Header: React.FC = () => {
   if (isDiscussionVoting || isVictory) {
     return (
       <View className={getContainerClass()}>
-        <Ionicons name="menu" size={28} color="#006b1b" />
+        <TouchableOpacity onPress={() => router.push('/')} className="p-2 -ml-2">
+          <Ionicons name="home" size={28} color="#006b1b" />
+        </TouchableOpacity>
         <Text className={getTitleClass()}>{config.title}</Text>
         <View className="flex-1" />
         {renderRightIcon()}
@@ -191,7 +193,9 @@ const Header: React.FC = () => {
   if (isRoleReveal) {
     return (
       <View className={getContainerClass()}>
-        <Ionicons name="menu" size={28} color="#006b1b" />
+        <TouchableOpacity onPress={() => router.push('/')} className="p-2 -ml-2">
+          <Ionicons name="home" size={28} color="#006b1b" />
+        </TouchableOpacity>
         <Text className={getTitleClass()}>{config.title}</Text>
         <View className="flex-1" />
         <View className="w-8 h-8 rounded-full bg-[#bee7c1] border-2 border-[#91f78e] overflow-hidden">
