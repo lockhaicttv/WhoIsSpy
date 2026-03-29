@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useEffect } from 'react';
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
@@ -6,6 +6,7 @@ import { useStore } from '../../store';
 import Button from '../../components/Button/Button';
 import Card from '../../components/Card/Card';
 import { Ionicons } from '@expo/vector-icons';
+import { soundManager } from '../../utils/soundManager';
 
 const RoleDistributionScreen = () => {
   const router = useRouter();
@@ -13,6 +14,11 @@ const RoleDistributionScreen = () => {
   const setPhase = useStore((state) => state.setPhase);
 
   const allSeen = useMemo(() => players.every(p => p.hasSeenRole), [players]);
+
+  // Play start game sound when screen loads
+  useEffect(() => {
+    soundManager.playSound('start-game', 0.7);
+  }, []);
 
   const handleStartDiscussion = () => {
     setPhase('discussion');

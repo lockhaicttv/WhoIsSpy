@@ -9,6 +9,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { useColorScheme } from '@/hooks/use-color-scheme';
 import { initDatabase } from '@/db';
 import Header from '@/components/Header/Header';
+import { soundManager } from '@/utils/soundManager';
 
 export const unstable_settings = {
   anchor: '(tabs)',
@@ -17,9 +18,17 @@ export const unstable_settings = {
 export default function RootLayout() {
   const colorScheme = useColorScheme();
 
-  // Initialize database on app start
+  // Initialize database and sounds on app start
   useEffect(() => {
     initDatabase();
+    
+    // Load all game sounds
+    soundManager.loadAllSounds();
+
+    // Cleanup on unmount
+    return () => {
+      soundManager.unloadAll();
+    };
   }, []);
 
   return (

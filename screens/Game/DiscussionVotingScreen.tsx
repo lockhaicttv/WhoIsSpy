@@ -7,6 +7,7 @@ import Button from '../../components/Button/Button';
 import Card from '../../components/Card/Card';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { getAvatarIcon, getAvatarColor, getAvatarBgColor } from '../../utils/avatarUtils';
+import { soundManager } from '../../utils/soundManager';
 
 const DiscussionVotingScreen = () => {
   const router = useRouter();
@@ -23,12 +24,14 @@ const DiscussionVotingScreen = () => {
   const [votedPlayer, setVotedPlayer] = useState<any>(null);
   const [blankGuess, setBlankGuess] = useState('');
   const [timeRemaining, setTimeRemaining] = useState<number | null>(discussionTime);
-  const timerRef = useRef<NodeJS.Timeout | null>(null);
+  const timerRef = useRef<number | null>(null);
+  const timerSoundStarted = useRef<boolean>(false);
 
   // Initialize and manage timer
   useEffect(() => {
     if (discussionTime !== null) {
       setTimeRemaining(discussionTime);
+      timerSoundStarted.current = false;
       
       // Start countdown timer
       timerRef.current = setInterval(() => {
@@ -43,9 +46,28 @@ const DiscussionVotingScreen = () => {
 
       return () => {
         if (timerRef.current) clearInterval(timerRef.current);
+        soundManager.stopSound('timer-count');
       };
     }
   }, [discussionTime]);
+
+  // Handle timer sound effects
+  useEffect(() => {
+    if (timeRemaining === null) return;
+
+    // Start looping timer sound at 10 seconds
+    if (timeRemaining === 10 && !timerSoundStarted.current) {
+      soundManager.playSound('timer-count', 0.4, true); // loop = true
+      timerSoundStarted.current = true;
+    }
+
+    // Stop timer sound and play ting when time's up
+    if (timeRemaining === 0) {
+      soundManager.stopSound('timer-count');
+      soundManager.playSound('ting', 0.7);
+      timerSoundStarted.current = false;
+    }
+  }, [timeRemaining]);
 
   // Format time as MM:SS
   const formatTime = (seconds: number) => {
@@ -82,6 +104,11 @@ const DiscussionVotingScreen = () => {
     // Show role popup instead of simple alert
     setVotedPlayer(playerToEliminate);
     setShowRolePopup(true);
+    
+    // Play blank-caught sound if it's a blank player
+    if (playerToEliminate.role === 'blank') {
+      soundManager.playSound('blank-caught', 0.7);
+    }
   };
 
   const handleConfirmElimination = () => {
@@ -100,6 +127,9 @@ const DiscussionVotingScreen = () => {
       // Reset timer for next round
       if (discussionTime !== null) {
         setTimeRemaining(discussionTime);
+        timerSoundStarted.current = false;
+        soundManager.stopSound('timer-count');
+        
         if (timerRef.current) clearInterval(timerRef.current);
         timerRef.current = setInterval(() => {
           setTimeRemaining((prev) => {
@@ -166,7 +196,7 @@ const DiscussionVotingScreen = () => {
             )}
             {timeRemaining === 0 && (
               <Text className="text-xs font-bold text-white uppercase tracking-widest mt-2">
-                TIME'S UP! VOTE NOW
+                TIME&#39;S UP! VOTE NOW
               </Text>
             )}
           </View>

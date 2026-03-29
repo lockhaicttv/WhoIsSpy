@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, ImageBackground, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
@@ -6,6 +6,7 @@ import { useStore } from '../../store';
 import Button from '../../components/Button/Button';
 import Card from '../../components/Card/Card';
 import { Ionicons } from '@expo/vector-icons';
+import { soundManager } from '../../utils/soundManager';
 
 const VictoryScreen = () => {
   const router = useRouter();
@@ -20,6 +21,22 @@ const VictoryScreen = () => {
   const isCivsWin = winner === 'civilians';
   const isBlankWin = winner === 'blank';
   const isSpyWin = winner === 'spies';
+
+  // Play victory sound based on winner
+  useEffect(() => {
+    if (winner === 'civilians') {
+      soundManager.playSound('civilian-win', 0.8);
+    } else if (winner === 'spies') {
+      soundManager.playSound('spy-win', 0.8);
+    } else if (winner === 'blank') {
+      soundManager.playSound('blank-caught', 0.8);
+    }
+
+    // Cleanup - stop all sounds when leaving screen
+    return () => {
+      soundManager.stopAllSounds();
+    };
+  }, [winner]);
 
   const handlePlayAgain = () => {
     resetPlayers(); 
