@@ -19,6 +19,11 @@ const BottomNavigation: React.FC = () => {
       label: 'Players',
     },
     {
+      route: '/rules',
+      icon: 'book' as keyof typeof Ionicons.glyphMap,
+      label: 'Rules',
+    },
+    {
       route: '/store',
       icon: 'cart' as keyof typeof Ionicons.glyphMap,
       label: 'Store',

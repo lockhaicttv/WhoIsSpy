@@ -26,6 +26,11 @@ const routeConfigs: Record<string, HeaderConfig> = {
     showBackButton: false,
     rightIcon: 'person',
   },
+  '/rules': {
+    title: 'RULES',
+    showBackButton: false,
+    rightIcon: 'person',
+  },
   '/game-config': {
     title: 'GAME SETUP',
     showBackButton: true,
