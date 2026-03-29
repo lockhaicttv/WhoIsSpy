@@ -139,17 +139,7 @@ const ManageGroupsScreen = () => {
 
 
   return (
-    <SafeAreaView className="flex-1 bg-[#e0fee1]">
-      <View className="flex-row justify-between items-center px-6 py-4 z-40 bg-[#e0fee1]">
-        <TouchableOpacity onPress={() => router.back()} className="p-2 -ml-2">
-          <Ionicons name="arrow-back" size={28} color="#006b1b" />
-        </TouchableOpacity>
-        <Text className="font-black tracking-tight uppercase text-2xl text-[#1b3420]">OPERATIVES</Text>
-        <View className="w-10 h-10 rounded-full bg-[#91f78e] border-2 border-[#006b1b] items-center justify-center overflow-hidden">
-          <Ionicons name="person" size={20} color="#006b1b" />
-        </View>
-      </View>
-
+    <SafeAreaView className="flex-1 bg-[#e0fee1]" edges={['bottom']}>
       <ScrollView className="flex-1 px-6 pt-6" showsVerticalScrollIndicator={false}>
         
         {/* Group Management Buttons */}

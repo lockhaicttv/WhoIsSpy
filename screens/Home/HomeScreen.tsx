@@ -12,23 +12,7 @@ const HomeScreen = () => {
 
   return (
     <View className="flex-1 bg-[#e0fee1]">
-      <SafeAreaView className="flex-1">
-      <View className="w-full flex-row items-center justify-between px-6 py-4 bg-[#e0fee1]">
-        <TouchableOpacity className="p-2 -ml-2">
-          <Ionicons name="menu" size={28} color="#006b1b" />
-        </TouchableOpacity>
-        <Text className="font-extrabold tracking-tighter uppercase text-2xl text-[#006b1b]">
-          WHO IS SPY?
-        </Text>
-        <View className="w-10 h-10 rounded-full bg-[#bee7c1] items-center justify-center overflow-hidden border-2 border-[#006b1b]/10">
-          <Image 
-            source={require('../../assets/images/avatar-user.png')} 
-            className="w-full h-full object-cover"
-            resizeMode="cover"
-          />
-        </View>
-      </View>
-
+      <SafeAreaView className="flex-1" edges={['bottom']}>
       <ScrollView className="flex-1 px-6 pt-6" showsVerticalScrollIndicator={false}>
         {/* Hero Image Section */}
         <View className="w-full mb-12 -rotate-1">

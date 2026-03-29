@@ -90,17 +90,7 @@ const DiscussionVotingScreen = () => {
 
   return (
     <View className="flex-1 bg-[#e0fee1]">
-      <SafeAreaView className="flex-1 flex-col">
-      {/* TopAppBar */}
-      <View className="w-full flex-row items-center gap-3 px-6 py-4 h-16">
-        <Ionicons name="menu" size={28} color="#006b1b" />
-        <Text className="text-2xl font-black text-[#006b1b] tracking-tighter uppercase">WHO IS SPY?</Text>
-        <View className="flex-1" />
-        <View className="w-10 h-10 rounded-full bg-[#bee7c1] items-center justify-center overflow-hidden border-2 border-[#006b1b]">
-          <Ionicons name="person" size={20} color="#006b1b" />
-        </View>
-      </View>
-
+      <SafeAreaView className="flex-1 flex-col" edges={['bottom']}>
       <ScrollView className="flex-1 px-6 pt-4 pb-32" showsVerticalScrollIndicator={false}>
         {/* Countdown Section */}
         <View className="flex-col items-center mb-6">

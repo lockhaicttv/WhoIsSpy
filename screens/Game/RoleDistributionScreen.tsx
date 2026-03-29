@@ -21,19 +21,7 @@ const RoleDistributionScreen = () => {
 
   return (
     <View className="flex-1 bg-[#e0fee1]">
-      <SafeAreaView className="flex-1">
-      {/* Header */}
-      <View className="flex-row items-center gap-4 px-6 py-4 bg-[#e0fee1]">
-        <TouchableOpacity onPress={() => router.back()} className="p-2 -ml-2">
-          <Ionicons name="menu" size={28} color="#006b1b" />
-        </TouchableOpacity>
-        <Text className="font-bold tracking-tight text-[#006b1b] text-xl">Who is Spy</Text>
-        <View className="flex-1" />
-        <View className="w-10 h-10 rounded-full bg-[#bee7c1] border-2 border-[#006b1b] items-center justify-center overflow-hidden">
-          <Ionicons name="person" size={20} color="#006b1b" />
-        </View>
-      </View>
-
+      <SafeAreaView className="flex-1" edges={['bottom']}>
       <ScrollView className="flex-1 px-6 pt-8" showsVerticalScrollIndicator={false}>
         {/* Instructions Header */}
         <View className="mb-10 text-center items-center">

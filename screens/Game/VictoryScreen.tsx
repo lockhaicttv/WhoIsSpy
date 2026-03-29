@@ -33,26 +33,7 @@ const VictoryScreen = () => {
 
   return (
     <View className={`flex-1 ${isBlankWin ? 'bg-[#fff8e5]' : isCivsWin ? 'bg-[#e0fee1]' : 'bg-[#fff0e5]'}`}>
-      <SafeAreaView className="flex-1 flex-col items-center">
-      {/* Top Navigation Shell */}
-      <View className="w-full flex-row items-center gap-4 px-6 py-4 h-16">
-        <Ionicons name="menu" size={28} color="#006b1b" />
-        <Text className="font-bold tracking-tight uppercase text-sm text-[#006b1b]">WHO IS SPY?</Text>
-        <View className="flex-1" />
-        <View className="w-10 h-10 rounded-full bg-[#bee7c1] overflow-hidden border-2 border-[#91f78e]">
-          <Image 
-            source={isBlankWin
-              ? require('../../assets/images/victory-blank-avatar.png')
-              : isCivsWin 
-                ? require('../../assets/images/victory-civs-avatar.png')
-                : require('../../assets/images/victory-spies-avatar.png')
-            }
-            className="w-full h-full object-cover"
-            resizeMode="cover"
-          />
-        </View>
-      </View>
-
+      <SafeAreaView className="flex-1 flex-col items-center" edges={['bottom']}>
       {/* Main Victory Content */}
       <ScrollView className="flex-1 w-full max-w-md px-6 py-8" showsVerticalScrollIndicator={false} contentContainerStyle={{ alignItems: 'center', justifyContent: 'center', gap: 48 }}>
         {/* Victory Headline Section */}

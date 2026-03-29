@@ -35,17 +35,7 @@ const RoleRevealScreen = () => {
 
   return (
     <View className="flex-1 bg-[#e0fee1]">
-      <SafeAreaView className="flex-1 flex-col">
-      {/* Header */}
-      <View className="flex-row items-center gap-3 px-6 py-4">
-        <Ionicons name="menu" size={28} color="#006b1b" />
-        <Text className="font-bold tracking-tight uppercase text-sm text-[#006b1b]">WHO IS SPY?</Text>
-        <View className="flex-1" />
-        <View className="w-8 h-8 rounded-full bg-[#bee7c1] border-2 border-[#91f78e] overflow-hidden">
-          <Ionicons name="person" size={16} color="#006b1b" />
-        </View>
-      </View>
-
+      <SafeAreaView className="flex-1 flex-col" edges={['bottom']}>
       {/* Main Content */}
       <ScrollView 
         className="flex-1" 
