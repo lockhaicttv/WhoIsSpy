@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { View, Text, ScrollView, TouchableOpacity, Modal, TextInput } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
@@ -16,11 +16,43 @@ const DiscussionVotingScreen = () => {
   const setPhase = useStore((state) => state.setPhase);
   const civWord = useStore((state) => state.civilianWord);
   const spyWord = useStore((state) => state.spyWord);
+  const discussionTime = useStore((state) => state.discussionTime);
 
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [showRolePopup, setShowRolePopup] = useState(false);
   const [votedPlayer, setVotedPlayer] = useState<any>(null);
   const [blankGuess, setBlankGuess] = useState('');
+  const [timeRemaining, setTimeRemaining] = useState<number | null>(discussionTime);
+  const timerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Initialize and manage timer
+  useEffect(() => {
+    if (discussionTime !== null) {
+      setTimeRemaining(discussionTime);
+      
+      // Start countdown timer
+      timerRef.current = setInterval(() => {
+        setTimeRemaining((prev) => {
+          if (prev === null || prev <= 0) {
+            if (timerRef.current) clearInterval(timerRef.current);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+
+      return () => {
+        if (timerRef.current) clearInterval(timerRef.current);
+      };
+    }
+  }, [discussionTime]);
+
+  // Format time as MM:SS
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, '0')}`;
+  };
 
   const checkWinCondition = (updatedPlayers: any[]) => {
     const alive = updatedPlayers.filter(p => p.isAlive);
@@ -65,6 +97,20 @@ const DiscussionVotingScreen = () => {
     const gameEnded = checkWinCondition(updatedPlayers);
     if (!gameEnded) {
       setSelectedId(null);
+      // Reset timer for next round
+      if (discussionTime !== null) {
+        setTimeRemaining(discussionTime);
+        if (timerRef.current) clearInterval(timerRef.current);
+        timerRef.current = setInterval(() => {
+          setTimeRemaining((prev) => {
+            if (prev === null || prev <= 0) {
+              if (timerRef.current) clearInterval(timerRef.current);
+              return 0;
+            }
+            return prev - 1;
+          });
+        }, 1000);
+      }
     }
   };
 
@@ -94,14 +140,43 @@ const DiscussionVotingScreen = () => {
       <ScrollView className="flex-1 px-6 pt-4 pb-32" showsVerticalScrollIndicator={false}>
         {/* Countdown Section */}
         <View className="flex-col items-center mb-6">
-          <View className="bg-[#d8f9d9] px-8 py-4 rounded-xl flex-col items-center justify-center">
-            <Text className="font-bold text-xs tracking-[0.2em] text-[#47624b] uppercase mb-1">DISCUSSION TIME</Text>
+          <View className={`px-8 py-4 rounded-xl flex-col items-center justify-center ${
+            timeRemaining !== null && timeRemaining <= 10 ? 'bg-[#f95630]' : 'bg-[#d8f9d9]'
+          }`}>
+            <Text className={`font-bold text-xs tracking-[0.2em] uppercase mb-1 ${
+              timeRemaining !== null && timeRemaining <= 10 ? 'text-white' : 'text-[#47624b]'
+            }`}>
+              DISCUSSION TIME
+            </Text>
             <View className="flex-row items-baseline gap-1">
-              <Text className="text-6xl font-black text-[#006b1b] tracking-tighter leading-none">∞</Text>
+              {discussionTime === null ? (
+                <Text className="text-6xl font-black text-[#006b1b] tracking-tighter leading-none">∞</Text>
+              ) : (
+                <Text className={`text-6xl font-black tracking-tighter leading-none ${
+                  timeRemaining !== null && timeRemaining <= 10 ? 'text-white' : 'text-[#006b1b]'
+                }`}>
+                  {timeRemaining !== null ? formatTime(timeRemaining) : '0:00'}
+                </Text>
+              )}
             </View>
+            {timeRemaining !== null && timeRemaining <= 10 && timeRemaining > 0 && (
+              <Text className="text-xs font-bold text-white uppercase tracking-widest mt-2 animate-pulse">
+                TIME RUNNING OUT!
+              </Text>
+            )}
+            {timeRemaining === 0 && (
+              <Text className="text-xs font-bold text-white uppercase tracking-widest mt-2">
+                TIME'S UP! VOTE NOW
+              </Text>
+            )}
           </View>
           <Text className="mt-4 text-[#47624b] font-medium text-center max-w-xs">
-            Discuss with others and find out who doesn&#39;t belong!
+            {discussionTime === null 
+              ? "Discuss with others and find out who doesn't belong!"
+              : timeRemaining === 0
+                ? "Discussion time ended. Vote to eliminate a player."
+                : "Discuss carefully and watch for suspicious behavior"
+            }
           </Text>
         </View>
 

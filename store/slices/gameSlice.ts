@@ -11,6 +11,8 @@ export type GameSlice = {
   setWords: (civ: string, spy: string) => void;
   winner: 'civilians' | 'spies' | 'blank' | null;
   setWinner: (winner: 'civilians' | 'spies' | 'blank' | null) => void;
+  discussionTime: number | null; // null = infinity, number = seconds
+  setDiscussionTime: (time: number | null) => void;
 }
 
 const createGameSlice: StateCreator<MyState, [], [], GameSlice> = (set) => ({
@@ -21,6 +23,8 @@ const createGameSlice: StateCreator<MyState, [], [], GameSlice> = (set) => ({
   setWords: (civ, spy) => set({ civilianWord: civ, spyWord: spy }),
   winner: null,
   setWinner: (winner) => set({ winner }),
+  discussionTime: null, // Default: infinity
+  setDiscussionTime: (time) => set({ discussionTime: time }),
 })
 
 export default createGameSlice

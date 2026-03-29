@@ -11,9 +11,11 @@ const GameConfigScreen = () => {
   const router = useRouter();
   const players = useStore((state) => state.players);
   const setPhase = useStore((state) => state.setPhase);
+  const setDiscussionTime = useStore((state) => state.setDiscussionTime);
 
   const [numSpies, setNumSpies] = useState(1);
   const [numBlanks, setNumBlanks] = useState(0);
+  const [discussionMinutes, setDiscussionMinutes] = useState<number | null>(null); // null = infinity
 
   // Calculate civilians (remaining players after spies and blanks)
   const numCivilians = players.length - numSpies - numBlanks;
@@ -25,6 +27,8 @@ const GameConfigScreen = () => {
   const handleContinue = () => {
     if (canContinue) {
       setPhase('setup');
+      // Convert minutes to seconds (null stays null for infinity)
+      setDiscussionTime(discussionMinutes ? discussionMinutes * 60 : null);
       router.push({
         pathname: '/import-keywords',
         params: { numSpies: numSpies.toString(), numBlanks: numBlanks.toString() }
@@ -123,6 +127,63 @@ const GameConfigScreen = () => {
                 <Ionicons name="add" size={24} color="#d1ffc8" />
               </TouchableOpacity>
             </View>
+          </View>
+
+          {/* Discussion Time Configuration */}
+          <View className="mb-6">
+            <View className="flex-row items-center justify-between mb-3">
+              <Text className="font-bold text-[12px] tracking-widest text-[#00691a] uppercase">Discussion Time</Text>
+              <TouchableOpacity 
+                onPress={() => setDiscussionMinutes(null)}
+                className={`px-3 py-1 rounded-full ${discussionMinutes === null ? 'bg-[#006b1b]' : 'bg-[#c6ecc8]'}`}
+              >
+                <Text className={`text-[10px] font-bold uppercase ${discussionMinutes === null ? 'text-[#d1ffc8]' : 'text-[#47624b]'}`}>
+                  Infinity
+                </Text>
+              </TouchableOpacity>
+            </View>
+            <View className="flex-row items-center gap-4">
+              <TouchableOpacity 
+                onPress={() => setDiscussionMinutes(Math.max(1, (discussionMinutes || 1) - 1))}
+                className="w-12 h-12 rounded-full bg-[#006b1b] items-center justify-center"
+                style={{ 
+                  borderBottomWidth: 4, 
+                  borderBottomColor: '#005d16',
+                  opacity: discussionMinutes === null || discussionMinutes <= 1 ? 0.5 : 1
+                }}
+                disabled={discussionMinutes === null || discussionMinutes <= 1}
+              >
+                <Ionicons name="remove" size={24} color="#d1ffc8" />
+              </TouchableOpacity>
+
+              <View className="flex-1 bg-white rounded-2xl px-6 py-4 items-center border-2 border-[#91f78e]">
+                <Text className="text-4xl font-black text-[#006b1b]">
+                  {discussionMinutes === null ? '∞' : discussionMinutes}
+                </Text>
+                <Text className="text-xs font-bold text-[#47624b] uppercase tracking-wider mt-1">
+                  {discussionMinutes === null ? 'No Limit' : discussionMinutes === 1 ? 'Minute' : 'Minutes'}
+                </Text>
+              </View>
+
+              <TouchableOpacity 
+                onPress={() => setDiscussionMinutes((discussionMinutes || 0) + 1)}
+                className="w-12 h-12 rounded-full bg-[#006b1b] items-center justify-center"
+                style={{ 
+                  borderBottomWidth: 4, 
+                  borderBottomColor: '#005d16',
+                  opacity: discussionMinutes !== null && discussionMinutes >= 10 ? 0.5 : 1
+                }}
+                disabled={discussionMinutes !== null && discussionMinutes >= 10}
+              >
+                <Ionicons name="add" size={24} color="#d1ffc8" />
+              </TouchableOpacity>
+            </View>
+            <Text className="text-xs text-[#47624b] text-center mt-2">
+              {discussionMinutes === null 
+                ? 'Players can discuss freely without time pressure' 
+                : `Each discussion round will last ${discussionMinutes} ${discussionMinutes === 1 ? 'minute' : 'minutes'}`
+              }
+            </Text>
           </View>
 
           {/* Role Summary */}
