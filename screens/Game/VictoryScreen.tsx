@@ -263,10 +263,6 @@ const VictoryScreen = () => {
           <Text className="text-[10px] font-medium tracking-wide uppercase text-[#1b3420]">Rules</Text>
         </TouchableOpacity>
       </View>
-
-      {/* Visual Decor for "Analog" feel */}
-      <View className="absolute top-20 -left-10 w-40 h-40 bg-[#f9e534]/10 rounded-full" style={{ filter: 'blur(48px)' }} />
-      <View className="absolute bottom-20 -right-10 w-60 h-60 bg-[#006b1b]/5 rounded-full" style={{ filter: 'blur(48px)' }} />
     </View>
   );
 };
