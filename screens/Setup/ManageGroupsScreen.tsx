@@ -5,6 +5,7 @@ import { useRouter } from 'expo-router';
 import { useStore } from '../../store';
 import Button from '../../components/Button/Button';
 import Card from '../../components/Card/Card';
+import BottomNavigation from '../../components/BottomNavigation/BottomNavigation';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { getAvatarIcon, getAvatarColor } from '../../utils/avatarUtils';
 import { 
@@ -139,6 +140,7 @@ const ManageGroupsScreen = () => {
 
 
   return (
+    <View className="flex-1 bg-[#e0fee1]">
     <SafeAreaView className="flex-1 bg-[#e0fee1]" edges={['bottom']}>
       <ScrollView className="flex-1 px-6 pt-6" showsVerticalScrollIndicator={false}>
         
@@ -438,6 +440,10 @@ const ManageGroupsScreen = () => {
         </View>
       </Modal>
     </SafeAreaView>
+    
+    {/* Bottom Navigation - Fixed at bottom */}
+    <BottomNavigation />
+  </View>
   );
 };
 export default ManageGroupsScreen;
