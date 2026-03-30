@@ -4,8 +4,12 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
 import Card from '../../components/Card/Card';
 import BottomNavigation from '../../components/BottomNavigation/BottomNavigation';
+import { t } from '../../utils/i18n';
+import { useStore } from '../../store';
 
 const RulesScreen = () => {
+  const language = useStore((state) => state.language);
+
   return (
     <View className="flex-1 bg-[#e0fee1]">
       <SafeAreaView className="flex-1" edges={['bottom']}>
@@ -24,11 +28,11 @@ const RulesScreen = () => {
             </View>
             
             <Text className="font-black text-4xl text-[#1b3420] text-center leading-tight uppercase tracking-tighter mb-3">
-              HOW TO PLAY
+              {t('rules.title')}
             </Text>
             
             <Text className="text-base text-[#47624b] text-center max-w-sm">
-              Master the art of deception and deduction
+              {t('rules.subtitle')}
             </Text>
           </View>
 
@@ -39,11 +43,11 @@ const RulesScreen = () => {
                 <Ionicons name="information-circle" size={24} color="#006b1b" />
               </View>
               <Text className="font-bold text-2xl text-[#00480f] uppercase tracking-tight">
-                Overview
+                {t('rules.overview')}
               </Text>
             </View>
             <Text className="text-base text-[#47624b] leading-relaxed">
-              Who Is Spy is a social deduction game where players receive secret keywords. Most players get the same word (civilians), but some get a different word (spies). The goal is to find the spies through discussion without revealing your own word.
+              {t('rules.overviewText')}
             </Text>
           </Card>
 
@@ -54,32 +58,32 @@ const RulesScreen = () => {
                 <Ionicons name="settings" size={24} color="#5b5300" />
               </View>
               <Text className="font-bold text-2xl text-[#5b5300] uppercase tracking-tight">
-                Setup
+                {t('rules.setup')}
               </Text>
             </View>
             <View className="gap-3">
               <View className="flex-row items-start gap-3">
                 <Text className="font-black text-[#5b5300] text-lg">1.</Text>
                 <Text className="flex-1 text-base text-[#5b5300]/80 leading-relaxed">
-                  Add at least 3 players to start the game
+                  {t('rules.setup1')}
                 </Text>
               </View>
               <View className="flex-row items-start gap-3">
                 <Text className="font-black text-[#5b5300] text-lg">2.</Text>
                 <Text className="flex-1 text-base text-[#5b5300]/80 leading-relaxed">
-                  Configure the number of spies (must be less than civilians)
+                  {t('rules.setup2')}
                 </Text>
               </View>
               <View className="flex-row items-start gap-3">
                 <Text className="font-black text-[#5b5300] text-lg">3.</Text>
                 <Text className="flex-1 text-base text-[#5b5300]/80 leading-relaxed">
-                  Optionally add blank cards for advanced gameplay
+                  {t('rules.setup3')}
                 </Text>
               </View>
               <View className="flex-row items-start gap-3">
                 <Text className="font-black text-[#5b5300] text-lg">4.</Text>
                 <Text className="flex-1 text-base text-[#5b5300]/80 leading-relaxed">
-                  Choose or randomly select a keyword pair
+                  {t('rules.setup4')}
                 </Text>
               </View>
             </View>
@@ -92,7 +96,7 @@ const RulesScreen = () => {
                 <Ionicons name="people" size={24} color="#47624b" />
               </View>
               <Text className="font-bold text-2xl text-[#1b3420] uppercase tracking-tight">
-                Roles
+                {t('rules.roles')}
               </Text>
             </View>
             
@@ -100,10 +104,10 @@ const RulesScreen = () => {
             <View className="bg-[#d8f9d9] rounded-xl p-4 mb-3">
               <View className="flex-row items-center gap-2 mb-2">
                 <Ionicons name="shield-checkmark" size={20} color="#006b1b" />
-                <Text className="font-black text-lg text-[#006b1b] uppercase">Civilian</Text>
+                <Text className="font-black text-lg text-[#006b1b] uppercase">{t('rules.civilianRole')}</Text>
               </View>
               <Text className="text-sm text-[#47624b] leading-relaxed">
-                Receives the majority keyword. Goal: Find and eliminate all spies through discussion and voting.
+                {t('rules.civilianDesc')}
               </Text>
             </View>
 
@@ -111,10 +115,10 @@ const RulesScreen = () => {
             <View className="bg-[#fff0e5] rounded-xl p-4 mb-3">
               <View className="flex-row items-center gap-2 mb-2">
                 <Ionicons name="eye" size={20} color="#ff9800" />
-                <Text className="font-black text-lg text-[#ff9800] uppercase">Spy</Text>
+                <Text className="font-black text-lg text-[#ff9800] uppercase">{t('rules.spyRole')}</Text>
               </View>
               <Text className="text-sm text-[#874e00] leading-relaxed">
-                Receives a different keyword. Goal: Blend in with civilians and avoid detection. Spies win if they equal or outnumber civilians.
+                {t('rules.spyDesc')}
               </Text>
             </View>
 
@@ -122,10 +126,10 @@ const RulesScreen = () => {
             <View className="bg-[#f9e534]/20 rounded-xl p-4">
               <View className="flex-row items-center gap-2 mb-2">
                 <Ionicons name="help-circle" size={20} color="#5b5300" />
-                <Text className="font-black text-lg text-[#5b5300] uppercase">Blank</Text>
+                <Text className="font-black text-lg text-[#5b5300] uppercase">{t('rules.blankRole')}</Text>
               </View>
               <Text className="text-sm text-[#5b5300]/80 leading-relaxed">
-                Receives NO keyword. Goal: Listen carefully and guess the civilian word when eliminated. Wins alone if guess is correct!
+                {t('rules.blankDesc')}
               </Text>
             </View>
           </Card>
@@ -137,38 +141,38 @@ const RulesScreen = () => {
                 <Ionicons name="game-controller" size={24} color="#006b1b" />
               </View>
               <Text className="font-bold text-2xl text-[#00480f] uppercase tracking-tight">
-                Gameplay
+                {t('rules.gameplay')}
               </Text>
             </View>
             <View className="gap-3">
               <View className="flex-row items-start gap-3">
                 <Text className="font-black text-[#00480f] text-lg">1.</Text>
                 <Text className="flex-1 text-base text-[#47624b] leading-relaxed">
-                  <Text className="font-bold">View Keywords:</Text> Each player secretly views their keyword by tapping their card
+                  <Text className="font-bold">{t('rules.gameplay1')}</Text> {t('rules.gameplay1Desc')}
                 </Text>
               </View>
               <View className="flex-row items-start gap-3">
                 <Text className="font-black text-[#00480f] text-lg">2.</Text>
                 <Text className="flex-1 text-base text-[#47624b] leading-relaxed">
-                  <Text className="font-bold">Discussion:</Text> Players take turns describing their word without being too obvious
+                  <Text className="font-bold">{t('rules.gameplay2')}</Text> {t('rules.gameplay2Desc')}
                 </Text>
               </View>
               <View className="flex-row items-start gap-3">
                 <Text className="font-black text-[#00480f] text-lg">3.</Text>
                 <Text className="flex-1 text-base text-[#47624b] leading-relaxed">
-                  <Text className="font-bold">Voting:</Text> After discussion, vote to eliminate a suspected spy
+                  <Text className="font-bold">{t('rules.gameplay3')}</Text> {t('rules.gameplay3Desc')}
                 </Text>
               </View>
               <View className="flex-row items-start gap-3">
                 <Text className="font-black text-[#00480f] text-lg">4.</Text>
                 <Text className="flex-1 text-base text-[#47624b] leading-relaxed">
-                  <Text className="font-bold">Blank Guess:</Text> If a blank player is eliminated, they can guess the civilian word to win
+                  <Text className="font-bold">{t('rules.gameplay4')}</Text> {t('rules.gameplay4Desc')}
                 </Text>
               </View>
               <View className="flex-row items-start gap-3">
                 <Text className="font-black text-[#00480f] text-lg">5.</Text>
                 <Text className="flex-1 text-base text-[#47624b] leading-relaxed">
-                  <Text className="font-bold">Repeat:</Text> Continue until a team wins
+                  <Text className="font-bold">{t('rules.gameplay5')}</Text> {t('rules.gameplay5Desc')}
                 </Text>
               </View>
             </View>
@@ -181,35 +185,35 @@ const RulesScreen = () => {
                 <Ionicons name="trophy" size={24} color="#4a2800" />
               </View>
               <Text className="font-bold text-2xl text-[#4a2800] uppercase tracking-tight">
-                How to Win
+                {t('rules.howToWin')}
               </Text>
             </View>
             
             <View className="gap-3">
               <View className="bg-white/50 rounded-lg p-3">
                 <Text className="font-black text-sm text-[#4a2800] uppercase mb-1">
-                  🛡️ Civilians Win
+                  {t('rules.civiliansWin')}
                 </Text>
                 <Text className="text-sm text-[#4a2800]/80">
-                  All spies are eliminated
+                  {t('rules.civiliansWinDesc')}
                 </Text>
               </View>
               
               <View className="bg-white/50 rounded-lg p-3">
                 <Text className="font-black text-sm text-[#4a2800] uppercase mb-1">
-                  🕵️ Spies Win
+                  {t('rules.spiesWin')}
                 </Text>
                 <Text className="text-sm text-[#4a2800]/80">
-                  Spies equal or outnumber civilians
+                  {t('rules.spiesWinDesc')}
                 </Text>
               </View>
               
               <View className="bg-white/50 rounded-lg p-3">
                 <Text className="font-black text-sm text-[#4a2800] uppercase mb-1">
-                  ❓ Blank Wins
+                  {t('rules.blankWins')}
                 </Text>
                 <Text className="text-sm text-[#4a2800]/80">
-                  Blank player correctly guesses the civilian word when eliminated (solo victory!)
+                  {t('rules.blankWinsDesc')}
                 </Text>
               </View>
             </View>
@@ -222,32 +226,32 @@ const RulesScreen = () => {
                 <Ionicons name="bulb" size={24} color="#5b5300" />
               </View>
               <Text className="font-bold text-2xl text-[#5b5300] uppercase tracking-tight">
-                Pro Tips
+                {t('rules.proTips')}
               </Text>
             </View>
             <View className="gap-3">
               <View className="flex-row items-start gap-3">
                 <Text className="text-[#5b5300]">💡</Text>
                 <Text className="flex-1 text-sm text-[#5b5300]/80 leading-relaxed">
-                  As a civilian, be specific enough to prove you know the word, but vague enough not to help spies
+                  {t('rules.tip1')}
                 </Text>
               </View>
               <View className="flex-row items-start gap-3">
                 <Text className="text-[#5b5300]">💡</Text>
                 <Text className="flex-1 text-sm text-[#5b5300]/80 leading-relaxed">
-                  As a spy, listen carefully to others' descriptions and try to blend in
+                  {t('rules.tip2')}
                 </Text>
               </View>
               <View className="flex-row items-start gap-3">
                 <Text className="text-[#5b5300]">💡</Text>
                 <Text className="flex-1 text-sm text-[#5b5300]/80 leading-relaxed">
-                  As a blank, gather clues from everyone to make an educated guess
+                  {t('rules.tip3')}
                 </Text>
               </View>
               <View className="flex-row items-start gap-3">
                 <Text className="text-[#5b5300]">💡</Text>
                 <Text className="flex-1 text-sm text-[#5b5300]/80 leading-relaxed">
-                  Pay attention to hesitation, vague answers, or suspicious behavior
+                  {t('rules.tip4')}
                 </Text>
               </View>
             </View>

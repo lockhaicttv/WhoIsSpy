@@ -2,31 +2,35 @@ import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
 import { useRouter, usePathname } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import { t } from '../../utils/i18n';
+import { useStore } from '../../store';
 
 const BottomNavigation: React.FC = () => {
   const router = useRouter();
   const pathname = usePathname();
+  // Subscribe to language changes to trigger re-render
+  const language = useStore((state) => state.language);
 
   const navItems = [
     {
       route: '/',
       icon: 'game-controller' as keyof typeof Ionicons.glyphMap,
-      label: 'Missions',
+      label: t('navigation.missions'),
     },
     {
       route: '/manage-groups',
       icon: 'people' as keyof typeof Ionicons.glyphMap,
-      label: 'Players',
+      label: t('navigation.players'),
     },
     {
       route: '/rules',
       icon: 'book' as keyof typeof Ionicons.glyphMap,
-      label: 'Rules',
+      label: t('navigation.rules'),
     },
     {
       route: '/store',
       icon: 'cart' as keyof typeof Ionicons.glyphMap,
-      label: 'Store',
+      label: t('navigation.store'),
     },
   ];
 
