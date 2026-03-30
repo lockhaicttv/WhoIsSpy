@@ -11,4 +11,7 @@ export const useStore = create<MyState>()((...a) => ({
   ...createKeywordSlice(...a),
 }))
 
+// Load keywords on store initialization
+useStore.getState().loadKeywords();
+
 export default useStore

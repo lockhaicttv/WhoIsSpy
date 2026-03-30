@@ -1,6 +1,7 @@
 import { drizzle } from 'drizzle-orm/expo-sqlite';
 import { openDatabaseSync } from 'expo-sqlite';
 import * as schema from './schema';
+import { initializeKeywords, seedPremiumKeywords, arePremiumKeywordsSeeded } from './keywordService';
 
 // Open the database
 const expoDb = openDatabaseSync('whoisspy.db', { enableChangeListener: true });
@@ -32,7 +33,44 @@ export const initDatabase = () => {
       );
     `);
 
-    console.log('Database initialized successfully');
+    // Create keywords table
+    expoDb.execSync(`
+      CREATE TABLE IF NOT EXISTS keywords (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        civilian_word TEXT NOT NULL,
+        spy_word TEXT NOT NULL,
+        category TEXT NOT NULL,
+        difficulty TEXT NOT NULL,
+        is_premium INTEGER NOT NULL DEFAULT 0,
+        package_id TEXT,
+        is_active INTEGER NOT NULL DEFAULT 1,
+        created_at INTEGER NOT NULL
+      );
+    `);
+
+    // Create user_purchases table
+    expoDb.execSync(`
+      CREATE TABLE IF NOT EXISTS user_purchases (
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
+        package_id TEXT NOT NULL UNIQUE,
+        package_name TEXT NOT NULL,
+        purchase_date INTEGER NOT NULL,
+        is_active INTEGER NOT NULL DEFAULT 1
+      );
+    `);
+
+    console.log('✅ Database initialized successfully');
+
+    // Initialize default free keywords (100 keywords)
+    initializeKeywords();
+
+    // Seed premium keywords if not already seeded (450 keywords)
+    if (!arePremiumKeywordsSeeded()) {
+      console.log('🌱 Seeding premium keywords...');
+      seedPremiumKeywords();
+    } else {
+      console.log('✓ Premium keywords already seeded');
+    }
   } catch (error) {
     console.error('Error initializing database:', error);
   }
