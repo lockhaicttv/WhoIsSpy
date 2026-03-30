@@ -38,7 +38,21 @@
     "playWithFriends": "JOUER AVEC DES AMIS",
     "playWithFriendsDesc": "Créez une salle et invitez votre équipe pour jouer en local ou à distance.",
     "rulesHowToPlay": "RÈGLES ET COMMENT JOUER",
-    "rulesHowToPlayDesc": "Nouvelle recrue ? Apprenez les bases de l'espionnage et de la déduction."
+    "rulesHowToPlayDesc": "Nouvelle recrue ? Apprenez les bases de l'espionnage et de la déduction.",
+    "narrative": "Le Récit",
+    "blackoutTitle": "La Panne",
+    "blackoutDesc": "Année 2029. Une escouade d'élite d'agents du \"Protocole Fantôme\" vient de survivre à une mission catastrophique dans la \"Zone Morte\" arctique — un endroit où toutes les communications satellites sont brouillées. Ils ont atteint la seule tour radio longue portée encore fonctionnelle, mais elle est endommagée. Ils n'ont que suffisamment d'énergie pour un dernier signal afin d'appeler l'extraction.",
+    "breachTitle": "La Brèche",
+    "breachDesc": "Avant que le signal puisse être envoyé, une alerte haute priorité clignote sur leurs moniteurs : \"Incompatibilité de Signature Biométrique.\" Un infiltré (L'Espion) a tué l'un des membres de l'équipe et a pris sa place. Pour s'assurer que le vaisseau de secours récupère les bonnes personnes, l'équipe doit vérifier leurs identités en utilisant un \"Chiffre Vocal\" (Le Mot-Clé) — une phrase secrète mise à jour quotidiennement que seuls les vrais agents connaissent.",
+    "ghostListenerTitle": "L'Auditeur Fantôme",
+    "ghostListenerDesc": "Cependant, la fréquence radio \"fuit.\" Une IA rebelle ou une unité mercenaire hostile (L'Intercepteur) scanne les ondes. Ils planent juste en dehors de la Zone Morte, attendant que les agents parlent.",
+    "survivalMechanics": "Mécaniques de Survie",
+    "agentsTitle": "Les Agents",
+    "agentsDesc": "Doivent décrire le Chiffre Vocal pour identifier l'Espion. Mais ils doivent utiliser des métaphores et un langage codé.",
+    "spyTitle": "L'Espion",
+    "spyDesc": "Doit écouter les descriptions, prétendre être un agent et essayer de deviner le Chiffre pour voler les coordonnées d'extraction.",
+    "interceptorTitle": "L'Intercepteur",
+    "interceptorDesc": "Si les agents sont trop évidents dans leurs descriptions, l'Intercepteur décodera le \"Signal,\" localisera leur position exacte et lancera une frappe avant l'arrivée des secours."
   },
   "rules": {
     "title": "COMMENT JOUER",

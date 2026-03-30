@@ -38,7 +38,21 @@
     "playWithFriends": "PLAY WITH FRIENDS",
     "playWithFriendsDesc": "Create a room and invite your squad for local or remote play.",
     "rulesHowToPlay": "RULES & HOW TO PLAY",
-    "rulesHowToPlayDesc": "New recruit? Learn the basics of espionage and deduction."
+    "rulesHowToPlayDesc": "New recruit? Learn the basics of espionage and deduction.",
+    "narrative": "The Narrative",
+    "blackoutTitle": "The Blackout",
+    "blackoutDesc": "Year 2029. An elite squad of \"Ghost Protocol\" agents has just survived a catastrophic mission in the Arctic \"Dead Zone\"—a place where all satellite communications are jammed. They have reached the only functioning long-range radio tower left, but it's damaged. They only have enough power for one last signal to call for extraction.",
+    "breachTitle": "The Breach",
+    "breachDesc": "Before the signal can be sent, a high-priority alert flashes on their monitors: \"Biometric Signature Mismatch.\" An infiltrator (The Spy) has killed one of the team members and taken their place. To ensure the rescue ship picks up the right people, the team must verify their identities using a \"Vocal Cipher\" (The Keyword)—a secret phrase updated daily that only true agents know.",
+    "ghostListenerTitle": "The Ghost Listener",
+    "ghostListenerDesc": "However, the radio frequency is \"leaking.\" A rogue AI or a hostile mercenary unit (The Interceptor) is scanning the airwaves. They are hovering just outside the Dead Zone, waiting for the agents to speak.",
+    "survivalMechanics": "Survival Mechanics",
+    "agentsTitle": "The Agents",
+    "agentsDesc": "Must describe the Vocal Cipher to identify the Spy. But they must use metaphors and coded language.",
+    "spyTitle": "The Spy",
+    "spyDesc": "Must listen to the descriptions, pretend to be an agent, and try to guess the Cipher to steal the extraction coordinates.",
+    "interceptorTitle": "The Interceptor",
+    "interceptorDesc": "If the agents are too obvious with their descriptions, the Interceptor will decode the \"Signal,\" pinpoint their exact location, and launch a strike before the rescue arrives."
   },
   "rules": {
     "title": "HOW TO PLAY",

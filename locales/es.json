@@ -38,7 +38,21 @@
     "playWithFriends": "JUGAR CON AMIGOS",
     "playWithFriendsDesc": "Crea una sala e invita a tu equipo para jugar local o remotamente.",
     "rulesHowToPlay": "REGLAS Y CÓMO JUGAR",
-    "rulesHowToPlayDesc": "¿Nuevo recluta? Aprende los conceptos básicos de espionaje y deducción."
+    "rulesHowToPlayDesc": "¿Nuevo recluta? Aprende los conceptos básicos de espionaje y deducción.",
+    "narrative": "La Narrativa",
+    "blackoutTitle": "El Apagón",
+    "blackoutDesc": "Año 2029. Un escuadrón de élite de agentes del \"Protocolo Fantasma\" acaba de sobrevivir a una misión catastrófica en la \"Zona Muerta\" del Ártico, un lugar donde todas las comunicaciones satelitales están bloqueadas. Han llegado a la única torre de radio de largo alcance que funciona, pero está dañada. Solo tienen energía suficiente para una última señal para pedir la extracción.",
+    "breachTitle": "La Brecha",
+    "breachDesc": "Antes de que se pueda enviar la señal, una alerta de alta prioridad destella en sus monitores: \"Discrepancia de Firma Biométrica.\" Un infiltrado (El Espía) ha matado a uno de los miembros del equipo y ha tomado su lugar. Para asegurar que la nave de rescate recoja a las personas correctas, el equipo debe verificar sus identidades usando un \"Cifrado Vocal\" (La Palabra Clave)—una frase secreta actualizada diariamente que solo los agentes verdaderos conocen.",
+    "ghostListenerTitle": "El Oyente Fantasma",
+    "ghostListenerDesc": "Sin embargo, la frecuencia de radio está \"filtrándose.\" Una IA rebelde o una unidad mercenaria hostil (El Interceptor) está escaneando las ondas. Están merodeando justo fuera de la Zona Muerta, esperando a que los agentes hablen.",
+    "survivalMechanics": "Mecánicas de Supervivencia",
+    "agentsTitle": "Los Agentes",
+    "agentsDesc": "Deben describir el Cifrado Vocal para identificar al Espía. Pero deben usar metáforas y lenguaje codificado.",
+    "spyTitle": "El Espía",
+    "spyDesc": "Debe escuchar las descripciones, fingir ser un agente e intentar adivinar el Cifrado para robar las coordenadas de extracción.",
+    "interceptorTitle": "El Interceptor",
+    "interceptorDesc": "Si los agentes son demasiado obvios con sus descripciones, el Interceptor decodificará la \"Señal,\" localizará su ubicación exacta y lanzará un ataque antes de que llegue el rescate."
   },
   "rules": {
     "title": "CÓMO JUGAR",

@@ -1,15 +1,14 @@
-import React from 'react';
-import { View, ScrollView, ImageBackground, Image } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
+import { useRouter } from 'expo-router';
+import React from 'react';
+import { ImageBackground, ScrollView, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import BottomNavigation from '../../components/BottomNavigation/BottomNavigation';
 import Button from '../../components/Button/Button';
 import Card from '../../components/Card/Card';
-import BottomNavigation from '../../components/BottomNavigation/BottomNavigation';
-import { Text } from 'react-native';
-import { t } from '../../utils/i18n';
 import { useStore } from '../../store';
+import { t } from '../../utils/i18n';
 
 const HomeScreen = () => {
   const router = useRouter();
@@ -76,40 +75,121 @@ const HomeScreen = () => {
             icon="play"
           />
 
-          <Card variant="secondary" rotated className="mt-2">
-            <View className="absolute top-4 right-6 opacity-10">
-              <Ionicons name="people" size={64} color="#5b5300" />
+          {/* Game Story - THE LAST SIGNAL */}
+          <View className="mt-4 mb-2">
+            <View className="flex-row items-center gap-2 mb-3">
+              <Ionicons name="radio" size={20} color="#006b1b" />
+              <Text className="font-black text-xs text-[#006b1b] uppercase tracking-[4px]">{t('home.narrative')}</Text>
             </View>
-            <View className="flex-col gap-4">
-              <View className="w-12 h-12 rounded-full bg-[#5b5300]/10 items-center justify-center">
-                <Ionicons name="people" size={24} color="#5b5300" />
+            <View className="w-16 h-1 bg-[#006b1b] rounded-full mb-1" />
+          </View>
+
+          {/* The Blackout */}
+          <Card variant="container-high" rotated className="mt-1">
+            <View className="absolute top-4 right-4 opacity-10">
+              <Ionicons name="flash-off" size={64} color="#1b3420" />
+            </View>
+            <View className="flex-col gap-3">
+              <View className="flex-row items-center gap-3">
+                <View className="w-10 h-10 rounded-full bg-[#1b3420]/10 items-center justify-center">
+                  <Ionicons name="flash-off" size={20} color="#1b3420" />
+                </View>
+                <Text className="font-black text-lg text-[#1b3420] uppercase tracking-tight">{t('home.blackoutTitle')}</Text>
               </View>
-              <View>
-                <Text className="font-bold text-xl text-[#5b5300] uppercase tracking-tight">
-                  {t('home.playWithFriends')}
-                </Text>
-                <Text className="text-sm text-[#5b5300]/70 mt-1">
-                  {t('home.playWithFriendsDesc')}
-                </Text>
-              </View>
+              <Text className="text-sm text-[#47624b] leading-5">
+                {t('home.blackoutDesc')}
+              </Text>
             </View>
           </Card>
 
-          <Card variant="container-high" rotated={false} className="-rotate-1">
-            <View className="absolute top-4 right-6 opacity-10">
-              <Ionicons name="book" size={64} color="#1b3420" />
+          {/* The Breach */}
+          <Card variant="secondary" rotated={false} className="-rotate-1">
+            <View className="absolute top-4 right-4 opacity-10">
+              <Ionicons name="warning" size={64} color="#5b5300" />
             </View>
-            <View className="flex-col gap-4">
-              <View className="w-12 h-12 rounded-full bg-[#47624b]/10 items-center justify-center">
-                <Ionicons name="help-circle" size={24} color="#47624b" />
+            <View className="flex-col gap-3">
+              <View className="flex-row items-center gap-3">
+                <View className="w-10 h-10 rounded-full bg-[#5b5300]/10 items-center justify-center">
+                  <Ionicons name="warning" size={20} color="#5b5300" />
+                </View>
+                <Text className="font-black text-lg text-[#5b5300] uppercase tracking-tight">{t('home.breachTitle')}</Text>
               </View>
-              <View>
-                <Text className="font-bold text-xl text-[#1b3420] uppercase tracking-tight">
-                  {t('home.rulesHowToPlay')}
-                </Text>
-                <Text className="text-sm text-[#47624b] mt-1">
-                  {t('home.rulesHowToPlayDesc')}
-                </Text>
+              <Text className="text-sm text-[#5b5300]/80 leading-5">
+                {t('home.breachDesc')}
+              </Text>
+            </View>
+          </Card>
+
+          {/* The Ghost Listener */}
+          <Card variant="tertiary" rotated className="">
+            <View className="absolute top-4 right-4 opacity-10">
+              <Ionicons name="ear" size={64} color="#4a2800" />
+            </View>
+            <View className="flex-col gap-3">
+              <View className="flex-row items-center gap-3">
+                <View className="w-10 h-10 rounded-full bg-[#4a2800]/10 items-center justify-center">
+                  <Ionicons name="ear" size={20} color="#4a2800" />
+                </View>
+                <Text className="font-black text-lg text-[#4a2800] uppercase tracking-tight">{t('home.ghostListenerTitle')}</Text>
+              </View>
+              <Text className="text-sm text-[#4a2800]/80 leading-5">
+                {t('home.ghostListenerDesc')}
+              </Text>
+            </View>
+          </Card>
+
+          {/* The Mechanics of Survival */}
+          <View className="mt-4 mb-1">
+            <View className="flex-row items-center gap-2 mb-3">
+              <Ionicons name="cog" size={20} color="#006b1b" />
+              <Text className="font-black text-xs text-[#006b1b] uppercase tracking-[4px]">{t('home.survivalMechanics')}</Text>
+            </View>
+            <View className="w-16 h-1 bg-[#006b1b] rounded-full mb-1" />
+          </View>
+
+          <Card variant="primary" rotated={false} className="-rotate-1">
+            <View className="flex-col gap-4">
+              {/* The Agents */}
+              <View className="flex-row items-start gap-3">
+                <View className="w-9 h-9 rounded-full bg-[#006b1b]/15 items-center justify-center mt-0.5">
+                  <Ionicons name="shield-checkmark" size={18} color="#006b1b" />
+                </View>
+                <View className="flex-1">
+                  <Text className="font-bold text-sm text-[#006b1b] uppercase tracking-tight">{t('home.agentsTitle')}</Text>
+                  <Text className="text-xs text-[#1b3420]/70 leading-4 mt-1">
+                    {t('home.agentsDesc')}
+                  </Text>
+                </View>
+              </View>
+
+              <View className="h-px bg-[#006b1b]/15" />
+
+              {/* The Spy */}
+              <View className="flex-row items-start gap-3">
+                <View className="w-9 h-9 rounded-full bg-[#006b1b]/15 items-center justify-center mt-0.5">
+                  <Ionicons name="eye-off" size={18} color="#006b1b" />
+                </View>
+                <View className="flex-1">
+                  <Text className="font-bold text-sm text-[#006b1b] uppercase tracking-tight">{t('home.spyTitle')}</Text>
+                  <Text className="text-xs text-[#1b3420]/70 leading-4 mt-1">
+                    {t('home.spyDesc')}
+                  </Text>
+                </View>
+              </View>
+
+              <View className="h-px bg-[#006b1b]/15" />
+
+              {/* The Interceptor */}
+              <View className="flex-row items-start gap-3">
+                <View className="w-9 h-9 rounded-full bg-[#006b1b]/15 items-center justify-center mt-0.5">
+                  <Ionicons name="radio" size={18} color="#006b1b" />
+                </View>
+                <View className="flex-1">
+                  <Text className="font-bold text-sm text-[#006b1b] uppercase tracking-tight">{t('home.interceptorTitle')}</Text>
+                  <Text className="text-xs text-[#1b3420]/70 leading-4 mt-1">
+                    {t('home.interceptorDesc')}
+                  </Text>
+                </View>
               </View>
             </View>
           </Card>
