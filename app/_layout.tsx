@@ -10,6 +10,7 @@ import { useColorScheme } from '@/hooks/use-color-scheme';
 import { initDatabase } from '@/db';
 import Header from '@/components/Header/Header';
 import { soundManager } from '@/utils/soundManager';
+import { loadLanguage } from '@/utils/i18n';
 
 export const unstable_settings = {
   anchor: '(tabs)',
@@ -18,12 +19,20 @@ export const unstable_settings = {
 export default function RootLayout() {
   const colorScheme = useColorScheme();
 
-  // Initialize database and sounds on app start
+  // Initialize database, sounds, and i18n on app start
   useEffect(() => {
-    initDatabase();
+    const initialize = async () => {
+      // Initialize database
+      initDatabase();
+      
+      // Load all game sounds
+      soundManager.loadAllSounds();
+      
+      // Load saved language or device locale
+      await loadLanguage();
+    };
     
-    // Load all game sounds
-    soundManager.loadAllSounds();
+    initialize();
 
     // Cleanup on unmount
     return () => {

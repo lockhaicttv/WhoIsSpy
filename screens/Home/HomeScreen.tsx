@@ -8,9 +8,13 @@ import Button from '../../components/Button/Button';
 import Card from '../../components/Card/Card';
 import BottomNavigation from '../../components/BottomNavigation/BottomNavigation';
 import { Text } from 'react-native';
+import { t } from '../../utils/i18n';
+import { useStore } from '../../store';
 
 const HomeScreen = () => {
   const router = useRouter();
+  // Subscribe to language changes to trigger re-render
+  const language = useStore((state) => state.language);
 
   return (
     <View className="flex-1 bg-[#e0fee1]">
@@ -45,7 +49,7 @@ const HomeScreen = () => {
                       elevation: 6
                     }}>
                 <Ionicons name="alert-circle" size={16} color="#5b5300" />
-                <Text className="font-bold text-[10px] tracking-widest text-[#5b5300] uppercase">TOP SECRET INTEL</Text>
+                <Text className="font-bold text-[10px] tracking-widest text-[#5b5300] uppercase">{t('home.topSecretIntel')}</Text>
               </View>
             </ImageBackground>
           </View>
@@ -57,17 +61,17 @@ const HomeScreen = () => {
             <Ionicons name="finger-print" size={80} color="#1b3420" />
           </View>
           <Text className="font-black text-5xl text-[#1b3420] text-center leading-tight uppercase tracking-tighter">
-            WHO IS <Text className="text-[#006b1b] italic">SPY?</Text>
+            {t('home.title')} <Text className="text-[#006b1b] italic">{t('home.titleSpy')}</Text>
           </Text>
           <Text className="text-lg text-[#47624b] mt-4 text-center max-w-sm">
-            Trust no one. Question everything. Find the infiltrator before they reveal your location.
+            {t('home.subtitle')}
           </Text>
         </View>
 
         {/* Action Grid */}
         <View className="w-full gap-6 pb-32">
           <Button 
-            label="START MISSION" 
+            label={t('home.startMission')}
             onPress={() => router.push('/manage-groups')}
             icon="play"
           />
@@ -82,10 +86,10 @@ const HomeScreen = () => {
               </View>
               <View>
                 <Text className="font-bold text-xl text-[#5b5300] uppercase tracking-tight">
-                  PLAY WITH FRIENDS
+                  {t('home.playWithFriends')}
                 </Text>
                 <Text className="text-sm text-[#5b5300]/70 mt-1">
-                  Create a room and invite your squad for local or remote play.
+                  {t('home.playWithFriendsDesc')}
                 </Text>
               </View>
             </View>
@@ -101,10 +105,10 @@ const HomeScreen = () => {
               </View>
               <View>
                 <Text className="font-bold text-xl text-[#1b3420] uppercase tracking-tight">
-                  RULES & HOW TO PLAY
+                  {t('home.rulesHowToPlay')}
                 </Text>
                 <Text className="text-sm text-[#47624b] mt-1">
-                  New recruit? Learn the basics of espionage and deduction.
+                  {t('home.rulesHowToPlayDesc')}
                 </Text>
               </View>
             </View>
