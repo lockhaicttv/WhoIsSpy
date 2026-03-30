@@ -6,6 +6,7 @@ import { I18n } from 'i18n-js';
 import en from '../locales/en.json';
 import es from '../locales/es.json';
 import fr from '../locales/fr.json';
+import vi from '../locales/vi.json';
 import zh from '../locales/zh.json';
 
 // Create i18n instance
@@ -13,6 +14,7 @@ const i18n = new I18n({
   en,
   es,
   fr,
+  vi,
   zh,
 });
 
@@ -39,7 +41,7 @@ const getDeviceLocale = (): string => {
 try {
   const deviceLocale = getDeviceLocale();
   const languageCode = typeof deviceLocale === 'string' ? deviceLocale.split('-')[0] : 'en';
-  const supportedLanguages = ['en', 'es', 'fr', 'zh'];
+  const supportedLanguages = ['en', 'es', 'fr', 'vi', 'zh'];
 
   i18n.locale = supportedLanguages.includes(languageCode) ? languageCode : 'en';
 } catch (error) {
@@ -65,6 +67,7 @@ export const getAvailableLanguages = () => [
   { code: 'en', name: 'English', nativeName: 'English' },
   { code: 'es', name: 'Spanish', nativeName: 'Español' },
   { code: 'fr', name: 'French', nativeName: 'Français' },
+  { code: 'vi', name: 'Vietnamese', nativeName: 'Tiếng Việt' },
   { code: 'zh', name: 'Chinese', nativeName: '中文' },
 ];
 
@@ -97,7 +100,7 @@ export const loadLanguage = async (): Promise<string> => {
     } else {
       const deviceLocale = getDeviceLocale();
       const languageCode = typeof deviceLocale === 'string' ? deviceLocale.split('-')[0] : 'en';
-      const supportedLanguages = ['en', 'es', 'fr', 'zh'];
+      const supportedLanguages = ['en', 'es', 'fr', 'vi', 'zh'];
 
       const finalLocale = supportedLanguages.includes(languageCode) ? languageCode : 'en';
       i18n.locale = finalLocale;
