@@ -30,8 +30,8 @@
     "profile": "Perfil"
   },
   "home": {
-    "title": "¿QUIÉN ES",
-    "titleSpy": "EL ESPÍA?",
+    "title": "LA ÚLTIMA",
+    "titleSpy": "SEÑAL",
     "subtitle": "No confíes en nadie. Cuestiona todo. Encuentra al infiltrado antes de que revele tu ubicación.",
     "startMission": "INICIAR MISIÓN",
     "topSecretIntel": "INFORMACIÓN SECRETA",
@@ -44,7 +44,7 @@
     "title": "CÓMO JUGAR",
     "subtitle": "Domina el arte del engaño y la deducción",
     "overview": "Resumen",
-    "overviewText": "¿Quién es el Espía? es un juego de deducción social donde los jugadores reciben palabras clave secretas. La mayoría de los jugadores reciben la misma palabra (civiles), pero algunos reciben una palabra diferente (espías). El objetivo es encontrar a los espías a través de la discusión sin revelar tu propia palabra.",
+    "overviewText": "La Última Señal es un juego de deducción social donde los jugadores reciben palabras clave secretas. La mayoría de los jugadores reciben la misma palabra (civiles), pero algunos reciben una palabra diferente (espías). El objetivo es encontrar a los espías a través de la discusión sin revelar tu propia palabra.",
     "setup": "Configuración",
     "setup1": "Agrega al menos 3 jugadores para comenzar el juego",
     "setup2": "Configura el número de espías (debe ser menor que los civiles)",

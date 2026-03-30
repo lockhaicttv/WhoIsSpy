@@ -1,6 +1,6 @@
-import { I18n } from 'i18n-js';
 import * as Localization from 'expo-localization';
 import * as SecureStore from 'expo-secure-store';
+import { I18n } from 'i18n-js';
 
 // Import translation files
 import en from '../locales/en.json';
@@ -17,7 +17,7 @@ const i18n = new I18n({
 });
 
 // Storage key for language preference
-const LANGUAGE_KEY = 'whoisspy_language';
+const LANGUAGE_KEY = 'thelastsignal_language';
 
 // Helper function to safely get device locale
 const getDeviceLocale = (): string => {

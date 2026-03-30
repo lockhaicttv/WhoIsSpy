@@ -30,8 +30,8 @@
     "profile": "Profil"
   },
   "home": {
-    "title": "QUI EST",
-    "titleSpy": "L'ESPION?",
+    "title": "LE DERNIER",
+    "titleSpy": "SIGNAL",
     "subtitle": "Ne faites confiance à personne. Remettez tout en question. Trouvez l'infiltré avant qu'il ne révèle votre position.",
     "startMission": "DÉMARRER LA MISSION",
     "topSecretIntel": "INFORMATIONS TOP SECRÈTES",
@@ -44,7 +44,7 @@
     "title": "COMMENT JOUER",
     "subtitle": "Maîtrisez l'art de la tromperie et de la déduction",
     "overview": "Aperçu",
-    "overviewText": "Qui est l'Espion est un jeu de déduction sociale où les joueurs reçoivent des mots-clés secrets. La plupart des joueurs reçoivent le même mot (civils), mais certains reçoivent un mot différent (espions). L'objectif est de trouver les espions par la discussion sans révéler votre propre mot.",
+    "overviewText": "Le Dernier Signal est un jeu de déduction sociale où les joueurs reçoivent des mots-clés secrets. La plupart des joueurs reçoivent le même mot (civils), mais certains reçoivent un mot différent (espions). L'objectif est de trouver les espions par la discussion sans révéler votre propre mot.",
     "setup": "Configuration",
     "setup1": "Ajoutez au moins 3 joueurs pour commencer le jeu",
     "setup2": "Configurez le nombre d'espions (doit être inférieur aux civils)",

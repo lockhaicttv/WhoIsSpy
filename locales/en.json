@@ -30,8 +30,8 @@
     "profile": "Profile"
   },
   "home": {
-    "title": "WHO IS",
-    "titleSpy": "SPY?",
+    "title": "THE LAST",
+    "titleSpy": "SIGNAL",
     "subtitle": "Trust no one. Question everything. Find the infiltrator before they reveal your location.",
     "startMission": "START MISSION",
     "topSecretIntel": "TOP SECRET INTEL",
@@ -44,7 +44,7 @@
     "title": "HOW TO PLAY",
     "subtitle": "Master the art of deception and deduction",
     "overview": "Overview",
-    "overviewText": "Who Is Spy is a social deduction game where players receive secret keywords. Most players get the same word (civilians), but some get a different word (spies). The goal is to find the spies through discussion without revealing your own word.",
+    "overviewText": "The Last Signal is a social deduction game where players receive secret keywords. Most players get the same word (civilians), but some get a different word (spies). The goal is to find the spies through discussion without revealing your own word.",
     "setup": "Setup",
     "setup1": "Add at least 3 players to start the game",
     "setup2": "Configure the number of spies (must be less than civilians)",

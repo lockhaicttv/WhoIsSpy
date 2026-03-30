@@ -12,7 +12,7 @@ interface HeaderConfig {
 
 const routeConfigs: Record<string, HeaderConfig> = {
   '/': {
-    title: 'WHO IS SPY?',
+    title: 'THE LAST SIGNAL',
     showBackButton: false,
     rightIcon: 'avatar',
   },
@@ -47,22 +47,22 @@ const routeConfigs: Record<string, HeaderConfig> = {
     rightIcon: 'avatar',
   },
   '/role-distribution': {
-    title: 'Who is Spy',
+    title: 'The Last Signal',
     showBackButton: true,
     rightIcon: 'avatar',
   },
   '/role-reveal': {
-    title: 'WHO IS SPY?',
+    title: 'THE LAST SIGNAL',
     showBackButton: false,
     rightIcon: 'avatar',
   },
   '/discussion-voting': {
-    title: 'WHO IS SPY?',
+    title: 'THE LAST SIGNAL',
     showBackButton: false,
     rightIcon: 'avatar',
   },
   '/victory': {
-    title: 'WHO IS SPY?',
+    title: 'THE LAST SIGNAL',
     showBackButton: false,
     rightIcon: 'victory-avatar',
   },
@@ -74,7 +74,7 @@ const Header: React.FC = () => {
   const winner = useStore((state) => state.winner);
   
   const config = routeConfigs[pathname] || {
-    title: 'WHO IS SPY?',
+    title: 'THE LAST SIGNAL',
     showBackButton: true,
     rightIcon: 'avatar' as const,
   };
