@@ -1,13 +1,13 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, Image } from 'react-native';
-import { useRouter, usePathname } from 'expo-router';
 import { Ionicons } from '@expo/vector-icons';
+import { usePathname, useRouter } from 'expo-router';
+import React from 'react';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { useStore } from '../../store';
 
 interface HeaderConfig {
   title: string;
   showBackButton: boolean;
-  rightIcon?: 'person' | 'settings' | 'avatar' | 'victory-avatar';
+  rightIcon?: 'avatar' | 'victory-avatar';
 }
 
 const routeConfigs: Record<string, HeaderConfig> = {
@@ -24,42 +24,42 @@ const routeConfigs: Record<string, HeaderConfig> = {
   '/manage-groups': {
     title: 'OPERATIVES',
     showBackButton: true,
-    rightIcon: 'person',
+    rightIcon: 'avatar',
   },
   '/store': {
     title: 'STORE',
     showBackButton: false,
-    rightIcon: 'person',
+    rightIcon: 'avatar',
   },
   '/rules': {
     title: 'RULES',
     showBackButton: false,
-    rightIcon: 'person',
+    rightIcon: 'avatar',
   },
   '/game-config': {
     title: 'GAME SETUP',
     showBackButton: true,
-    rightIcon: 'settings',
+    rightIcon: 'avatar',
   },
   '/import-keywords': {
     title: 'KEYWORDS',
     showBackButton: true,
-    rightIcon: 'settings',
+    rightIcon: 'avatar',
   },
   '/role-distribution': {
     title: 'Who is Spy',
     showBackButton: true,
-    rightIcon: 'person',
+    rightIcon: 'avatar',
   },
   '/role-reveal': {
     title: 'WHO IS SPY?',
     showBackButton: false,
-    rightIcon: 'person',
+    rightIcon: 'avatar',
   },
   '/discussion-voting': {
     title: 'WHO IS SPY?',
     showBackButton: false,
-    rightIcon: 'person',
+    rightIcon: 'avatar',
   },
   '/victory': {
     title: 'WHO IS SPY?',
@@ -76,65 +76,23 @@ const Header: React.FC = () => {
   const config = routeConfigs[pathname] || {
     title: 'WHO IS SPY?',
     showBackButton: true,
-    rightIcon: 'person' as const,
+    rightIcon: 'avatar' as const,
   };
 
   const renderRightIcon = () => {
     const baseClass = "w-10 h-10 rounded-full items-center justify-center overflow-hidden border-2";
     
-    if (config.rightIcon === 'victory-avatar') {
-      const isBlankWin = winner === 'blank';
-      const isCivsWin = winner === 'civilians';
-      
-      return (
-        <View className={`${baseClass} bg-[#bee7c1] border-[#91f78e]`}>
-          <Image 
-            source={isBlankWin
-              ? require('../../assets/images/victory-blank-avatar.png')
-              : isCivsWin 
-                ? require('../../assets/images/victory-civs-avatar.png')
-                : require('../../assets/images/victory-spies-avatar.png')
-            }
-            className="w-full h-full object-cover"
-            resizeMode="cover"
-          />
-        </View>
-      );
-    }
-    
-    if (config.rightIcon === 'avatar') {
-      return (
-        <TouchableOpacity 
-          onPress={() => router.push('/profile')}
-          className={`${baseClass} bg-[#bee7c1] border-[#91f78e]`}
-        >
-          <Image 
-            source={require('../../assets/images/avatar-user.png')} 
-            className="w-full h-full object-cover"
-            resizeMode="cover"
-          />
-        </TouchableOpacity>
-      );
-    }
-    
-    if (config.rightIcon === 'settings') {
-      return (
-        <TouchableOpacity 
-          onPress={() => router.push('/profile')}
-          className={`${baseClass} bg-[#bee7c1] border-[#91f78e]`}
-        >
-          <Ionicons name="settings" size={20} color="#006b1b" />
-        </TouchableOpacity>
-      );
-    }
-    
-    // person icon (default)
+    // Default avatar - same display style as victory avatar
     return (
       <TouchableOpacity 
         onPress={() => router.push('/profile')}
         className={`${baseClass} bg-[#bee7c1] border-[#91f78e]`}
       >
-        <Ionicons name="person" size={20} color="#006b1b" />
+        <Image 
+          source={require('../../assets/images/victory-civs-avatar.png')} 
+          className="w-full h-full object-cover"
+          resizeMode="cover"
+        />
       </TouchableOpacity>
     );
   };
@@ -213,7 +171,7 @@ const Header: React.FC = () => {
     );
   }
 
-  // For role-reveal, add flex-1 spacer and different icon size
+  // For role-reveal, add flex-1 spacer
   if (isRoleReveal) {
     return (
       <View className={getContainerClass()}>
@@ -222,12 +180,7 @@ const Header: React.FC = () => {
         </TouchableOpacity>
         <Text className={getTitleClass()}>{config.title}</Text>
         <View className="flex-1" />
-        <TouchableOpacity 
-          onPress={() => router.push('/profile')}
-          className="w-8 h-8 rounded-full bg-[#bee7c1] border-2 border-[#91f78e] items-center justify-center overflow-hidden"
-        >
-          <Ionicons name="person" size={16} color="#006b1b" />
-        </TouchableOpacity>
+        {renderRightIcon()}
       </View>
     );
   }
