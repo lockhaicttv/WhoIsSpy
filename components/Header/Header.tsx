@@ -16,6 +16,11 @@ const routeConfigs: Record<string, HeaderConfig> = {
     showBackButton: false,
     rightIcon: 'avatar',
   },
+  '/profile': {
+    title: 'PROFILE',
+    showBackButton: false,
+    rightIcon: 'avatar',
+  },
   '/manage-groups': {
     title: 'OPERATIVES',
     showBackButton: true,
@@ -99,29 +104,38 @@ const Header: React.FC = () => {
     
     if (config.rightIcon === 'avatar') {
       return (
-        <View className={`${baseClass} bg-[#bee7c1] border-[#006b1b]/10`}>
+        <TouchableOpacity 
+          onPress={() => router.push('/profile')}
+          className={`${baseClass} bg-[#bee7c1] border-[#91f78e]`}
+        >
           <Image 
             source={require('../../assets/images/avatar-user.png')} 
             className="w-full h-full object-cover"
             resizeMode="cover"
           />
-        </View>
+        </TouchableOpacity>
       );
     }
     
     if (config.rightIcon === 'settings') {
       return (
-        <View className={`${baseClass} bg-[#91f78e] border-[#006b1b]`}>
+        <TouchableOpacity 
+          onPress={() => router.push('/profile')}
+          className={`${baseClass} bg-[#bee7c1] border-[#91f78e]`}
+        >
           <Ionicons name="settings" size={20} color="#006b1b" />
-        </View>
+        </TouchableOpacity>
       );
     }
     
     // person icon (default)
     return (
-      <View className={`${baseClass} bg-[#bee7c1] border-[#006b1b]`}>
+      <TouchableOpacity 
+        onPress={() => router.push('/profile')}
+        className={`${baseClass} bg-[#bee7c1] border-[#91f78e]`}
+      >
         <Ionicons name="person" size={20} color="#006b1b" />
-      </View>
+      </TouchableOpacity>
     );
   };
 
@@ -208,9 +222,12 @@ const Header: React.FC = () => {
         </TouchableOpacity>
         <Text className={getTitleClass()}>{config.title}</Text>
         <View className="flex-1" />
-        <View className="w-8 h-8 rounded-full bg-[#bee7c1] border-2 border-[#91f78e] overflow-hidden">
+        <TouchableOpacity 
+          onPress={() => router.push('/profile')}
+          className="w-8 h-8 rounded-full bg-[#bee7c1] border-2 border-[#91f78e] items-center justify-center overflow-hidden"
+        >
           <Ionicons name="person" size={16} color="#006b1b" />
-        </View>
+        </TouchableOpacity>
       </View>
     );
   }

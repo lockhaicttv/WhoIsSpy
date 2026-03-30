@@ -26,7 +26,8 @@
     "missions": "任务",
     "players": "玩家",
     "rules": "规则",
-    "store": "商店"
+    "store": "商店",
+    "profile": "个人资料"
   },
   "home": {
     "title": "谁是",
@@ -181,8 +182,20 @@
     "language": "语言",
     "selectLanguage": "选择语言",
     "sound": "音效",
+    "soundEffects": "音效",
     "soundOn": "开启",
     "soundOff": "关闭"
+  },
+  "profile": {
+    "title": "个人资料",
+    "subtitle": "管理您的设置和偏好",
+    "userInfo": "用户信息",
+    "gamesPlayed": "游戏次数",
+    "wins": "胜利次数",
+    "about": "关于",
+    "version": "版本",
+    "rateApp": "评价应用",
+    "shareApp": "分享应用"
   },
   "languages": {
     "en": "English",

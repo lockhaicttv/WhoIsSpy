@@ -7,7 +7,6 @@ import { LinearGradient } from 'expo-linear-gradient';
 import Button from '../../components/Button/Button';
 import Card from '../../components/Card/Card';
 import BottomNavigation from '../../components/BottomNavigation/BottomNavigation';
-import LanguageSelector from '../../components/LanguageSelector/LanguageSelector';
 import { Text } from 'react-native';
 import { t } from '../../utils/i18n';
 import { useStore } from '../../store';
@@ -114,11 +113,6 @@ const HomeScreen = () => {
               </View>
             </View>
           </Card>
-
-          {/* Language Selector */}
-          <View className="mt-4">
-            <LanguageSelector />
-          </View>
         </View>
       </ScrollView>
 

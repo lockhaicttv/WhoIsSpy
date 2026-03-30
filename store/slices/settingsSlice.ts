@@ -1,16 +1,18 @@
 import { StateCreator } from 'zustand'
 import { MyState } from '../useStore'
 import { setLanguage as setI18nLanguage, loadLanguage } from '../../utils/i18n'
+import { soundManager } from '../../utils/soundManager'
 
 export type SettingsSlice = {
   language: string;
   soundEnabled: boolean;
   setLanguage: (lang: string) => Promise<void>;
   toggleSound: () => void;
+  setSoundEnabled: (enabled: boolean) => void;
   initializeSettings: () => Promise<void>;
 }
 
-const createSettingsSlice: StateCreator<MyState, [], [], SettingsSlice> = (set) => ({
+const createSettingsSlice: StateCreator<MyState, [], [], SettingsSlice> = (set, get) => ({
   language: 'en', // Default fallback
   soundEnabled: true,
   
@@ -29,7 +31,16 @@ const createSettingsSlice: StateCreator<MyState, [], [], SettingsSlice> = (set) 
     }
   },
   
-  toggleSound: () => set((state) => ({ soundEnabled: !state.soundEnabled })),
+  toggleSound: () => {
+    const newState = !get().soundEnabled;
+    set({ soundEnabled: newState });
+    soundManager.setMuted(!newState);
+  },
+  
+  setSoundEnabled: (enabled: boolean) => {
+    set({ soundEnabled: enabled });
+    soundManager.setMuted(!enabled);
+  },
   
   initializeSettings: async () => {
     try {
@@ -37,6 +48,10 @@ const createSettingsSlice: StateCreator<MyState, [], [], SettingsSlice> = (set) 
       // Ensure we have a valid language code
       const validLanguage = savedLanguage && typeof savedLanguage === 'string' ? savedLanguage : 'en';
       set({ language: validLanguage });
+      
+      // Initialize sound state
+      const currentSoundState = get().soundEnabled;
+      soundManager.setMuted(!currentSoundState);
     } catch (error) {
       console.error('Error initializing settings:', error);
       set({ language: 'en' }); // Fallback to English on error

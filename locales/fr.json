@@ -26,7 +26,8 @@
     "missions": "Missions",
     "players": "Joueurs",
     "rules": "Règles",
-    "store": "Boutique"
+    "store": "Boutique",
+    "profile": "Profil"
   },
   "home": {
     "title": "QUI EST",
@@ -181,8 +182,20 @@
     "language": "Langue",
     "selectLanguage": "Sélectionner la Langue",
     "sound": "Effets Sonores",
+    "soundEffects": "Effets Sonores",
     "soundOn": "ACTIVÉ",
     "soundOff": "DÉSACTIVÉ"
+  },
+  "profile": {
+    "title": "PROFIL",
+    "subtitle": "Gérez vos paramètres et préférences",
+    "userInfo": "INFO UTILISATEUR",
+    "gamesPlayed": "Parties Jouées",
+    "wins": "Victoires",
+    "about": "À PROPOS",
+    "version": "Version",
+    "rateApp": "Noter l'App",
+    "shareApp": "Partager l'App"
   },
   "languages": {
     "en": "English",

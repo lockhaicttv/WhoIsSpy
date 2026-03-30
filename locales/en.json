@@ -26,7 +26,8 @@
     "missions": "Missions",
     "players": "Players",
     "rules": "Rules",
-    "store": "Store"
+    "store": "Store",
+    "profile": "Profile"
   },
   "home": {
     "title": "WHO IS",
@@ -181,8 +182,20 @@
     "language": "Language",
     "selectLanguage": "Select Language",
     "sound": "Sound Effects",
+    "soundEffects": "Sound Effects",
     "soundOn": "ON",
     "soundOff": "OFF"
+  },
+  "profile": {
+    "title": "PROFILE",
+    "subtitle": "Manage your settings and preferences",
+    "userInfo": "USER INFO",
+    "gamesPlayed": "Games Played",
+    "wins": "Wins",
+    "about": "ABOUT",
+    "version": "Version",
+    "rateApp": "Rate App",
+    "shareApp": "Share App"
   },
   "languages": {
     "en": "English",
