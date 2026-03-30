@@ -64,7 +64,7 @@ const routeConfigs: Record<string, HeaderConfig> = {
   '/victory': {
     title: 'THE LAST SIGNAL',
     showBackButton: false,
-    rightIcon: 'victory-avatar',
+    rightIcon: 'avatar',
   },
 };
 
@@ -118,13 +118,12 @@ const Header: React.FC = () => {
   const isHome = pathname === '/';
   const isRoleReveal = pathname === '/role-reveal';
   const isDiscussionVoting = pathname === '/discussion-voting';
-  const isVictory = pathname === '/victory';
   
   const getTitleClass = () => {
     if (isHome) {
       return 'font-extrabold tracking-tighter uppercase text-2xl text-[#006b1b]';
     }
-    if (isRoleReveal || isVictory) {
+    if (isRoleReveal) {
       return 'font-bold tracking-tight uppercase text-sm text-[#006b1b]';
     }
     if (isDiscussionVoting) {
@@ -138,7 +137,7 @@ const Header: React.FC = () => {
     if (isHome) {
       return 'w-full flex-row items-center justify-between px-6 py-4 bg-[#e0fee1]';
     }
-    if (isRoleReveal || isDiscussionVoting || isVictory) {
+    if (isRoleReveal || isDiscussionVoting) {
       return 'w-full flex-row items-center gap-3 px-6 py-4 h-16';
     }
     // Default for setup screens
@@ -157,8 +156,8 @@ const Header: React.FC = () => {
     );
   }
 
-  // For discussion-voting and victory, add flex-1 spacer
-  if (isDiscussionVoting || isVictory) {
+  // For discussion-voting, add flex-1 spacer
+  if (isDiscussionVoting) {
     return (
       <View className={getContainerClass()}>
         <TouchableOpacity onPress={() => router.push('/')} className="p-2 -ml-2">
