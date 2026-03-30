@@ -1,17 +1,19 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
+import React, { useState } from 'react';
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter, useLocalSearchParams } from 'expo-router';
-import { useStore } from '../../store';
 import Button from '../../components/Button/Button';
 import Card from '../../components/Card/Card';
-import { Ionicons } from '@expo/vector-icons';
+import { useStore } from '../../store';
+import { t } from '../../utils/i18n';
 
 const GameConfigScreen = () => {
   const router = useRouter();
   const players = useStore((state) => state.players);
   const setPhase = useStore((state) => state.setPhase);
   const setDiscussionTime = useStore((state) => state.setDiscussionTime);
+  const language = useStore((state) => state.language);
 
   const [numSpies, setNumSpies] = useState(1);
   const [numBlanks, setNumBlanks] = useState(0);
@@ -44,18 +46,18 @@ const GameConfigScreen = () => {
         <Card variant="primary" className="mb-8">
           <View className="flex-row items-center gap-3 mb-6">
             <Ionicons name="settings" size={24} color="#005d16" />
-            <Text className="text-2xl font-black text-[#00480f] tracking-tight uppercase">Configure Roles</Text>
+            <Text className="text-2xl font-black text-[#00480f] tracking-tight uppercase">{t('gameConfig.title')}</Text>
           </View>
 
           <View className="bg-[#c7f0cd]/40 rounded-xl p-4 mb-6">
             <Text className="text-sm font-bold text-[#47624b] text-center">
-              Total Players: <Text className="text-[#006b1b] text-xl font-black">{players.length}</Text>
+              {t('gameConfig.totalPlayers')} <Text className="text-[#006b1b] text-xl font-black">{players.length}</Text>
             </Text>
           </View>
 
           {/* Spies Configuration */}
           <View className="mb-6">
-            <Text className="font-bold text-[12px] tracking-widest text-[#00691a] uppercase mb-3">Number of Spies</Text>
+            <Text className="font-bold text-[12px] tracking-widest text-[#00691a] uppercase mb-3">{t('gameConfig.numSpies')}</Text>
             <View className="flex-row items-center gap-4">
               <TouchableOpacity 
                 onPress={() => setNumSpies(Math.max(1, numSpies - 1))}
@@ -73,7 +75,7 @@ const GameConfigScreen = () => {
               <View className="flex-1 bg-white rounded-2xl px-6 py-4 items-center border-2 border-[#91f78e]">
                 <Text className="text-4xl font-black text-[#006b1b]">{numSpies}</Text>
                 <Text className="text-xs font-bold text-[#47624b] uppercase tracking-wider mt-1">
-                  {numSpies === 1 ? 'Spy' : 'Spies'}
+                  {numSpies === 1 ? t('gameConfig.spy') : t('gameConfig.spies')}
                 </Text>
               </View>
 
@@ -94,7 +96,7 @@ const GameConfigScreen = () => {
 
           {/* Blank Cards Configuration */}
           <View className="mb-6">
-            <Text className="font-bold text-[12px] tracking-widest text-[#00691a] uppercase mb-3">Blank Cards (Optional)</Text>
+            <Text className="font-bold text-[12px] tracking-widest text-[#00691a] uppercase mb-3">{t('gameConfig.numBlanks')}</Text>
             <View className="flex-row items-center gap-4">
               <TouchableOpacity 
                 onPress={() => setNumBlanks(Math.max(0, numBlanks - 1))}
@@ -111,7 +113,7 @@ const GameConfigScreen = () => {
 
               <View className="flex-1 bg-white rounded-2xl px-6 py-4 items-center border-2 border-[#91f78e]">
                 <Text className="text-4xl font-black text-[#006b1b]">{numBlanks}</Text>
-                <Text className="text-xs font-bold text-[#47624b] uppercase tracking-wider mt-1">Blanks</Text>
+                <Text className="text-xs font-bold text-[#47624b] uppercase tracking-wider mt-1">{t('gameConfig.blanks')}</Text>
               </View>
 
               <TouchableOpacity 
@@ -132,13 +134,13 @@ const GameConfigScreen = () => {
           {/* Discussion Time Configuration */}
           <View className="mb-6">
             <View className="flex-row items-center justify-between mb-3">
-              <Text className="font-bold text-[12px] tracking-widest text-[#00691a] uppercase">Discussion Time</Text>
+              <Text className="font-bold text-[12px] tracking-widest text-[#00691a] uppercase">{t('gameConfig.discussionTime')}</Text>
               <TouchableOpacity 
                 onPress={() => setDiscussionMinutes(null)}
                 className={`px-3 py-1 rounded-full ${discussionMinutes === null ? 'bg-[#006b1b]' : 'bg-[#c6ecc8]'}`}
               >
                 <Text className={`text-[10px] font-bold uppercase ${discussionMinutes === null ? 'text-[#d1ffc8]' : 'text-[#47624b]'}`}>
-                  Infinity
+                  {t('gameConfig.infinity')}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -161,7 +163,7 @@ const GameConfigScreen = () => {
                   {discussionMinutes === null ? '∞' : discussionMinutes}
                 </Text>
                 <Text className="text-xs font-bold text-[#47624b] uppercase tracking-wider mt-1">
-                  {discussionMinutes === null ? 'No Limit' : discussionMinutes === 1 ? 'Minute' : 'Minutes'}
+                  {discussionMinutes === null ? t('gameConfig.noLimit') : discussionMinutes === 1 ? t('gameConfig.minute') : t('gameConfig.minutes')}
                 </Text>
               </View>
 
@@ -180,22 +182,22 @@ const GameConfigScreen = () => {
             </View>
             <Text className="text-xs text-[#47624b] text-center mt-2">
               {discussionMinutes === null 
-                ? 'Players can discuss freely without time pressure' 
-                : `Each discussion round will last ${discussionMinutes} ${discussionMinutes === 1 ? 'minute' : 'minutes'}`
+                ? t('gameConfig.discussionTimeDesc')
+                : `${t('gameConfig.discussionTimeLimitDesc').replace('{{minutes}}', String(discussionMinutes)).replace('{{unit}}', discussionMinutes === 1 ? t('gameConfig.minute') : t('gameConfig.minutes'))}`
               }
             </Text>
           </View>
 
           {/* Role Summary */}
           <View className="bg-[#d8f9d9] rounded-xl p-4">
-            <Text className="font-bold text-[10px] tracking-widest text-[#47624b] uppercase mb-3">Role Distribution</Text>
+            <Text className="font-bold text-[10px] tracking-widest text-[#47624b] uppercase mb-3">{t('gameConfig.roleDistribution')}</Text>
             <View className="flex-row justify-between items-center">
               <View className="flex-col items-center">
                 <View className="flex-row items-center gap-2">
                   <Ionicons name="shield-checkmark" size={20} color="#006b1b" />
                   <Text className="text-2xl font-black text-[#006b1b]">{numCivilians}</Text>
                 </View>
-                <Text className="text-[10px] font-bold text-[#47624b] uppercase mt-1">Civilians</Text>
+                <Text className="text-[10px] font-bold text-[#47624b] uppercase mt-1">{t('gameConfig.civilians')}</Text>
               </View>
               
               <View className="w-px h-12 bg-[#47624b]/20" />
@@ -206,7 +208,7 @@ const GameConfigScreen = () => {
                   <Text className="text-2xl font-black text-[#ff9800]">{numSpies}</Text>
                 </View>
                 <Text className="text-[10px] font-bold text-[#47624b] uppercase mt-1">
-                  {numSpies === 1 ? 'Spy' : 'Spies'}
+                  {numSpies === 1 ? t('gameConfig.spy') : t('gameConfig.spies')}
                 </Text>
               </View>
 
@@ -218,7 +220,7 @@ const GameConfigScreen = () => {
                       <Ionicons name="help-circle" size={20} color="#627d65" />
                       <Text className="text-2xl font-black text-[#627d65]">{numBlanks}</Text>
                     </View>
-                    <Text className="text-[10px] font-bold text-[#47624b] uppercase mt-1">Blanks</Text>
+                    <Text className="text-[10px] font-bold text-[#47624b] uppercase mt-1">{t('gameConfig.blanks')}</Text>
                   </View>
                 </>
               )}
@@ -229,7 +231,7 @@ const GameConfigScreen = () => {
               <View className="mt-4 bg-[#f95630]/10 rounded-lg p-3 flex-row items-start gap-2">
                 <Ionicons name="warning" size={16} color="#b02500" />
                 <Text className="flex-1 text-xs font-bold text-[#b02500]">
-                  Spies must be less than civilians. Adjust the numbers.
+                  {t('gameConfig.spyValidation')}
                 </Text>
               </View>
             )}
@@ -238,7 +240,7 @@ const GameConfigScreen = () => {
 
         <View className="mb-32">
           <Button 
-            label="START GAME" 
+            label={t('gameConfig.startGame')}
             variant="tertiary"
             onPress={handleContinue} 
             disabled={!canContinue}
@@ -246,7 +248,7 @@ const GameConfigScreen = () => {
           />
           {players.length < 3 && (
             <Text className="text-center text-[#b02500] font-bold text-sm mt-4 uppercase tracking-wide">
-              Need at least 3 players
+              {t('gameConfig.needMinPlayers')}
             </Text>
           )}
         </View>

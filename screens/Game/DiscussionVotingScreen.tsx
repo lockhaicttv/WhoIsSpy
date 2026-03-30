@@ -1,12 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, Modal, TextInput } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import { useStore } from '../../store';
+import React, { useEffect, useRef, useState } from 'react';
+import { Modal, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Button from '../../components/Button/Button';
 import Card from '../../components/Card/Card';
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import { getAvatarIcon, getAvatarColor, getAvatarBgColor } from '../../utils/avatarUtils';
+import { useStore } from '../../store';
+import { getAvatarBgColor, getAvatarColor, getAvatarIcon } from '../../utils/avatarUtils';
+import { t } from '../../utils/i18n';
 import { soundManager } from '../../utils/soundManager';
 
 const DiscussionVotingScreen = () => {
@@ -18,6 +19,7 @@ const DiscussionVotingScreen = () => {
   const civWord = useStore((state) => state.civilianWord);
   const spyWord = useStore((state) => state.spyWord);
   const discussionTime = useStore((state) => state.discussionTime);
+  const language = useStore((state) => state.language);
 
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [showRolePopup, setShowRolePopup] = useState(false);
@@ -176,7 +178,7 @@ const DiscussionVotingScreen = () => {
             <Text className={`font-bold text-xs tracking-[0.2em] uppercase mb-1 ${
               timeRemaining !== null && timeRemaining <= 10 ? 'text-white' : 'text-[#47624b]'
             }`}>
-              DISCUSSION TIME
+              {t('discussion.discussionTime')}
             </Text>
             <View className="flex-row items-baseline gap-1">
               {discussionTime === null ? (
@@ -191,21 +193,21 @@ const DiscussionVotingScreen = () => {
             </View>
             {timeRemaining !== null && timeRemaining <= 10 && timeRemaining > 0 && (
               <Text className="text-xs font-bold text-white uppercase tracking-widest mt-2 animate-pulse">
-                TIME RUNNING OUT!
+                {t('discussion.timeRunningOut')}
               </Text>
             )}
             {timeRemaining === 0 && (
               <Text className="text-xs font-bold text-white uppercase tracking-widest mt-2">
-                TIME&#39;S UP! VOTE NOW
+                {t('discussion.timesUpVoteNow')}
               </Text>
             )}
           </View>
           <Text className="mt-4 text-[#47624b] font-medium text-center max-w-xs">
             {discussionTime === null 
-              ? "Discuss with others and find out who doesn't belong!"
+              ? t('discussion.discussFreelyDesc')
               : timeRemaining === 0
-                ? "Discussion time ended. Vote to eliminate a player."
-                : "Discuss carefully and watch for suspicious behavior"
+                ? t('discussion.discussTimeEndedDesc')
+                : t('discussion.discussCarefullyDesc')
             }
           </Text>
         </View>
@@ -214,7 +216,7 @@ const DiscussionVotingScreen = () => {
         <Card variant="primary" className="mb-6">
           <View className="flex-row items-center justify-between mb-3">
             <Text className="font-black text-[11px] uppercase text-[#005e17]">
-              Keywords Viewed
+              {t('discussion.ciphersViewed')}
             </Text>
             <View className="flex-row items-center gap-1">
               <Text className="font-black text-sm text-[#006b1b]">
@@ -266,7 +268,7 @@ const DiscussionVotingScreen = () => {
             <View className="mt-4 bg-[#c6ecc8] rounded-lg p-3 flex-row items-center gap-2">
               <Ionicons name="time" size={16} color="#005e17" />
               <Text className="flex-1 text-xs font-bold text-[#005e17]">
-                Waiting for {players.filter(p => !p.hasSeenRole).length} player(s) to view keywords...
+                {t('discussion.waitingForPlayers').replace('{{count}}', String(players.filter(p => !p.hasSeenRole).length))}
               </Text>
             </View>
           )}
@@ -297,7 +299,7 @@ const DiscussionVotingScreen = () => {
               >
                 {isSelected && !isDead && (
                   <View className="absolute -top-3 -right-2 bg-[#006b1b] text-[#e0fee1] text-[10px] font-bold px-2 py-1 rounded-full">
-                    <Text className="text-[10px] font-bold uppercase tracking-tighter text-[#e0fee1]">You</Text>
+                    <Text className="text-[10px] font-bold uppercase tracking-tighter text-[#e0fee1]">{t('discussion.selected')}</Text>
                   </View>
                 )}
                 
@@ -313,7 +315,7 @@ const DiscussionVotingScreen = () => {
                       {item.name}
                     </Text>
                     <Text className="text-[10px] font-bold text-[#5b5300]/60 uppercase tracking-widest">
-                      {isDead ? (item.role === 'spy' ? '🕵️ SPY' : '👤 CIVILIAN') : 'READY'}
+                      {isDead ? (item.role === 'spy' ? t('discussion.spyRevealed') : t('discussion.civRevealed')) : t('discussion.ready')}
                     </Text>
                   </View>
                 </View>
@@ -327,7 +329,7 @@ const DiscussionVotingScreen = () => {
       {/* Sticky Vote Button */}
       <View className="w-full px-6 py-3 bg-[#e0fee1]">
         <Button 
-          label="VOTE NOW"
+          label={t('discussion.voteNow')}
           variant="primary"
           onPress={handleVote} 
           disabled={!selectedId}
@@ -400,7 +402,7 @@ const DiscussionVotingScreen = () => {
                   <>
                     <View className="bg-[#d8f9d9] rounded-2xl p-6 items-center mb-6">
                       <Text className="text-xs font-bold text-[#47624b] uppercase tracking-widest mb-2">
-                        ROLE REVEALED
+                        {t('discussion.roleRevealed')}
                       </Text>
                       <View className="flex-row items-center gap-3">
                         <Ionicons 
@@ -411,13 +413,13 @@ const DiscussionVotingScreen = () => {
                         <Text className={`text-5xl font-black uppercase tracking-tight ${
                           votedPlayer.role === 'spy' ? 'text-[#ff9800]' : 'text-[#006b1b]'
                         }`}>
-                          {votedPlayer.role === 'spy' ? 'SPY' : 'CIVILIAN'}
+                          {votedPlayer.role === 'spy' ? t('discussion.infiltrator') : t('discussion.agent')}
                         </Text>
                       </View>
                     </View>
 
                     <Button 
-                      label="CONTINUE"
+                      label={t('common.continue')}
                       variant="primary"
                       onPress={handleConfirmElimination}
                       icon="arrow-forward"
@@ -429,20 +431,20 @@ const DiscussionVotingScreen = () => {
                     <View className="bg-[#f9e534] rounded-2xl p-6 items-center mb-6">
                       <Ionicons name="help-circle" size={48} color="#5b5300" style={{ opacity: 0.3, marginBottom: 16 }} />
                       <Text className="text-xs font-bold text-[#5b5300] uppercase tracking-widest mb-2">
-                        BLANK PLAYER!
+                        {t('discussion.interceptorDetected')}
                       </Text>
                       <Text className="text-2xl font-black text-[#5b5300] uppercase tracking-tight mb-4">
-                        FINAL CHANCE
+                        {t('discussion.finalChance')}
                       </Text>
                       <Text className="text-sm font-medium text-[#5b5300] text-center mb-6">
-                        {votedPlayer.name} can guess the civilian keyword. If correct, they win! If wrong, they&#39;re eliminated.
+                        {t('discussion.interceptorGuessDesc').replace('{{name}}', votedPlayer.name)}
                       </Text>
                       
                       {/* Input for blank guess */}
                       <View className="w-full bg-white rounded-full px-6 py-4 shadow-sm border-2 border-[#5b5300]/20 flex-row items-center mb-4">
                         <TextInput 
                           className="flex-1 text-xl text-[#1b3420] font-bold text-center" 
-                          placeholder="Enter civilian keyword..."
+                          placeholder={t('discussion.enterAgentCipher')}
                           placeholderTextColor="#88a48a"
                           value={blankGuess}
                           onChangeText={setBlankGuess}
@@ -454,14 +456,14 @@ const DiscussionVotingScreen = () => {
                     <View className="flex-row gap-3">
                       <View className="flex-1">
                         <Button 
-                          label="SKIP"
+                          label={t('discussion.skip')}
                           variant="secondary"
                           onPress={handleConfirmElimination}
                         />
                       </View>
                       <View className="flex-1">
                         <Button 
-                          label="GUESS"
+                          label={t('discussion.guess')}
                           variant="primary"
                           onPress={handleBlankGuess}
                           disabled={!blankGuess.trim()}
