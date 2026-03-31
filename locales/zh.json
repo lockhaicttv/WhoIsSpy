@@ -151,7 +151,9 @@
   "roleDistribution": {
     "title": "角色分配",
     "subtitle": "每个玩家将看到他们的秘密角色",
-    "tapToReveal": "点击揭示您的角色",
+    "tapToReveal": "点击查看\n你的关键词",
+    "description": "每位玩家将收到一个关键词。点击你的卡片私密查看。对其他人保密！",
+    "tapToView": "点击查看",
     "allRevealed": "所有玩家都看到了他们的角色",
     "startDiscussion": "开始讨论",
     "waiting": "等待中",

@@ -151,7 +151,9 @@
   "roleDistribution": {
     "title": "PHÂN PHỐI VAI TRÒ",
     "subtitle": "Mỗi người chơi sẽ xem vai trò bí mật của mình",
-    "tapToReveal": "CHẠM ĐỂ XEM VAI TRÒ",
+    "tapToReveal": "CHẠM ĐỂ XEM\nTỪ KHÓA CỦA BẠN",
+    "description": "Mỗi người chơi sẽ nhận một từ khóa. Chạm vào thẻ của bạn để xem riêng tư. Giữ bí mật với người khác!",
+    "tapToView": "CHẠM ĐỂ XEM",
     "allRevealed": "Tất cả người chơi đã xem vai trò của mình",
     "startDiscussion": "BẮT ĐẦU THẢO LUẬN",
     "waiting": "ĐANG CHỜ",

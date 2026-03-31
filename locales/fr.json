@@ -151,7 +151,9 @@
   "roleDistribution": {
     "title": "DISTRIBUTION DES RÔLES",
     "subtitle": "Chaque joueur verra son rôle secret",
-    "tapToReveal": "APPUYEZ POUR RÉVÉLER VOTRE RÔLE",
+    "tapToReveal": "APPUYEZ POUR VOIR\nVOTRE MOT-CLÉ",
+    "description": "Chaque joueur recevra un mot-clé. Appuyez sur votre carte pour le voir en privé. Gardez-le secret !",
+    "tapToView": "APPUYEZ POUR VOIR",
     "allRevealed": "Tous les joueurs ont vu leurs rôles",
     "startDiscussion": "DÉMARRER LA DISCUSSION",
     "waiting": "EN ATTENTE",

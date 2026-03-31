@@ -1,17 +1,18 @@
-import React, { useMemo, useEffect } from 'react';
-import { View, Text, ScrollView, TouchableOpacity } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter } from 'expo-router';
-import { useStore } from '../../store';
-import Button from '../../components/Button/Button';
-import Card from '../../components/Card/Card';
 import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
+import React, { useEffect, useMemo } from 'react';
+import { ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Button from '../../components/Button/Button';
+import { useStore } from '../../store';
+import { t } from '../../utils/i18n';
 import { soundManager } from '../../utils/soundManager';
 
 const RoleDistributionScreen = () => {
   const router = useRouter();
   const players = useStore((state) => state.players);
   const setPhase = useStore((state) => state.setPhase);
+  const language = useStore((state) => state.language);
 
   const allSeen = useMemo(() => players.every(p => p.hasSeenRole), [players]);
 
@@ -32,13 +33,13 @@ const RoleDistributionScreen = () => {
         {/* Instructions Header */}
         <View className="mb-10 text-center items-center">
           <View className="bg-[#91f78e] px-4 py-1.5 rounded-full mb-2">
-            <Text className="font-bold text-xs tracking-widest text-[#006b1b] uppercase">Mission Briefing</Text>
+            <Text className="font-bold text-xs tracking-widest text-[#006b1b] uppercase">{t('roleDistribution.subtitle')}</Text>
           </View>
           <Text className="text-3xl font-black text-[#1b3420] mb-4 leading-tight tracking-tight text-center uppercase">
-            TAP TO VIEW{'\n'}YOUR KEYWORD
+            {t('roleDistribution.tapToReveal')}
           </Text>
           <Text className="text-[#47624b] font-medium text-center max-w-sm">
-            Each player will receive a keyword. Tap your card to see yours privately. Keep it secret from others!
+            {t('roleDistribution.description')}
           </Text>
         </View>
 
@@ -79,11 +80,11 @@ const RoleDistributionScreen = () => {
                 </View>
                 
                 <View className="text-center items-center">
-                  <Text className={`text-xs font-black uppercase tracking-tighter mb-1 ${isSeen ? 'text-[#47624b]/60' : 'text-[#5b5300]/60'}`}>
-                    Operative {String(index + 1).padStart(2, '0')}
-                  </Text>
                   <Text className={`font-bold ${isSeen ? 'text-[#47624b]' : 'text-[#5b5300]'}`}>
-                    {isSeen ? item.name : '???'}
+                    {item.name}
+                  </Text>
+                  <Text className={`text-xs font-black uppercase tracking-tighter mt-1 ${isSeen ? 'text-[#47624b]/60' : 'text-[#5b5300]/60'}`}>
+                    {isSeen ? `✓ ${t('roleDistribution.revealed')}` : t('roleDistribution.tapToView')}
                   </Text>
                 </View>
               </TouchableOpacity>
@@ -94,14 +95,14 @@ const RoleDistributionScreen = () => {
         {/* Action Area */}
         <View className="mb-32 items-center">
           <Button 
-            label="START DISCUSSION"
+            label={t('roleDistribution.startDiscussion')}
             variant="primary"
             onPress={handleStartDiscussion} 
             disabled={!allSeen}
             className={!allSeen ? 'opacity-50' : ''}
           />
           <Text className="text-xs font-bold text-[#006b1b]/60 uppercase tracking-widest mt-4">
-            {players.filter(p => p.hasSeenRole).length} of {players.length} Ready
+            {players.filter(p => p.hasSeenRole).length} / {players.length} {t('common.ready')}
           </Text>
         </View>
       </ScrollView>
