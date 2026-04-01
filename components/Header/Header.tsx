@@ -54,17 +54,14 @@ const routeConfigs: Record<string, HeaderConfig> = {
   '/role-reveal': {
     title: 'THE LAST SIGNAL',
     showBackButton: false,
-    rightIcon: 'avatar',
   },
   '/discussion-voting': {
     title: 'THE LAST SIGNAL',
     showBackButton: false,
-    rightIcon: 'avatar',
   },
   '/victory': {
     title: 'THE LAST SIGNAL',
     showBackButton: false,
-    rightIcon: 'avatar',
   },
 };
 
@@ -116,18 +113,10 @@ const Header: React.FC = () => {
 
   // Different styles for different screens
   const isHome = pathname === '/';
-  const isRoleReveal = pathname === '/role-reveal';
-  const isDiscussionVoting = pathname === '/discussion-voting';
   
   const getTitleClass = () => {
     if (isHome) {
       return 'font-extrabold tracking-tighter uppercase text-2xl text-[#006b1b]';
-    }
-    if (isRoleReveal) {
-      return 'font-bold tracking-tight uppercase text-sm text-[#006b1b]';
-    }
-    if (isDiscussionVoting) {
-      return 'text-2xl font-black text-[#006b1b] tracking-tighter uppercase';
     }
     // Default for setup screens
     return 'font-black tracking-tight uppercase text-2xl text-[#1b3420]';
@@ -136,9 +125,6 @@ const Header: React.FC = () => {
   const getContainerClass = () => {
     if (isHome) {
       return 'w-full flex-row items-center justify-between px-6 py-4 bg-[#e0fee1]';
-    }
-    if (isRoleReveal || isDiscussionVoting) {
-      return 'w-full flex-row items-center gap-3 px-6 py-4 h-16';
     }
     // Default for setup screens
     return 'flex-row justify-between items-center px-6 py-4 z-40 bg-[#e0fee1]';
@@ -150,34 +136,6 @@ const Header: React.FC = () => {
       <View className="flex-row items-center gap-4 px-6 py-4 bg-[#e0fee1]">
         {renderLeftButton()}
         <Text className="font-bold tracking-tight text-[#006b1b] text-xl">{config.title}</Text>
-        <View className="flex-1" />
-        {renderRightIcon()}
-      </View>
-    );
-  }
-
-  // For discussion-voting, add flex-1 spacer
-  if (isDiscussionVoting) {
-    return (
-      <View className={getContainerClass()}>
-        <TouchableOpacity onPress={() => router.push('/')} className="p-2 -ml-2">
-          <Ionicons name="home" size={28} color="#006b1b" />
-        </TouchableOpacity>
-        <Text className={getTitleClass()}>{config.title}</Text>
-        <View className="flex-1" />
-        {renderRightIcon()}
-      </View>
-    );
-  }
-
-  // For role-reveal, add flex-1 spacer
-  if (isRoleReveal) {
-    return (
-      <View className={getContainerClass()}>
-        <TouchableOpacity onPress={() => router.push('/')} className="p-2 -ml-2">
-          <Ionicons name="home" size={28} color="#006b1b" />
-        </TouchableOpacity>
-        <Text className={getTitleClass()}>{config.title}</Text>
         <View className="flex-1" />
         {renderRightIcon()}
       </View>
