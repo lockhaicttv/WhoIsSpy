@@ -26,6 +26,10 @@ const createSettingsSlice: StateCreator<MyState, [], [], SettingsSlice> = (set, 
     try {
       await setI18nLanguage(lang);
       set({ language: lang });
+
+      // Seed keywords for the new language if needed, then reload
+      ensureLocaleKeywords(lang);
+      get().loadKeywords();
     } catch (error) {
       console.error('Error setting language:', error);
       set({ language: 'en' }); // Fallback to English on error

@@ -239,11 +239,14 @@ export const getAvailableKeywords = (locale?: string): Keyword[] => {
       )
       .all()
       .filter((kw) => {
-        // Locale match: exact locale, or fallback to 'en' for premium without translation
+        // For free keywords: must be exact locale match
+        if (!kw.isPremium) {
+          return kw.locale === currentLocale;
+        }
+        // For premium keywords: exact locale match, or fallback to English
         const localeMatch = kw.locale === currentLocale
-          || (kw.isPremium && kw.locale === 'en' && currentLocale !== 'en');
-        // Access: free or unlocked premium
-        const accessMatch = !kw.isPremium || packageIds.includes(kw.packageId || '');
+          || (kw.locale === 'en' && currentLocale !== 'en');
+        const accessMatch = packageIds.includes(kw.packageId || '');
         return localeMatch && accessMatch;
       });
 
@@ -255,13 +258,20 @@ export const getAvailableKeywords = (locale?: string): Keyword[] => {
 };
 
 // Get random keyword from available pool (current locale)
+// Prioritizes free keywords in the current locale over English premium fallbacks
 export const getRandomKeyword = (locale?: string): Keyword | null => {
   try {
     const available = getAvailableKeywords(locale);
     if (available.length === 0) return null;
     
-    const randomIndex = Math.floor(Math.random() * available.length);
-    return available[randomIndex];
+    const currentLocale = locale || getCurrentLanguage();
+
+    // Prefer keywords that match the exact locale (not premium fallbacks)
+    const localeExact = available.filter(kw => kw.locale === currentLocale);
+    const pool = localeExact.length > 0 ? localeExact : available;
+    
+    const randomIndex = Math.floor(Math.random() * pool.length);
+    return pool[randomIndex];
   } catch (error) {
     console.error('Error getting random keyword:', error);
     return null;
@@ -424,9 +434,11 @@ export const getKeywordStats = (locale?: string) => {
     const currentLocale = locale || getCurrentLanguage();
     const allKeywords = db.select().from(keywords).where(eq(keywords.isActive, true)).all();
     
-    // Filter by current locale (with fallback for premium)
+    // Free: exact locale match only. Premium: locale match or English fallback.
     const localeKeywords = allKeywords.filter(kw =>
-      kw.locale === currentLocale || (kw.isPremium && kw.locale === 'en' && currentLocale !== 'en')
+      !kw.isPremium
+        ? kw.locale === currentLocale
+        : (kw.locale === currentLocale || (kw.locale === 'en' && currentLocale !== 'en'))
     );
     const available = getAvailableKeywords(currentLocale);
     const locked = localeKeywords.filter((kw) => kw.isPremium);
