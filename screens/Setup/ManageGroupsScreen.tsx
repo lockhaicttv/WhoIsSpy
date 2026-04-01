@@ -207,7 +207,7 @@ const ManageGroupsScreen = () => {
         <Card variant="secondary" rotated className="mb-8">
           <View className="flex-row justify-between items-start mb-4">
             <View>
-              <Text className="font-bold text-3xl text-[#5b5300] leading-tight">{t('manageGroups.activeSquad')}</Text>
+              <Text className="font-bold text-3xl text-[#5b5300] leading-snug">{t('manageGroups.activeSquad')}</Text>
               <Text className="font-black text-[12px] tracking-widest uppercase opacity-80 text-[#5b5300] mt-1">{t('manageGroups.playersTotal', { count: players.length })}</Text>
             </View>
           </View>

@@ -1,12 +1,12 @@
-import React from 'react';
-import { View, Text, ScrollView, TouchableOpacity, Switch } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
+import React from 'react';
+import { ScrollView, Switch, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import BottomNavigation from '../../components/BottomNavigation/BottomNavigation';
+import Card from '../../components/Card/Card';
+import LanguageSelector from '../../components/LanguageSelector/LanguageSelector';
 import { useStore } from '../../store';
 import { t } from '../../utils/i18n';
-import Card from '../../components/Card/Card';
-import BottomNavigation from '../../components/BottomNavigation/BottomNavigation';
-import LanguageSelector from '../../components/LanguageSelector/LanguageSelector';
 
 const ProfileScreen = () => {
   const language = useStore((state) => state.language);
@@ -30,7 +30,7 @@ const ProfileScreen = () => {
               <Ionicons name="person" size={48} color="#d1ffc8" />
             </View>
             
-            <Text className="font-black text-4xl text-[#1b3420] text-center leading-tight uppercase tracking-tighter mb-2">
+            <Text className="font-black text-4xl text-[#1b3420] text-center leading-snug uppercase tracking-tighter mb-2">
               {t('profile.title')}
             </Text>
             

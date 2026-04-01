@@ -60,7 +60,7 @@ const VictoryScreen = () => {
           <Text className="text-xs font-black tracking-[0.2em] text-[#47624b] opacity-60 uppercase">
             {isBlankWin ? t('victory.brilliantDeduction') : t('victory.deductionComplete')}
           </Text>
-          <Text className="text-5xl font-black tracking-tighter text-[#1b3420] leading-none text-center">
+          <Text className="text-5xl font-black tracking-tighter text-[#1b3420] leading-snug text-center">
             {isBlankWin ? (
               <>{t('victory.blankPlayerWins').split('\n')[0]}{'\n'}<Text className="text-[#f9a825]">{t('victory.blankPlayerWins').split('\n')[1]}</Text></>
             ) : (
@@ -111,7 +111,7 @@ const VictoryScreen = () => {
 
             {/* Card Content */}
             <View className="items-center gap-2 mt-2">
-              <Text className="text-4xl font-black text-[#5b5300] leading-none uppercase tracking-tight text-center">
+              <Text className="text-4xl font-black text-[#5b5300] leading-snug uppercase tracking-tight text-center">
                 {isBlankWin ? t('victory.interceptorWins') : isCivsWin ? t('victory.agentsWin') : t('victory.infiltratorsWin')}
               </Text>
               <Text className="text-[#5b5300]/70 font-medium italic text-center">

@@ -59,7 +59,7 @@ const HomeScreen = () => {
           <View className="absolute -top-8 -left-8 -rotate-[15deg] opacity-20">
             <Ionicons name="finger-print" size={80} color="#1b3420" />
           </View>
-          <Text className="font-black text-5xl text-[#1b3420] text-center leading-tight uppercase tracking-tighter">
+          <Text className="font-black text-5xl text-[#1b3420] text-center leading-snug uppercase tracking-tighter">
             {t('home.title')} <Text className="text-[#006b1b] italic">{t('home.titleSpy')}</Text>
           </Text>
           <Text className="text-lg text-[#47624b] mt-4 text-center max-w-sm">

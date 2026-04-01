@@ -1,6 +1,6 @@
-import React from 'react';
-import { Text, Pressable, PressableProps, View } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import React from 'react';
+import { Pressable, PressableProps, Text, View } from 'react-native';
 
 interface ButtonProps extends PressableProps {
   label: string;
@@ -109,7 +109,7 @@ const Button: React.FC<ButtonProps> = ({
           ]}
         >
           {icon && <Ionicons name={icon} size={sizeConfig.iconSize} color={getIconColor()} />}
-          <Text className={`font-bold ${sizeConfig.textSize} tracking-tight uppercase ${getTextColor()}`}>
+          <Text className={`font-bold ${sizeConfig.textSize} tracking-tight uppercase leading-snug ${getTextColor()}`}>
             {label}
           </Text>
         </View>

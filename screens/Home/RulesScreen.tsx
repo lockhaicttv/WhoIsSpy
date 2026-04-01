@@ -1,11 +1,11 @@
-import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import Card from '../../components/Card/Card';
+import React from 'react';
+import { ScrollView, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import BottomNavigation from '../../components/BottomNavigation/BottomNavigation';
-import { t } from '../../utils/i18n';
+import Card from '../../components/Card/Card';
 import { useStore } from '../../store';
+import { t } from '../../utils/i18n';
 
 const RulesScreen = () => {
   const language = useStore((state) => state.language);
@@ -27,7 +27,7 @@ const RulesScreen = () => {
               <Ionicons name="book" size={48} color="#006b1b" />
             </View>
             
-            <Text className="font-black text-4xl text-[#1b3420] text-center leading-tight uppercase tracking-tighter mb-3">
+            <Text className="font-black text-4xl text-[#1b3420] text-center leading-snug uppercase tracking-tighter mb-3">
               {t('rules.title')}
             </Text>
             

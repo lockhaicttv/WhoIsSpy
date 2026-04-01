@@ -35,7 +35,7 @@ const RoleDistributionScreen = () => {
           <View className="bg-[#91f78e] px-4 py-1.5 rounded-full mb-2">
             <Text className="font-bold text-xs tracking-widest text-[#006b1b] uppercase">{t('roleDistribution.subtitle')}</Text>
           </View>
-          <Text className="text-3xl font-black text-[#1b3420] mb-4 leading-tight tracking-tight text-center uppercase">
+          <Text className="text-3xl font-black text-[#1b3420] mb-4 leading-snug tracking-tight text-center uppercase">
             {t('roleDistribution.tapToReveal')}
           </Text>
           <Text className="text-[#47624b] font-medium text-center max-w-sm">
