@@ -410,7 +410,7 @@ const DiscussionVotingScreen = () => {
                           size={48} 
                           color={votedPlayer.role === 'spy' ? '#ff9800' : '#006b1b'} 
                         />
-                        <Text className={`text-5xl font-black uppercase tracking-tight ${
+                        <Text className={`text-4xl font-black uppercase tracking-tight leading-snug ${
                           votedPlayer.role === 'spy' ? 'text-[#ff9800]' : 'text-[#006b1b]'
                         }`}>
                           {votedPlayer.role === 'spy' ? t('discussion.infiltrator') : t('discussion.agent')}

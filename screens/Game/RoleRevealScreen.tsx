@@ -66,10 +66,10 @@ const RoleRevealScreen = () => {
             <View className="mb-6">
               <Ionicons name="key" size={64} color="#5b5300" style={{ opacity: 0.2 }} />
             </View>
-            <Text className="font-bold text-[#5b5300]/60 tracking-tighter text-lg mb-2 uppercase">
+            <Text className="font-bold text-[#5b5300]/60 tracking-tighter text-lg mb-2 uppercase leading-snug">
               {t('roleReveal.yourKeyword')}
             </Text>
-            <Text className="text-5xl font-black text-[#006b1b] text-center mb-8 tracking-tighter uppercase">
+            <Text className="text-5xl font-black text-[#006b1b] text-center mb-8 tracking-tighter uppercase leading-snug">
               {getRoleWord()}
             </Text>
             <View className="w-16 h-1 bg-[#5b5300]/10 rounded-full mb-6" />
