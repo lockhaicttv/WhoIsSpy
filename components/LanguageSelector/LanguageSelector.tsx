@@ -135,6 +135,7 @@ const LanguageSelector: React.FC = () => {
                               {lang.code === 'es' && '🇪🇸'}
                               {lang.code === 'fr' && '🇫🇷'}
                               {lang.code === 'zh' && '🇨🇳'}
+                              {lang.code === 'vi' && '🇻🇳'}
                             </Text>
                           </View>
                           <View className="flex-shrink">
