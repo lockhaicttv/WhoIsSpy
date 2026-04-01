@@ -112,32 +112,6 @@ const RoleRevealScreen = () => {
       </ScrollView>
 
       </SafeAreaView>
-
-      {/* Bottom Navigation - Fixed at bottom */}
-      <View className="w-full flex-row justify-around items-center px-4 pb-6 pt-3 bg-[#e0fee1] rounded-t-[32px]"
-            style={{
-              shadowColor: '#1b3420',
-              shadowOffset: { width: 0, height: -4 },
-              shadowOpacity: 0.08,
-              shadowRadius: 12,
-              elevation: 8
-            }}>
-        <TouchableOpacity className="flex-col items-center justify-center bg-[#006b1b] rounded-full px-6 py-2"
-                          style={{ borderBottomWidth: 4, borderBottomColor: '#005d16' }}>
-          <Ionicons name="game-controller" size={24} color="#e0fee1" />
-          <Text className="text-[10px] font-medium tracking-wide mt-0.5 text-[#e0fee1] uppercase">Game</Text>
-        </TouchableOpacity>
-        
-        <TouchableOpacity className="flex-col items-center justify-center opacity-70 px-4 py-2">
-          <Ionicons name="people" size={24} color="#1b3420" />
-          <Text className="text-[10px] font-medium tracking-wide mt-1 text-[#1b3420] uppercase">Players</Text>
-        </TouchableOpacity>
-        
-        <TouchableOpacity className="flex-col items-center justify-center opacity-70 px-4 py-2">
-          <Ionicons name="document-text" size={24} color="#1b3420" />
-          <Text className="text-[10px] font-medium tracking-wide mt-1 text-[#1b3420] uppercase">Rules</Text>
-        </TouchableOpacity>
-      </View>
     </View>
   );
 };
