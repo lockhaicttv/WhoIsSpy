@@ -59,6 +59,10 @@ const routeConfigs: Record<string, HeaderConfig> = {
     title: 'THE LAST SIGNAL',
     showBackButton: false,
   },
+  '/game-reveal': {
+    title: 'THE LAST SIGNAL',
+    showBackButton: false,
+  },
   '/victory': {
     title: 'THE LAST SIGNAL',
     showBackButton: false,

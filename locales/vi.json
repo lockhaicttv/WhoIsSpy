@@ -256,7 +256,31 @@
     "ready": "SẴN SÀNG",
     "spyRevealed": "🕵️ KẺ XÂM NHẬP",
     "civRevealed": "👤 ĐẶC VỤ",
-    "selected": "Đã chọn"
+    "selected": "Đã chọn",
+    "randomPlayer": "NGẪU NHIÊN",
+    "describerIs": "NGƯỜI MÔ TẢ TIẾP",
+    "startTimer": "BẮT ĐẦU",
+    "pauseTimer": "TẠM DỪNG",
+    "resetTimer": "ĐẶT LẠI",
+    "endGame": "KẾT THÚC",
+    "endGameTitle": "Kết thúc trò chơi?",
+    "endGameConfirm": "Điều này sẽ hiển thị tất cả vai trò và từ khóa cho mọi người. Bạn có chắc không?"
+  },
+  "gameReveal": {
+    "title": "KẾT THÚC GAME",
+    "subtitle": "TẤT CẢ VAI TRÒ ĐÃ LỘ",
+    "description": "Đây là tất cả vai trò và từ khóa trong ván chơi này.",
+    "theKeywords": "CÁC TỪ KHÓA",
+    "agentKeyword": "MẬT MÃ ĐẶC VỤ",
+    "spyKeyword": "MẬT MÃ XÂM NHẬP",
+    "allPlayers": "TẤT CẢ NGƯỜI CHƠI",
+    "agent": "ĐẶC VỤ",
+    "infiltrator": "KẺ XÂM NHẬP",
+    "interceptor": "KẺ CHẶN",
+    "keyword": "Từ khóa",
+    "eliminated": "ĐÃ LOẠI",
+    "playAgain": "CHƠI LẠI",
+    "backToLobby": "Về Sảnh Chờ"
   },
   "victory": {
     "brilliantDeduction": "TÍN HIỆU BỊ CHẶN",

@@ -65,9 +65,10 @@ const BottomNavigation: React.FC = () => {
               color={active ? '#e0fee1' : '#1b3420'} 
             />
             <Text 
-              className={`text-[10px] font-bold tracking-widest mt-1 uppercase ${
+              className={`text-[8px] font-bold mt-0.5 uppercase ${
                 active ? 'text-[#e0fee1]' : 'text-[#1b3420]'
               }`}
+              numberOfLines={1}
             >
               {item.label}
             </Text>

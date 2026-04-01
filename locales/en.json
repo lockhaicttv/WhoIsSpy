@@ -256,7 +256,31 @@
     "ready": "READY",
     "spyRevealed": "🕵️ INFILTRATOR",
     "civRevealed": "👤 AGENT",
-    "selected": "Selected"
+    "selected": "Selected",
+    "randomPlayer": "RANDOM",
+    "describerIs": "NEXT DESCRIBER",
+    "startTimer": "START",
+    "pauseTimer": "PAUSE",
+    "resetTimer": "RESET",
+    "endGame": "END GAME",
+    "endGameTitle": "End Game?",
+    "endGameConfirm": "This will reveal all roles and keywords to everyone. Are you sure?"
+  },
+  "gameReveal": {
+    "title": "GAME OVER",
+    "subtitle": "ALL ROLES REVEALED",
+    "description": "Here are all the roles and keywords from this game.",
+    "theKeywords": "THE KEYWORDS",
+    "agentKeyword": "AGENT CIPHER",
+    "spyKeyword": "INFILTRATOR CIPHER",
+    "allPlayers": "ALL PLAYERS",
+    "agent": "AGENT",
+    "infiltrator": "INFILTRATOR",
+    "interceptor": "INTERCEPTOR",
+    "keyword": "Keyword",
+    "eliminated": "ELIMINATED",
+    "playAgain": "PLAY AGAIN",
+    "backToLobby": "Back to Lobby"
   },
   "victory": {
     "brilliantDeduction": "SIGNAL INTERCEPTED",

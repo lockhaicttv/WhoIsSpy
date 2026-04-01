@@ -256,7 +256,31 @@
     "ready": "就绪",
     "spyRevealed": "🕵️ 渗透者",
     "civRevealed": "👤 特工",
-    "selected": "已选择"
+    "selected": "已选择",
+    "randomPlayer": "随机",
+    "describerIs": "下一个描述者",
+    "startTimer": "开始",
+    "pauseTimer": "暂停",
+    "resetTimer": "重置",
+    "endGame": "结束",
+    "endGameTitle": "结束游戏？",
+    "endGameConfirm": "这将向所有人揭示所有角色和关键词。你确定吗？"
+  },
+  "gameReveal": {
+    "title": "游戏结束",
+    "subtitle": "所有角色已揭示",
+    "description": "这是本局游戏中所有角色和关键词。",
+    "theKeywords": "关键词",
+    "agentKeyword": "特工密码",
+    "spyKeyword": "渗透者密码",
+    "allPlayers": "所有玩家",
+    "agent": "特工",
+    "infiltrator": "渗透者",
+    "interceptor": "拦截者",
+    "keyword": "关键词",
+    "eliminated": "已淘汰",
+    "playAgain": "再玩一局",
+    "backToLobby": "返回大厅"
   },
   "victory": {
     "brilliantDeduction": "信号被截获",

@@ -256,7 +256,31 @@
     "ready": "LISTO",
     "spyRevealed": "🕵️ INFILTRADO",
     "civRevealed": "👤 AGENTE",
-    "selected": "Seleccionado"
+    "selected": "Seleccionado",
+    "randomPlayer": "ALEATORIO",
+    "describerIs": "SIGUIENTE DESCRIPTOR",
+    "startTimer": "INICIAR",
+    "pauseTimer": "PAUSA",
+    "resetTimer": "REINICIAR",
+    "endGame": "TERMINAR",
+    "endGameTitle": "¿Terminar juego?",
+    "endGameConfirm": "Esto revelará todos los roles y palabras clave a todos. ¿Estás seguro?"
+  },
+  "gameReveal": {
+    "title": "FIN DEL JUEGO",
+    "subtitle": "TODOS LOS ROLES REVELADOS",
+    "description": "Aquí están todos los roles y palabras clave de esta partida.",
+    "theKeywords": "LAS PALABRAS CLAVE",
+    "agentKeyword": "CIFRADO AGENTE",
+    "spyKeyword": "CIFRADO INFILTRADO",
+    "allPlayers": "TODOS LOS JUGADORES",
+    "agent": "AGENTE",
+    "infiltrator": "INFILTRADO",
+    "interceptor": "INTERCEPTOR",
+    "keyword": "Palabra clave",
+    "eliminated": "ELIMINADO",
+    "playAgain": "JUGAR DE NUEVO",
+    "backToLobby": "Volver al Lobby"
   },
   "victory": {
     "brilliantDeduction": "SEÑAL INTERCEPTADA",

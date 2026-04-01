@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, ScrollView } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Ionicons } from '@expo/vector-icons';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { useStore } from '../../store';
+import React, { useState } from 'react';
+import { ScrollView, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import Button from '../../components/Button/Button';
 import Card from '../../components/Card/Card';
-import { Ionicons } from '@expo/vector-icons';
+import { useStore } from '../../store';
 import { t } from '../../utils/i18n';
 
 const RoleRevealScreen = () => {

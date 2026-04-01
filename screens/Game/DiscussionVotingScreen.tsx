@@ -1,7 +1,7 @@
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import React, { useEffect, useRef, useState } from 'react';
-import { Modal, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
+import { Alert, Animated, Modal, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Button from '../../components/Button/Button';
 import Card from '../../components/Card/Card';
@@ -26,20 +26,22 @@ const DiscussionVotingScreen = () => {
   const [votedPlayer, setVotedPlayer] = useState<any>(null);
   const [blankGuess, setBlankGuess] = useState('');
   const [timeRemaining, setTimeRemaining] = useState<number | null>(discussionTime);
+  const [timerRunning, setTimerRunning] = useState(false);
+  const [randomPlayer, setRandomPlayer] = useState<string | null>(null);
+  const [highlightedPlayerId, setHighlightedPlayerId] = useState<string | null>(null);
+  const [isRandomizing, setIsRandomizing] = useState(false);
   const timerRef = useRef<number | null>(null);
   const timerSoundStarted = useRef<boolean>(false);
+  const bannerOpacity = useRef(new Animated.Value(0)).current;
 
-  // Initialize and manage timer
+  // Timer control - only runs when timerRunning is true
   useEffect(() => {
-    if (discussionTime !== null) {
-      setTimeRemaining(discussionTime);
-      timerSoundStarted.current = false;
-      
-      // Start countdown timer
+    if (timerRunning && timeRemaining !== null && timeRemaining > 0) {
       timerRef.current = setInterval(() => {
         setTimeRemaining((prev) => {
           if (prev === null || prev <= 0) {
             if (timerRef.current) clearInterval(timerRef.current);
+            setTimerRunning(false);
             return 0;
           }
           return prev - 1;
@@ -48,10 +50,17 @@ const DiscussionVotingScreen = () => {
 
       return () => {
         if (timerRef.current) clearInterval(timerRef.current);
-        soundManager.stopSound('timer-count');
       };
+    } else if (!timerRunning && timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
     }
-  }, [discussionTime]);
+
+    return () => {
+      if (timerRef.current) clearInterval(timerRef.current);
+      soundManager.stopSound('timer-count');
+    };
+  }, [timerRunning]);
 
   // Handle timer sound effects
   useEffect(() => {
@@ -130,18 +139,10 @@ const DiscussionVotingScreen = () => {
       if (discussionTime !== null) {
         setTimeRemaining(discussionTime);
         timerSoundStarted.current = false;
+        timerRunning && setTimerRunning(false);
         soundManager.stopSound('timer-count');
         
         if (timerRef.current) clearInterval(timerRef.current);
-        timerRef.current = setInterval(() => {
-          setTimeRemaining((prev) => {
-            if (prev === null || prev <= 0) {
-              if (timerRef.current) clearInterval(timerRef.current);
-              return 0;
-            }
-            return prev - 1;
-          });
-        }, 1000);
       }
     }
   };
@@ -163,6 +164,115 @@ const DiscussionVotingScreen = () => {
       handleConfirmElimination();
     }
   };
+
+  // Random player picker with card highlight animation
+  const handleRandomPlayer = useCallback(() => {
+    const alivePlayers = players.filter(p => p.isAlive);
+    if (alivePlayers.length === 0 || isRandomizing) return;
+    
+    setIsRandomizing(true);
+    setRandomPlayer(null);
+    bannerOpacity.setValue(0);
+
+    // Pre-pick the final winner
+    const finalPick = alivePlayers[Math.floor(Math.random() * alivePlayers.length)];
+    
+    // Build a sequence: cycle through alive players multiple times, ending on finalPick
+    const sequence: string[] = [];
+    const totalCycles = 3; // go through all players 3 times
+    for (let c = 0; c < totalCycles; c++) {
+      for (const p of alivePlayers) {
+        sequence.push(p.id);
+      }
+    }
+    // Add extra steps to land on the final pick
+    const lastIndex = alivePlayers.findIndex(p => p.id === finalPick.id);
+    for (let i = 0; i <= lastIndex; i++) {
+      sequence.push(alivePlayers[i].id);
+    }
+
+    let step = 0;
+    const totalSteps = sequence.length;
+
+    const animate = () => {
+      if (step >= totalSteps) {
+        // Done - set final result
+        setHighlightedPlayerId(finalPick.id);
+        setRandomPlayer(finalPick.name);
+        setIsRandomizing(false);
+        soundManager.playSound('ting', 0.7);
+        
+        // Fade in the banner
+        Animated.timing(bannerOpacity, {
+          toValue: 1,
+          duration: 200,
+          useNativeDriver: true,
+        }).start(() => {
+          // After 3s, fade out then clear
+          setTimeout(() => {
+            Animated.timing(bannerOpacity, {
+              toValue: 0,
+              duration: 600,
+              useNativeDriver: true,
+            }).start(() => {
+              setRandomPlayer(null);
+              setHighlightedPlayerId(null);
+            });
+          }, 3000);
+        });
+        return;
+      }
+
+      setHighlightedPlayerId(sequence[step]);
+      step++;
+
+      // Slow down: start fast (80ms), end slow (300ms)
+      const progress = step / totalSteps;
+      const delay = 80 + progress * progress * 250;
+      setTimeout(animate, delay);
+    };
+
+    animate();
+  }, [players, isRandomizing]);
+
+  // Timer toggle
+  const handleTimerToggle = useCallback(() => {
+    if (discussionTime === null) return; // No timer configured
+    
+    if (timerRunning) {
+      // Pause
+      setTimerRunning(false);
+      soundManager.stopSound('timer-count');
+    } else {
+      // Start or resume
+      if (timeRemaining === 0) {
+        // Reset timer if it already ended
+        setTimeRemaining(discussionTime);
+        timerSoundStarted.current = false;
+      }
+      setTimerRunning(true);
+    }
+  }, [timerRunning, timeRemaining, discussionTime]);
+
+  // End game - reveal all
+  const handleEndGame = useCallback(() => {
+    Alert.alert(
+      t('discussion.endGameTitle'),
+      t('discussion.endGameConfirm'),
+      [
+        { text: t('common.cancel'), style: 'cancel' },
+        { 
+          text: t('discussion.endGame'), 
+          style: 'destructive',
+          onPress: () => {
+            if (timerRef.current) clearInterval(timerRef.current);
+            soundManager.stopSound('timer-count');
+            router.push('/game-reveal');
+          }
+        },
+      ]
+    );
+  }, [router]);
 
   const rotations = ['-rotate-1', 'rotate-2', '-rotate-2', 'rotate-1', '-rotate-1', 'rotate-2'];
 
@@ -279,6 +389,7 @@ const DiscussionVotingScreen = () => {
           {players.map((item, index) => {
             const isDead = !item.isAlive;
             const isSelected = selectedId === item.id;
+            const isHighlighted = highlightedPlayerId === item.id;
             const rotation = rotations[index % rotations.length];
             
             return (
@@ -286,13 +397,13 @@ const DiscussionVotingScreen = () => {
                 key={item.id}
                 onPress={() => !isDead && setSelectedId(item.id)}
                 disabled={isDead}
-                className={`w-[45%] bg-[#f9e534] p-4 rounded-xl ${rotation} ${isDead ? 'opacity-40' : ''} ${isSelected ? 'border-4 border-[#006b1b]' : ''}`}
+                className={`w-[45%] bg-[#f9e534] p-4 rounded-xl ${rotation} ${isDead ? 'opacity-40' : ''} ${isSelected ? 'border-4 border-[#006b1b]' : isHighlighted ? 'border-4 border-[#ff9800]' : ''}`}
                 style={{
-                  shadowColor: '#1b3420',
-                  shadowOffset: { width: 0, height: 0 },
-                  shadowOpacity: 0,
-                  shadowRadius: 0,
-                  elevation: 0,
+                  shadowColor: isHighlighted ? '#ff9800' : '#1b3420',
+                  shadowOffset: { width: 0, height: isHighlighted ? 4 : 0 },
+                  shadowOpacity: isHighlighted ? 0.4 : 0,
+                  shadowRadius: isHighlighted ? 12 : 0,
+                  elevation: isHighlighted ? 8 : 0,
                   borderBottomLeftRadius: index % 2 === 0 ? 12 : 48,
                   borderBottomRightRadius: index % 2 === 0 ? 48 : 12,
                 }}
@@ -326,41 +437,95 @@ const DiscussionVotingScreen = () => {
       </ScrollView>
       </SafeAreaView>
 
-      {/* Sticky Vote Button */}
-      <View className="w-full px-6 py-3 bg-[#e0fee1]">
-        <Button 
-          label={t('discussion.voteNow')}
-          variant="primary"
-          onPress={handleVote} 
-          disabled={!selectedId}
-          icon="checkmark-circle"
-          className={!selectedId ? 'opacity-50' : ''}
-        />
-      </View>
+      {/* Random Player Result - floating above nav */}
+      {randomPlayer && (
+        <Animated.View className="w-full px-6 pb-2 bg-[#e0fee1]" style={{ opacity: bannerOpacity }}>
+          <View className="bg-[#f9e534] rounded-xl px-4 py-3 items-center">
+            <Text className="text-[10px] font-black text-[#5b5300] uppercase tracking-widest">{t('discussion.describerIs')}</Text>
+            <Text className="text-xl font-black text-[#5b5300] uppercase tracking-tight leading-snug">{randomPlayer}</Text>
+          </View>
+        </Animated.View>
+      )}
 
-      {/* BottomNavBar - Fixed at bottom */}
-      <View className="w-full flex-row justify-around items-center px-4 pb-6 pt-3 bg-[#e0fee1] rounded-t-[32px]"
-            style={{
-              shadowColor: '#1b3420',
-              shadowOffset: { width: 0, height: -4 },
-              shadowOpacity: 0.08,
-              shadowRadius: 12,
-              elevation: 8
-            }}>
-        <TouchableOpacity className="flex-col items-center justify-center bg-[#006b1b] rounded-full px-6 py-2"
-                          style={{ borderBottomWidth: 4, borderBottomColor: '#005d16' }}>
-          <Ionicons name="game-controller" size={24} color="#e0fee1" />
-          <Text className="text-[10px] font-medium tracking-wide uppercase text-[#e0fee1]">Game</Text>
+      {/* Bottom Action Bar - BottomNavigation style */}
+      <View 
+        className="w-full flex-row justify-around items-center px-4 pb-6 pt-3 bg-[#e0fee1] rounded-t-[32px] border-t-2 border-[#d8f9d9]"
+        style={{
+          shadowColor: '#1b3420',
+          shadowOffset: { width: 0, height: -4 },
+          shadowOpacity: 0.08,
+          shadowRadius: 12,
+          elevation: 8,
+        }}
+      >
+        {/* Random Player */}
+        <TouchableOpacity
+          onPress={handleRandomPlayer}
+          className="flex-col items-center justify-center px-4 py-2 opacity-70"
+        >
+          <Ionicons name="shuffle" size={24} color="#1b3420" />
+          <Text className="text-[8px] font-bold mt-0.5 uppercase text-[#1b3420]" numberOfLines={1}>
+            {t('discussion.randomPlayer')}
+          </Text>
         </TouchableOpacity>
-        
-        <TouchableOpacity className="flex-col items-center justify-center opacity-70">
-          <Ionicons name="people" size={24} color="#1b3420" />
-          <Text className="text-[10px] font-medium tracking-wide uppercase text-[#1b3420]">Players</Text>
+
+        {/* Timer */}
+        <TouchableOpacity
+          onPress={handleTimerToggle}
+          disabled={discussionTime === null}
+          className={`flex-col items-center justify-center px-4 py-2 ${
+            discussionTime === null 
+              ? 'opacity-30' 
+              : timerRunning 
+                ? 'bg-[#f95630] rounded-full'
+                : 'opacity-70'
+          }`}
+          style={timerRunning ? { borderBottomWidth: 4, borderBottomColor: '#c7401f' } : {}}
+        >
+          <Ionicons 
+            name={timerRunning ? 'pause' : 'play'} 
+            size={24} 
+            color={timerRunning ? '#fff' : '#1b3420'} 
+          />
+          <Text className={`text-[8px] font-bold mt-0.5 uppercase ${
+            timerRunning ? 'text-white' : 'text-[#1b3420]'
+          }`} numberOfLines={1}>
+            {timerRunning ? t('discussion.pauseTimer') : timeRemaining === 0 ? t('discussion.resetTimer') : t('discussion.startTimer')}
+          </Text>
         </TouchableOpacity>
-        
-        <TouchableOpacity className="flex-col items-center justify-center opacity-70">
-          <Ionicons name="document-text" size={24} color="#1b3420" />
-          <Text className="text-[10px] font-medium tracking-wide uppercase text-[#1b3420]">Rules</Text>
+
+        {/* Vote */}
+        <TouchableOpacity
+          onPress={handleVote}
+          disabled={!selectedId}
+          className={`flex-col items-center justify-center px-4 py-2 ${
+            selectedId 
+              ? 'bg-[#006b1b] rounded-full'
+              : 'opacity-30'
+          }`}
+          style={selectedId ? { borderBottomWidth: 4, borderBottomColor: '#005d16' } : {}}
+        >
+          <Ionicons 
+            name="checkmark-circle" 
+            size={24} 
+            color={selectedId ? '#e0fee1' : '#1b3420'} 
+          />
+          <Text className={`text-[8px] font-bold mt-0.5 uppercase ${
+            selectedId ? 'text-[#e0fee1]' : 'text-[#1b3420]'
+          }`} numberOfLines={1}>
+            {t('discussion.voteNow')}
+          </Text>
+        </TouchableOpacity>
+
+        {/* End Game */}
+        <TouchableOpacity
+          onPress={handleEndGame}
+          className="flex-col items-center justify-center px-4 py-2 opacity-70"
+        >
+          <Ionicons name="flag" size={24} color="#ff9800" />
+          <Text className="text-[8px] font-bold mt-0.5 uppercase text-[#ff9800]" numberOfLines={1}>
+            {t('discussion.endGame')}
+          </Text>
         </TouchableOpacity>
       </View>
 
