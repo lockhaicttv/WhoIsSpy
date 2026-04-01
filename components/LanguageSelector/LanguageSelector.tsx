@@ -14,13 +14,7 @@ const LanguageSelector: React.FC = () => {
   const languages = getAvailableLanguages();
   const currentLangName = languages.find(l => l.code === currentLanguage)?.nativeName || 'English';
 
-  // Debug: Log languages array
-  console.log('Available languages:', languages);
-  console.log('Languages count:', languages.length);
-  console.log('Current language:', currentLanguage);
-
   const handleLanguageSelect = async (langCode: string) => {
-    console.log('Selecting language:', langCode);
     await setLanguage(langCode);
     setModalVisible(false);
   };
@@ -30,7 +24,6 @@ const LanguageSelector: React.FC = () => {
       {/* Language Selector Button */}
       <TouchableOpacity
         onPress={() => {
-          console.log('Opening language modal');
           setModalVisible(true);
         }}
         className="flex-row items-center justify-between bg-[#d8f9d9] p-4 rounded-xl"
@@ -91,11 +84,6 @@ const LanguageSelector: React.FC = () => {
               </TouchableOpacity>
             </View>
 
-            {/* Debug info */}
-            <Text className="text-xs text-[#47624b] mb-2">
-              Debug: {languages.length} languages loaded
-            </Text>
-
             {/* Language List */}
             <ScrollView 
               className="flex-1" 
@@ -111,8 +99,12 @@ const LanguageSelector: React.FC = () => {
                   {languages.map((lang) => {
                     const isSelected = currentLanguage === lang.code;
                     
-                    console.log('Rendering language:', lang.code, lang.nativeName);
-                    
+                    const flagMap: Record<string, string> = {
+                      en: '🇬🇧', es: '🇪🇸', fr: '🇫🇷', zh: '🇨🇳', vi: '🇻🇳',
+                      de: '🇩🇪', ja: '🇯🇵', ko: '🇰🇷', pt: '🇧🇷', ru: '🇷🇺',
+                      ar: '🇸🇦', hi: '🇮🇳', th: '🇹🇭', id: '🇮🇩', tr: '🇹🇷',
+                    };
+
                     return (
                       <TouchableOpacity
                         key={lang.code}
@@ -131,11 +123,7 @@ const LanguageSelector: React.FC = () => {
                             isSelected ? 'bg-[#d1ffc8]/20' : 'bg-[#006b1b]/10'
                           }`}>
                             <Text className="text-xl">
-                              {lang.code === 'en' && '🇬🇧'}
-                              {lang.code === 'es' && '🇪🇸'}
-                              {lang.code === 'fr' && '🇫🇷'}
-                              {lang.code === 'zh' && '🇨🇳'}
-                              {lang.code === 'vi' && '🇻🇳'}
+                              {flagMap[lang.code] || '�'}
                             </Text>
                           </View>
                           <View className="flex-shrink">

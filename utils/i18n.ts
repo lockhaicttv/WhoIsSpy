@@ -8,6 +8,16 @@ import es from '../locales/es.json';
 import fr from '../locales/fr.json';
 import vi from '../locales/vi.json';
 import zh from '../locales/zh.json';
+import de from '../locales/de.json';
+import ja from '../locales/ja.json';
+import ko from '../locales/ko.json';
+import pt from '../locales/pt.json';
+import ru from '../locales/ru.json';
+import ar from '../locales/ar.json';
+import hi from '../locales/hi.json';
+import th from '../locales/th.json';
+import id from '../locales/id.json';
+import tr from '../locales/tr.json';
 
 // Create i18n instance
 const i18n = new I18n({
@@ -16,6 +26,16 @@ const i18n = new I18n({
   fr,
   vi,
   zh,
+  de,
+  ja,
+  ko,
+  pt,
+  ru,
+  ar,
+  hi,
+  th,
+  id,
+  tr,
 });
 
 // Storage key for language preference
@@ -41,7 +61,7 @@ const getDeviceLocale = (): string => {
 try {
   const deviceLocale = getDeviceLocale();
   const languageCode = typeof deviceLocale === 'string' ? deviceLocale.split('-')[0] : 'en';
-  const supportedLanguages = ['en', 'es', 'fr', 'vi', 'zh'];
+  const supportedLanguages = ['en', 'es', 'fr', 'vi', 'zh', 'de', 'ja', 'ko', 'pt', 'ru', 'ar', 'hi', 'th', 'id', 'tr'];
 
   i18n.locale = supportedLanguages.includes(languageCode) ? languageCode : 'en';
 } catch (error) {
@@ -69,6 +89,16 @@ export const getAvailableLanguages = () => [
   { code: 'fr', name: 'French', nativeName: 'Français' },
   { code: 'vi', name: 'Vietnamese', nativeName: 'Tiếng Việt' },
   { code: 'zh', name: 'Chinese', nativeName: '中文' },
+  { code: 'de', name: 'German', nativeName: 'Deutsch' },
+  { code: 'ja', name: 'Japanese', nativeName: '日本語' },
+  { code: 'ko', name: 'Korean', nativeName: '한국어' },
+  { code: 'pt', name: 'Portuguese', nativeName: 'Português' },
+  { code: 'ru', name: 'Russian', nativeName: 'Русский' },
+  { code: 'ar', name: 'Arabic', nativeName: 'العربية' },
+  { code: 'hi', name: 'Hindi', nativeName: 'हिन्दी' },
+  { code: 'th', name: 'Thai', nativeName: 'ไทย' },
+  { code: 'id', name: 'Indonesian', nativeName: 'Bahasa Indonesia' },
+  { code: 'tr', name: 'Turkish', nativeName: 'Türkçe' },
 ];
 
 /**
@@ -100,7 +130,7 @@ export const loadLanguage = async (): Promise<string> => {
     } else {
       const deviceLocale = getDeviceLocale();
       const languageCode = typeof deviceLocale === 'string' ? deviceLocale.split('-')[0] : 'en';
-      const supportedLanguages = ['en', 'es', 'fr', 'vi', 'zh'];
+      const supportedLanguages = ['en', 'es', 'fr', 'vi', 'zh', 'de', 'ja', 'ko', 'pt', 'ru', 'ar', 'hi', 'th', 'id', 'tr'];
 
       const finalLocale = supportedLanguages.includes(languageCode) ? languageCode : 'en';
       i18n.locale = finalLocale;
