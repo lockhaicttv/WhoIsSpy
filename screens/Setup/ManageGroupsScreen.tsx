@@ -1,20 +1,21 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, TextInput, Modal, Alert } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
-import { useStore } from '../../store';
+import React, { useEffect, useState } from 'react';
+import { Alert, Modal, ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import BottomNavigation from '../../components/BottomNavigation/BottomNavigation';
 import Button from '../../components/Button/Button';
 import Card from '../../components/Card/Card';
-import BottomNavigation from '../../components/BottomNavigation/BottomNavigation';
-import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
-import { getAvatarIcon, getAvatarColor } from '../../utils/avatarUtils';
-import { 
-  createGroup, 
-  getAllGroups, 
-  deleteGroup, 
-  updateGroup,
-  GroupWithMembers 
+import {
+  createGroup,
+  deleteGroup,
+  getAllGroups,
+  GroupWithMembers,
+  updateGroup
 } from '../../db/groupService';
+import { useStore } from '../../store';
+import { getAvatarColor, getAvatarIcon } from '../../utils/avatarUtils';
+import { t } from '../../utils/i18n';
 
 const ManageGroupsScreen = () => {
   const router = useRouter();
@@ -57,12 +58,12 @@ const ManageGroupsScreen = () => {
 
   const handleSaveGroup = async () => {
     if (!groupName.trim()) {
-      Alert.alert('Error', 'Please enter a group name');
+      Alert.alert(t('manageGroups.error'), t('manageGroups.enterGroupNameError'));
       return;
     }
 
     if (players.length === 0) {
-      Alert.alert('Error', 'No players to save');
+      Alert.alert(t('manageGroups.error'), t('manageGroups.noPlayersError'));
       return;
     }
 
@@ -71,10 +72,10 @@ const ManageGroupsScreen = () => {
       
       if (editingGroupId) {
         await updateGroup(editingGroupId, groupName.trim(), playerNames);
-        Alert.alert('Success', 'Group updated successfully!');
+        Alert.alert(t('manageGroups.success'), t('manageGroups.groupUpdated'));
       } else {
         await createGroup(groupName.trim(), playerNames);
-        Alert.alert('Success', 'Group saved successfully!');
+        Alert.alert(t('manageGroups.success'), t('manageGroups.groupSaved'));
       }
       
       setShowSaveModal(false);
@@ -82,7 +83,7 @@ const ManageGroupsScreen = () => {
       setEditingGroupId(null);
       loadGroups();
     } catch (error) {
-      Alert.alert('Error', 'Failed to save group');
+      Alert.alert(t('manageGroups.error'), t('manageGroups.failedToSave'));
     }
   };
 
@@ -98,22 +99,22 @@ const ManageGroupsScreen = () => {
     
     setPlayers(newPlayers);
     setShowLoadModal(false);
-    Alert.alert('Success', `Loaded ${group.name}`);
+    Alert.alert(t('manageGroups.success'), t('manageGroups.loadedGroup', { name: group.name }));
   };
 
   const handleDeleteGroup = (id: number, name: string) => {
     Alert.alert(
-      'Delete Group',
-      `Are you sure you want to delete "${name}"?`,
+      t('manageGroups.deleteGroupTitle'),
+      t('manageGroups.deleteGroupConfirm', { name }),
       [
-        { text: 'Cancel', style: 'cancel' },
+        { text: t('manageGroups.cancel'), style: 'cancel' },
         {
-          text: 'Delete',
+          text: t('manageGroups.deleteGroup'),
           style: 'destructive',
           onPress: () => {
             deleteGroup(id);
             loadGroups();
-            Alert.alert('Success', 'Group deleted');
+            Alert.alert(t('manageGroups.success'), t('manageGroups.groupDeleted'));
           },
         },
       ]
@@ -158,7 +159,7 @@ const ManageGroupsScreen = () => {
             }}
           >
             <Ionicons name="download" size={20} color="#006b1b" />
-            <Text className="font-bold text-sm text-[#006b1b] uppercase">Load Group</Text>
+            <Text className="font-bold text-sm text-[#006b1b] uppercase">{t('manageGroups.loadGroupButton')}</Text>
           </TouchableOpacity>
           
           <TouchableOpacity 
@@ -180,7 +181,7 @@ const ManageGroupsScreen = () => {
             }}
           >
             <Ionicons name="save" size={20} color="#006b1b" />
-            <Text className="font-bold text-sm text-[#006b1b] uppercase">Save Group</Text>
+            <Text className="font-bold text-sm text-[#006b1b] uppercase">{t('manageGroups.saveGroupButton')}</Text>
           </TouchableOpacity>
         </View>
 
@@ -188,7 +189,7 @@ const ManageGroupsScreen = () => {
           <View className="mb-4 bg-white rounded-full px-6 py-4 shadow-sm border-2 border-[#bee7c1] flex-row items-center">
             <TextInput 
               className="flex-1 text-xl text-[#1b3420] font-bold"
-              placeholder="Enter operative name..."
+              placeholder={t('manageGroups.enterOperativeName')}
               placeholderTextColor="#88a48a"
               value={newName}
               onChangeText={setNewName}
@@ -196,7 +197,7 @@ const ManageGroupsScreen = () => {
             />
           </View>
           <Button 
-            label="ADD NEW PLAYER" 
+            label={t('manageGroups.addNewPlayer')}
             onPress={handleAdd} 
             disabled={!newName.trim()}
             icon="add-circle"
@@ -206,19 +207,19 @@ const ManageGroupsScreen = () => {
         <Card variant="secondary" rotated className="mb-8">
           <View className="flex-row justify-between items-start mb-4">
             <View>
-              <Text className="font-bold text-3xl text-[#5b5300] leading-tight">Active Squad</Text>
-              <Text className="font-black text-[12px] tracking-widest uppercase opacity-80 text-[#5b5300] mt-1">{players.length} Players Total</Text>
+              <Text className="font-bold text-3xl text-[#5b5300] leading-tight">{t('manageGroups.activeSquad')}</Text>
+              <Text className="font-black text-[12px] tracking-widest uppercase opacity-80 text-[#5b5300] mt-1">{t('manageGroups.playersTotal', { count: players.length })}</Text>
             </View>
           </View>
 
           <View className="bg-[#b3dfb8]/30 rounded-xl p-4">
             <View className="flex-row items-center justify-between mb-4">
-              <Text className="font-black text-[11px] uppercase text-[#47624b]">Currently Deployed</Text>
+              <Text className="font-black text-[11px] uppercase text-[#47624b]">{t('manageGroups.currentlyDeployed')}</Text>
             </View>
 
             <View className="flex-row flex-wrap gap-5">
               {players.length === 0 && (
-                <Text className="text-sm font-bold text-[#47624b] py-4">No operatives added yet.</Text>
+                <Text className="text-sm font-bold text-[#47624b] py-4">{t('manageGroups.noOperatives')}</Text>
               )}
               {players.map((item, index) => (
                 <View key={item.id} className="flex-col items-center gap-1">
@@ -240,7 +241,7 @@ const ManageGroupsScreen = () => {
 
         <View className="mb-32">
           <Button 
-            label="CONFIRM SQUAD" 
+            label={t('manageGroups.confirmSquad')}
             variant="tertiary"
             onPress={handleConfirmSquad} 
             disabled={!canConfirmSquad}
@@ -248,7 +249,7 @@ const ManageGroupsScreen = () => {
           />
           {players.length < 3 && (
             <Text className="text-center text-[#b02500] font-bold text-sm mt-4 uppercase tracking-wide">
-              Need at least 3 players
+              {t('manageGroups.needMinPlayers')}
             </Text>
           )}
         </View>
@@ -272,19 +273,19 @@ const ManageGroupsScreen = () => {
                 <Ionicons name="save" size={32} color="#006b1b" />
               </View>
               <Text className="text-2xl font-black text-[#1b3420] uppercase tracking-tight">
-                {editingGroupId ? 'Update Group' : 'Save Group'}
+                {editingGroupId ? t('manageGroups.updateGroup') : t('manageGroups.saveGroupTitle')}
               </Text>
               <Text className="text-sm text-[#47624b] mt-2 text-center">
                 {editingGroupId 
-                  ? 'Update this saved group with current players'
-                  : 'Save current players as a group for quick access later'}
+                  ? t('manageGroups.updateGroupDesc')
+                  : t('manageGroups.saveGroupDesc')}
               </Text>
             </View>
 
             <View className="mb-6 bg-white rounded-full px-6 py-4 shadow-sm border-2 border-[#bee7c1] flex-row items-center">
               <TextInput 
                 className="flex-1 text-xl text-[#1b3420] font-bold" 
-                placeholder="Group name..." 
+                placeholder={t('manageGroups.groupNameModalPlaceholder')}
                 placeholderTextColor="#88a48a"
                 value={groupName}
                 onChangeText={setGroupName}
@@ -293,7 +294,7 @@ const ManageGroupsScreen = () => {
             </View>
 
             <View className="bg-[#d8f9d9] rounded-xl p-4 mb-6">
-              <Text className="text-xs font-bold text-[#47624b] uppercase mb-2">Players to save:</Text>
+              <Text className="text-xs font-bold text-[#47624b] uppercase mb-2">{t('manageGroups.playersToSave')}</Text>
               <Text className="text-sm font-medium text-[#1b3420]">
                 {players.map(p => p.name).join(', ')}
               </Text>
@@ -302,7 +303,7 @@ const ManageGroupsScreen = () => {
             <View className="flex-row gap-3">
               <View className="flex-1">
                 <Button 
-                  label="Cancel"
+                  label={t('manageGroups.cancel')}
                   variant="secondary"
                   size="small"
                   onPress={() => {
@@ -314,7 +315,7 @@ const ManageGroupsScreen = () => {
               </View>
               <View className="flex-1">
                 <Button 
-                  label={editingGroupId ? "Update" : "Save"}
+                  label={editingGroupId ? t('manageGroups.update') : t('manageGroups.save')}
                   variant="primary"
                   size="small"
                   onPress={handleSaveGroup}
@@ -352,10 +353,10 @@ const ManageGroupsScreen = () => {
                 <Ionicons name="folder-open" size={32} color="#006b1b" />
               </View>
               <Text className="text-2xl font-black text-[#1b3420] uppercase tracking-tight">
-                Load Group
+                {t('manageGroups.loadGroupButton')}
               </Text>
               <Text className="text-sm text-[#47624b] mt-2 text-center">
-                Select a saved group to load
+                {t('manageGroups.selectGroupToLoad')}
               </Text>
             </View>
 
@@ -364,7 +365,7 @@ const ManageGroupsScreen = () => {
                 <View className="bg-[#d8f9d9] rounded-xl p-6 items-center">
                   <Ionicons name="folder-open-outline" size={48} color="#47624b" style={{ opacity: 0.3 }} />
                   <Text className="text-sm font-bold text-[#47624b] mt-4 text-center">
-                    No saved groups yet. Save your current squad to access it later!
+                    {t('manageGroups.noSavedGroupsModal')}
                   </Text>
                 </View>
               ) : (
@@ -388,7 +389,7 @@ const ManageGroupsScreen = () => {
                             {group.name}
                           </Text>
                           <Text className="text-xs text-[#47624b] font-bold uppercase">
-                            {group.members.length} Players
+                            {t('manageGroups.nPlayers', { count: group.members.length })}
                           </Text>
                         </View>
                         <View className="flex-row gap-2">
@@ -424,7 +425,7 @@ const ManageGroupsScreen = () => {
             </ScrollView>
 
             <Button 
-              label="Close"
+              label={t('manageGroups.close')}
               variant="secondary"
               size="small"
               onPress={() => setShowLoadModal(false)}

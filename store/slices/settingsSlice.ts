@@ -1,7 +1,8 @@
 import { StateCreator } from 'zustand'
-import { MyState } from '../useStore'
-import { setLanguage as setI18nLanguage, loadLanguage } from '../../utils/i18n'
+import { ensureLocaleKeywords } from '../../db/keywordService'
+import { getCurrentLanguage, loadLanguage, setLanguage as setI18nLanguage } from '../../utils/i18n'
 import { soundManager } from '../../utils/soundManager'
+import { MyState } from '../useStore'
 
 export type SettingsSlice = {
   language: string;
@@ -48,6 +49,13 @@ const createSettingsSlice: StateCreator<MyState, [], [], SettingsSlice> = (set, 
       // Ensure we have a valid language code
       const validLanguage = savedLanguage && typeof savedLanguage === 'string' ? savedLanguage : 'en';
       set({ language: validLanguage });
+      // Ensure keywords for this locale are seeded, then reload keywords
+      // This is critical: loadKeywords() in useStore.ts runs before the saved
+      // language is loaded (it's async), so it loads English keywords by default.
+      // We must reload after we know the actual language.
+      const currentLocale = getCurrentLanguage();
+      ensureLocaleKeywords(currentLocale);
+      get().loadKeywords();
       
       // Initialize sound state
       const currentSoundState = get().soundEnabled;

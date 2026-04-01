@@ -1,36 +1,105 @@
-import { eq, and } from 'drizzle-orm';
-import db from './index';
-import { keywords, userPurchases, Keyword, NewKeyword, UserPurchase, NewUserPurchase } from './schema';
-import { DEFAULT_KEYWORDS, PREMIUM_PACKAGES } from '../constants/defaultKeywords';
-import { 
-  ADVANCED_PACK_KEYWORDS, 
+import { and, eq } from 'drizzle-orm';
+import { PREMIUM_PACKAGES, flattenByLocale } from '../constants/defaultKeywords';
+import { DEFAULT_KEYWORDS_LOCALIZED } from '../constants/localizedKeywords';
+import {
+  ADVANCED_PACK_KEYWORDS,
   CULTURE_PACK_KEYWORDS,
-  SCIENCE_PACK_KEYWORDS,
-  ENTERTAINMENT_PACK_KEYWORDS
+  ENTERTAINMENT_PACK_KEYWORDS,
+  SCIENCE_PACK_KEYWORDS
 } from '../constants/premiumKeywords';
+import { getCurrentLanguage } from '../utils/i18n';
+import db from './index';
+import { Keyword, NewKeyword, UserPurchase, keywords, userPurchases } from './schema';
 
-// Initialize keywords table with default free keywords
+// ============================================================
+// LAZY LOCALE SEEDING
+// ============================================================
+// Instead of seeding ALL locales at startup (which doesn't scale to 50+ languages),
+// we only seed English + the user's current language on first launch.
+// Additional locales are seeded on-demand when the user switches language.
+// This keeps first-launch fast and DB lean.
+// ============================================================
+
+/**
+ * Check if a specific locale's free keywords have been seeded into the DB.
+ */
+export const isLocaleSeeded = (locale: string): boolean => {
+  try {
+    const count = db.select().from(keywords).all()
+      .filter(kw => !kw.isPremium && kw.locale === locale).length;
+    return count > 0;
+  } catch (error) {
+    console.error(`Error checking if locale "${locale}" is seeded:`, error);
+    return false;
+  }
+};
+
+/**
+ * Seed free keywords for a single locale into the DB.
+ * No-op if that locale is already seeded.
+ */
+export const seedLocaleKeywords = (locale: string): void => {
+  try {
+    if (isLocaleSeeded(locale)) return;
+
+    const pairs = flattenByLocale(DEFAULT_KEYWORDS_LOCALIZED, locale);
+    if (pairs.length === 0) {
+      console.warn(`⚠️ No keyword translations found for locale "${locale}"`);
+      return;
+    }
+
+    const keywordsToInsert: NewKeyword[] = pairs.map(kw => ({
+      civilianWord: kw.civilian,
+      spyWord: kw.spy,
+      category: kw.category,
+      difficulty: kw.difficulty,
+      locale,
+      isPremium: false,
+      packageId: null,
+      isActive: true,
+      createdAt: new Date(),
+    }));
+
+    db.insert(keywords).values(keywordsToInsert).run();
+    console.log(`✅ Seeded ${keywordsToInsert.length} free keywords for locale "${locale}"`);
+  } catch (error) {
+    console.error(`Error seeding keywords for locale "${locale}":`, error);
+  }
+};
+
+/**
+ * Ensure keywords exist for a given locale.
+ * Called on language switch — seeds on-demand if needed, then falls back to 'en'.
+ */
+export const ensureLocaleKeywords = (locale: string): void => {
+  // Always ensure English exists (it's the fallback)
+  if (!isLocaleSeeded('en')) {
+    seedLocaleKeywords('en');
+  }
+  // Seed the requested locale if not already done
+  if (locale !== 'en') {
+    seedLocaleKeywords(locale);
+  }
+};
+
+// Initialize keywords table — only seeds English + current device language
 export const initializeKeywords = () => {
   try {
-    // Check if keywords already exist
     const existingKeywords = db.select().from(keywords).all();
     
     if (existingKeywords.length === 0) {
-      console.log('Initializing default keywords...');
-      
-      const keywordsToInsert: NewKeyword[] = DEFAULT_KEYWORDS.map((kw) => ({
-        civilianWord: kw.civilian,
-        spyWord: kw.spy,
-        category: kw.category,
-        difficulty: kw.difficulty,
-        isPremium: false,
-        packageId: null,
-        isActive: true,
-        createdAt: new Date(),
-      }));
+      // Fresh install: seed English + current language
+      const currentLocale = getCurrentLanguage();
+      console.log(`Initializing keywords for "en" + "${currentLocale}"...`);
 
-      db.insert(keywords).values(keywordsToInsert).run();
-      console.log(`✅ Initialized ${keywordsToInsert.length} free keywords`);
+      seedLocaleKeywords('en');
+      if (currentLocale !== 'en') {
+        seedLocaleKeywords(currentLocale);
+      }
+    } else {
+      // Existing install: ensure current language is seeded (migration path)
+      const currentLocale = getCurrentLanguage();
+      ensureLocaleKeywords(currentLocale);
     }
   } catch (error) {
     console.error('Error initializing keywords:', error);
@@ -42,12 +111,13 @@ export const seedPremiumKeywords = () => {
   try {
     console.log('🌱 Seeding premium keywords...');
     
-    // Seed Advanced Pack (200 keywords)
+    // Seed Advanced Pack (200 keywords) - English only for now
     const advancedKeywords: NewKeyword[] = ADVANCED_PACK_KEYWORDS.map((kw) => ({
       civilianWord: kw.civilian,
       spyWord: kw.spy,
       category: kw.category,
       difficulty: kw.difficulty,
+      locale: 'en',
       isPremium: true,
       packageId: PREMIUM_PACKAGES.ADVANCED,
       isActive: true,
@@ -60,6 +130,7 @@ export const seedPremiumKeywords = () => {
       spyWord: kw.spy,
       category: kw.category,
       difficulty: kw.difficulty,
+      locale: 'en',
       isPremium: true,
       packageId: PREMIUM_PACKAGES.CULTURE,
       isActive: true,
@@ -72,6 +143,7 @@ export const seedPremiumKeywords = () => {
       spyWord: kw.spy,
       category: kw.category,
       difficulty: kw.difficulty,
+      locale: 'en',
       isPremium: true,
       packageId: PREMIUM_PACKAGES.SCIENCE,
       isActive: true,
@@ -84,6 +156,7 @@ export const seedPremiumKeywords = () => {
       spyWord: kw.spy,
       category: kw.category,
       difficulty: kw.difficulty,
+      locale: 'en',
       isPremium: true,
       packageId: PREMIUM_PACKAGES.ENTERTAINMENT,
       isActive: true,
@@ -138,9 +211,14 @@ export const arePremiumKeywordsSeeded = (): boolean => {
   }
 };
 
-// Get all available keywords (free + unlocked premium)
-export const getAvailableKeywords = (): Keyword[] => {
+// Get all available keywords (free + unlocked premium) for the current locale
+export const getAvailableKeywords = (locale?: string): Keyword[] => {
   try {
+    const currentLocale = locale || getCurrentLanguage();
+
+    // Ensure this locale's keywords are seeded (lazy, no-op if already done)
+    ensureLocaleKeywords(currentLocale);
+
     // Get all unlocked packages
     const unlockedPackages = db
       .select()
@@ -150,7 +228,7 @@ export const getAvailableKeywords = (): Keyword[] => {
 
     const packageIds = unlockedPackages.map((p) => p.packageId);
 
-    // Get free keywords + unlocked premium keywords
+    // Get keywords filtered by locale and access
     const availableKeywords = db
       .select()
       .from(keywords)
@@ -160,7 +238,14 @@ export const getAvailableKeywords = (): Keyword[] => {
         )
       )
       .all()
-      .filter((kw) => !kw.isPremium || packageIds.includes(kw.packageId || ''));
+      .filter((kw) => {
+        // Locale match: exact locale, or fallback to 'en' for premium without translation
+        const localeMatch = kw.locale === currentLocale
+          || (kw.isPremium && kw.locale === 'en' && currentLocale !== 'en');
+        // Access: free or unlocked premium
+        const accessMatch = !kw.isPremium || packageIds.includes(kw.packageId || '');
+        return localeMatch && accessMatch;
+      });
 
     return availableKeywords;
   } catch (error) {
@@ -169,10 +254,10 @@ export const getAvailableKeywords = (): Keyword[] => {
   }
 };
 
-// Get random keyword from available pool
-export const getRandomKeyword = (): Keyword | null => {
+// Get random keyword from available pool (current locale)
+export const getRandomKeyword = (locale?: string): Keyword | null => {
   try {
-    const available = getAvailableKeywords();
+    const available = getAvailableKeywords(locale);
     if (available.length === 0) return null;
     
     const randomIndex = Math.floor(Math.random() * available.length);
@@ -217,7 +302,7 @@ export const getAllCategories = (): string[] => {
   }
 };
 
-// Add custom keyword
+// Add custom keyword (saved under current locale)
 export const addCustomKeyword = (
   civilianWord: string,
   spyWord: string,
@@ -225,6 +310,7 @@ export const addCustomKeyword = (
   difficulty: 'easy' | 'medium' | 'hard'
 ): number => {
   try {
+    const currentLocale = getCurrentLanguage();
     const result = db
       .insert(keywords)
       .values({
@@ -232,6 +318,7 @@ export const addCustomKeyword = (
         spyWord,
         category,
         difficulty,
+        locale: currentLocale,
         isPremium: false,
         packageId: null,
         isActive: true,
@@ -331,18 +418,24 @@ export const getUserPurchases = (): UserPurchase[] => {
   }
 };
 
-// Get statistics
-export const getKeywordStats = () => {
+// Get statistics (for the current locale)
+export const getKeywordStats = (locale?: string) => {
   try {
+    const currentLocale = locale || getCurrentLanguage();
     const allKeywords = db.select().from(keywords).where(eq(keywords.isActive, true)).all();
-    const available = getAvailableKeywords();
-    const locked = allKeywords.filter((kw) => kw.isPremium);
+    
+    // Filter by current locale (with fallback for premium)
+    const localeKeywords = allKeywords.filter(kw =>
+      kw.locale === currentLocale || (kw.isPremium && kw.locale === 'en' && currentLocale !== 'en')
+    );
+    const available = getAvailableKeywords(currentLocale);
+    const locked = localeKeywords.filter((kw) => kw.isPremium);
 
     return {
-      total: allKeywords.length,
+      total: localeKeywords.length,
       available: available.length,
-      locked: locked.length,
-      free: allKeywords.filter((kw) => !kw.isPremium).length,
+      locked: locked.length - available.filter(kw => kw.isPremium).length,
+      free: localeKeywords.filter((kw) => !kw.isPremium).length,
       premium: locked.length,
     };
   } catch (error) {

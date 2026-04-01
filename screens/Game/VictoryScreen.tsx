@@ -110,7 +110,7 @@ const VictoryScreen = () => {
             </View>
 
             {/* Card Content */}
-            <View className="items-center gap-2">
+            <View className="items-center gap-2 mt-2">
               <Text className="text-4xl font-black text-[#5b5300] leading-none uppercase tracking-tight text-center">
                 {isBlankWin ? t('victory.interceptorWins') : isCivsWin ? t('victory.agentsWin') : t('victory.infiltratorsWin')}
               </Text>

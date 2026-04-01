@@ -6,6 +6,38 @@ export interface KeywordPair {
   difficulty: 'easy' | 'medium' | 'hard';
 }
 
+// Localized keyword pair — one entry per keyword, all locales in one object
+export interface LocalizedKeywordPair {
+  /** Translations keyed by locale code. 'en' is required. */
+  translations: {
+    [locale: string]: { civilian: string; spy: string };
+  };
+  category: string;
+  difficulty: 'easy' | 'medium' | 'hard';
+}
+
+/** Flatten localized keywords into per-locale KeywordPair arrays */
+export const flattenByLocale = (
+  localized: LocalizedKeywordPair[],
+  locale: string
+): KeywordPair[] => {
+  return localized
+    .filter((kw) => kw.translations[locale])
+    .map((kw) => ({
+      civilian: kw.translations[locale].civilian,
+      spy: kw.translations[locale].spy,
+      category: kw.category,
+      difficulty: kw.difficulty,
+    }));
+};
+
+/** Get all supported locale codes from a localized keyword set */
+export const getKeywordLocales = (localized: LocalizedKeywordPair[]): string[] => {
+  const locales = new Set<string>();
+  localized.forEach((kw) => Object.keys(kw.translations).forEach((l) => locales.add(l)));
+  return Array.from(locales);
+};
+
 export const DEFAULT_KEYWORDS: KeywordPair[] = [
   // FOOD & DRINKS (20 pairs)
   { civilian: 'Apple', spy: 'Pear', category: 'Food', difficulty: 'easy' },

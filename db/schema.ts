@@ -1,4 +1,4 @@
-import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core';
+import { integer, sqliteTable, text } from 'drizzle-orm/sqlite-core';
 
 // Groups table - stores saved player groups
 export const groups = sqliteTable('groups', {
@@ -23,6 +23,7 @@ export const keywords = sqliteTable('keywords', {
   spyWord: text('spy_word').notNull(),
   category: text('category').notNull(),
   difficulty: text('difficulty').notNull(), // 'easy', 'medium', 'hard'
+  locale: text('locale').notNull().default('en'), // language code: 'en', 'vi', 'es', 'fr', 'zh'
   isPremium: integer('is_premium', { mode: 'boolean' }).notNull().default(false),
   packageId: text('package_id'), // null for free, package id for premium
   isActive: integer('is_active', { mode: 'boolean' }).notNull().default(true),

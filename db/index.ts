@@ -41,12 +41,27 @@ export const initDatabase = () => {
         spy_word TEXT NOT NULL,
         category TEXT NOT NULL,
         difficulty TEXT NOT NULL,
+        locale TEXT NOT NULL DEFAULT 'en',
         is_premium INTEGER NOT NULL DEFAULT 0,
         package_id TEXT,
         is_active INTEGER NOT NULL DEFAULT 1,
         created_at INTEGER NOT NULL
       );
     `);
+
+    // Migration: add locale column if missing (for existing installs)
+    // Use a permissive DEFAULT so ALTER works on tables with existing rows
+    try {
+      expoDb.execSync(`ALTER TABLE keywords ADD COLUMN locale TEXT DEFAULT 'en';`);
+      // Backfill any NULL values
+      expoDb.execSync(`UPDATE keywords SET locale = 'en' WHERE locale IS NULL;`);
+      console.log('✅ Added locale column to keywords table');
+    } catch (e: any) {
+      // "duplicate column name: locale" means column already exists — expected
+      if (e?.message && !e.message.includes('duplicate column')) {
+        console.error('Migration error (locale column):', e);
+      }
+    }
 
     // Create user_purchases table
     expoDb.execSync(`

@@ -1,7 +1,7 @@
 import { StateCreator } from 'zustand'
-import { MyState } from '../useStore'
 import { getAvailableKeywords, getRandomKeyword as getRandomFromDb } from '../../db/keywordService'
-import { Keyword } from '../../db/schema'
+import { getCurrentLanguage } from '../../utils/i18n'
+import { MyState } from '../useStore'
 
 export interface KeywordPair {
   id: string;
@@ -21,10 +21,11 @@ export type KeywordSlice = {
 const createKeywordSlice: StateCreator<MyState, [], [], KeywordSlice> = (set, get) => ({
   keywords: [],
   
-  // Load keywords from database
+  // Load keywords from database (filtered by current locale)
   loadKeywords: () => {
     try {
-      const dbKeywords = getAvailableKeywords();
+      const locale = getCurrentLanguage();
+      const dbKeywords = getAvailableKeywords(locale);
       const keywords: KeywordPair[] = dbKeywords.map((kw) => ({
         id: kw.id.toString(),
         civilian: kw.civilianWord,
@@ -46,8 +47,9 @@ const createKeywordSlice: StateCreator<MyState, [], [], KeywordSlice> = (set, ge
   })),
 
   getRandomKeyword: () => {
-    // First try to get from database
-    const dbKeyword = getRandomFromDb();
+    // First try to get from database (locale-aware)
+    const locale = getCurrentLanguage();
+    const dbKeyword = getRandomFromDb(locale);
     if (dbKeyword) {
       return {
         id: dbKeyword.id.toString(),
