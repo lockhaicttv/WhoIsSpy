@@ -207,7 +207,7 @@ const VictoryScreen = () => {
                     elevation: 2
                   }}>
               <Text className="text-[10px] font-black tracking-widest text-[#47624b] mb-1 uppercase">{t('victory.civilianWord')}</Text>
-              <Text className="text-2xl font-black text-[#006b1b] uppercase">{civWord}</Text>
+              <Text className="text-2xl font-black text-[#006b1b] uppercase text-center">{civWord}</Text>
             </View>
             <View className="flex-1 items-center bg-white py-4 rounded-xl border-2 border-[#ff9800]/30"
                   style={{
@@ -218,7 +218,7 @@ const VictoryScreen = () => {
                     elevation: 2
                   }}>
               <Text className="text-[10px] font-black tracking-widest text-[#874e00] mb-1 uppercase">{t('victory.spyWord')}</Text>
-              <Text className="text-2xl font-black text-[#ff9800] uppercase">{spyWord}</Text>
+              <Text className="text-2xl font-black text-[#ff9800] uppercase text-center">{spyWord}</Text>
             </View>
           </View>
         </View>
