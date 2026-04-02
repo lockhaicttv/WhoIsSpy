@@ -17,12 +17,19 @@ const PROGUARD_RULES = `
 -keep class expo.modules.** { *; }
 -keepclassmembers class expo.modules.** { *; }
 
+# --- Expo Kotlin runtime (referenced by expo-sqlite and others) ---
+-dontwarn expo.modules.kotlin.runtime.**
+-dontwarn expo.modules.kotlin.**
+
 # --- Keep all native-module providers registered in manifests ---
 -keep class * extends com.facebook.react.ReactPackage { *; }
 -keep class * extends expo.modules.core.interfaces.Package { *; }
 
 # --- Reanimated ---
 -keep class com.swmansion.reanimated.** { *; }
+
+# --- Worklets ---
+-keep class com.swmansion.worklets.** { *; }
 
 # --- Safe-area ---
 -keep class com.th3rdwave.safeareacontext.** { *; }
@@ -43,6 +50,12 @@ const PROGUARD_RULES = `
     @com.facebook.proguard.annotations.KeepGettersAndSetters *;
 }
 -dontwarn com.facebook.**
+
+# --- Suppress R8 missing-class errors for optional/runtime references ---
+-dontwarn kotlin.**
+-dontwarn kotlinx.**
+-dontwarn javax.annotation.**
+-dontwarn sun.misc.Unsafe
 `;
 
 /**
