@@ -3,21 +3,21 @@ import * as SecureStore from 'expo-secure-store';
 import { I18n } from 'i18n-js';
 
 // Import translation files
+import ar from '../locales/ar.json';
+import de from '../locales/de.json';
 import en from '../locales/en.json';
 import es from '../locales/es.json';
 import fr from '../locales/fr.json';
-import vi from '../locales/vi.json';
-import zh from '../locales/zh.json';
-import de from '../locales/de.json';
+import hi from '../locales/hi.json';
+import id from '../locales/id.json';
 import ja from '../locales/ja.json';
 import ko from '../locales/ko.json';
 import pt from '../locales/pt.json';
 import ru from '../locales/ru.json';
-import ar from '../locales/ar.json';
-import hi from '../locales/hi.json';
 import th from '../locales/th.json';
-import id from '../locales/id.json';
 import tr from '../locales/tr.json';
+import vi from '../locales/vi.json';
+import zh from '../locales/zh.json';
 
 // Create i18n instance
 const i18n = new I18n({

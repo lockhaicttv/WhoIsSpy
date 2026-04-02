@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Modal, ScrollView } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import React, { useState } from 'react';
+import { Modal, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import { useStore } from '../../store';
 import { getAvailableLanguages, t } from '../../utils/i18n';
-import Card from '../Card/Card';
-import Button from '../Button/Button';
 
 const LanguageSelector: React.FC = () => {
   const [modalVisible, setModalVisible] = useState(false);
