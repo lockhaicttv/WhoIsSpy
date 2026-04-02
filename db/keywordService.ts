@@ -8,7 +8,7 @@ import {
   SCIENCE_PACK_KEYWORDS
 } from '../constants/premiumKeywords';
 import { getCurrentLanguage } from '../utils/i18n';
-import db from './index';
+import db from './database';
 import { Keyword, NewKeyword, UserPurchase, keywords, userPurchases } from './schema';
 
 // ============================================================

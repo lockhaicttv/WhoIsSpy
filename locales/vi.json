@@ -90,9 +90,9 @@
     "blankWins": "📡 Interceptor Thắng",
     "blankWinsDesc": "Interceptor giải mã đúng mật khẩu đặc vụ khi bị loại (chiến thắng độc lập)!",
     "proTips": "Mẹo Hay",
-    "tip1": "Là đặc vụ: mô tả đủ rõ để chứng minh bạn biết mật khẩu, nhưng phải đủ khéo để nội gián không đoán được",
-    "tip2": "Là nội gián: lắng nghe thật kỹ, bắt chước giọng điệu đồng đội và cố hoà nhập",
-    "tip3": "Là Interceptor: gom nhặt manh mối từ mọi người để ghép lại bức tranh toàn cảnh",
+    "tip1": "Đặc vụ: mô tả đủ rõ để chứng minh bạn biết mật khẩu, nhưng phải đủ khéo để nội gián không đoán được",
+    "tip2": "Nội gián: lắng nghe thật kỹ, bắt chước giọng điệu đồng đội và cố hoà nhập",
+    "tip3": "Interceptor: gom nhặt manh mối từ mọi người để ghép lại bức tranh toàn cảnh",
     "tip4": "Chú ý kẻ nào do dự, nói vòng vo, hoặc có phản ứng bất thường"
   },
   "manageGroups": {
@@ -286,7 +286,7 @@
     "brilliantDeduction": "TÍN HIỆU BỊ CHẶN",
     "deductionComplete": "TRUYỀN TÍN HIỆU THÀNH CÔNG",
     "blankPlayerWins": "INTERCEPTOR\nCHIẾN THẮNG!",
-    "theSpyWas": "NỘI GIÁN LÀ",
+    "theSpyWas": "NỘI GIÁN ĐÃ",
     "caught": "SA LƯỚI!",
     "victorious": "CHIẾN THẮNG!",
     "missionComplete": "CỨU VIỆN THÀNH CÔNG",

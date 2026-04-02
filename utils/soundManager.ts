@@ -1,7 +1,7 @@
-import { Audio } from 'expo-av';
+import { AudioPlayer, createAudioPlayer, setAudioModeAsync } from 'expo-audio';
 
 class SoundManager {
-  private sounds: { [key: string]: Audio.Sound } = {};
+  private players: { [key: string]: AudioPlayer } = {};
   private isMuted: boolean = false;
   private isLoaded: boolean = false;
 
@@ -13,19 +13,19 @@ class SoundManager {
 
     try {
       // Enable audio playback in silent mode (iOS)
-      await Audio.setAudioModeAsync({
-        playsInSilentModeIOS: true,
-        staysActiveInBackground: false,
-        shouldDuckAndroid: true,
+      await setAudioModeAsync({
+        playsInSilentMode: true,
+        shouldPlayInBackground: false,
+        interruptionMode: 'duckOthers',
       });
 
       // Load game sounds
-      await this.loadSound('start-game', require('../assets/sounds/game/start-game.mp3'));
-      await this.loadSound('timer-count', require('../assets/sounds/game/timer-count.mp3'));
-      await this.loadSound('ting', require('../assets/sounds/game/ting.mp3'));
-      await this.loadSound('blank-caught', require('../assets/sounds/game/blank-caught.mp3'));
-      await this.loadSound('civilian-win', require('../assets/sounds/game/cilivian-win.mp3'));
-      await this.loadSound('spy-win', require('../assets/sounds/game/spy-win.mp3'));
+      this.loadSound('start-game', require('../assets/sounds/game/start-game.mp3'));
+      this.loadSound('timer-count', require('../assets/sounds/game/timer-count.mp3'));
+      this.loadSound('ting', require('../assets/sounds/game/ting.mp3'));
+      this.loadSound('blank-caught', require('../assets/sounds/game/blank-caught.mp3'));
+      this.loadSound('civilian-win', require('../assets/sounds/game/cilivian-win.mp3'));
+      this.loadSound('spy-win', require('../assets/sounds/game/spy-win.mp3'));
 
       this.isLoaded = true;
       console.log('✅ All sounds loaded successfully');
@@ -37,10 +37,10 @@ class SoundManager {
   /**
    * Load a single sound
    */
-  async loadSound(name: string, file: any) {
+  loadSound(name: string, source: number | string) {
     try {
-      const { sound } = await Audio.Sound.createAsync(file);
-      this.sounds[name] = sound;
+      const player = createAudioPlayer(source);
+      this.players[name] = player;
     } catch (error) {
       console.error(`Error loading sound ${name}:`, error);
     }
@@ -53,12 +53,12 @@ class SoundManager {
     if (this.isMuted) return;
 
     try {
-      const sound = this.sounds[name];
-      if (sound) {
-        await sound.setPositionAsync(0);
-        await sound.setVolumeAsync(volume);
-        await sound.setIsLoopingAsync(loop);
-        await sound.playAsync();
+      const player = this.players[name];
+      if (player) {
+        await player.seekTo(0);
+        player.volume = volume;
+        player.loop = loop;
+        player.play();
       } else {
         console.warn(`Sound "${name}" not loaded`);
       }
@@ -72,10 +72,10 @@ class SoundManager {
    */
   async stopSound(name: string) {
     try {
-      const sound = this.sounds[name];
-      if (sound) {
-        await sound.stopAsync();
-        await sound.setPositionAsync(0);
+      const player = this.players[name];
+      if (player) {
+        player.pause();
+        await player.seekTo(0);
       }
     } catch (error) {
       console.error(`Error stopping sound ${name}:`, error);
@@ -87,11 +87,10 @@ class SoundManager {
    */
   async stopAllSounds() {
     try {
-      for (const sound of Object.values(this.sounds)) {
-        const status = await sound.getStatusAsync();
-        if (status.isLoaded && status.isPlaying) {
-          await sound.stopAsync();
-          await sound.setPositionAsync(0);
+      for (const player of Object.values(this.players)) {
+        if (player.playing) {
+          player.pause();
+          await player.seekTo(0);
         }
       }
     } catch (error) {
@@ -102,11 +101,11 @@ class SoundManager {
   /**
    * Pause a sound
    */
-  async pauseSound(name: string) {
+  pauseSound(name: string) {
     try {
-      const sound = this.sounds[name];
-      if (sound) {
-        await sound.pauseAsync();
+      const player = this.players[name];
+      if (player) {
+        player.pause();
       }
     } catch (error) {
       console.error(`Error pausing sound ${name}:`, error);
@@ -116,11 +115,11 @@ class SoundManager {
   /**
    * Resume a paused sound
    */
-  async resumeSound(name: string) {
+  resumeSound(name: string) {
     try {
-      const sound = this.sounds[name];
-      if (sound) {
-        await sound.playAsync();
+      const player = this.players[name];
+      if (player) {
+        player.play();
       }
     } catch (error) {
       console.error(`Error resuming sound ${name}:`, error);
@@ -147,12 +146,12 @@ class SoundManager {
   /**
    * Unload all sounds (cleanup)
    */
-  async unloadAll() {
+  unloadAll() {
     try {
-      for (const sound of Object.values(this.sounds)) {
-        await sound.unloadAsync();
+      for (const player of Object.values(this.players)) {
+        player.remove();
       }
-      this.sounds = {};
+      this.players = {};
       this.isLoaded = false;
       console.log('✅ All sounds unloaded');
     } catch (error) {

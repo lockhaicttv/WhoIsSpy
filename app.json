@@ -41,7 +41,8 @@
           }
         }
       ],
-      "./plugins/withProguard"
+      "./plugins/withProguard",
+      "expo-audio"
     ],
     "experiments": {
       "typedRoutes": true,

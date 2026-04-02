@@ -1,5 +1,5 @@
 import { eq } from 'drizzle-orm';
-import db from './index';
+import db from './database';
 import { groups, groupMembers, Group, NewGroup, GroupMember } from './schema';
 
 export interface GroupWithMembers extends Group {

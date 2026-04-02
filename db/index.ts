@@ -1,13 +1,8 @@
-import { drizzle } from 'drizzle-orm/expo-sqlite';
-import { openDatabaseSync } from 'expo-sqlite';
 import { arePremiumKeywordsSeeded, initializeKeywords, seedPremiumKeywords } from './keywordService';
-import * as schema from './schema';
+import { db, expoDb } from './database';
 
-// Open the database
-const expoDb = openDatabaseSync('thelastsignal.db', { enableChangeListener: true });
-
-// Create drizzle instance
-export const db = drizzle(expoDb, { schema });
+// Re-export db instance
+export { db };
 
 // Initialize database tables
 export const initDatabase = () => {
