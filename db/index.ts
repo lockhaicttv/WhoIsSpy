@@ -1,4 +1,4 @@
-import { db, expoDb } from './database';
+import { db, getExpoDb } from './database';
 import { arePremiumKeywordsSeeded, initializeKeywords, seedPremiumKeywords } from './keywordService';
 
 // Re-export db instance
@@ -7,6 +7,9 @@ export { db };
 // Initialize database tables
 export const initDatabase = () => {
   try {
+    // Get the database instance (lazily initialized)
+    const expoDb = getExpoDb();
+
     // Create groups table
     expoDb.execSync(`
       CREATE TABLE IF NOT EXISTS groups (
