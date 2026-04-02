@@ -1,5 +1,5 @@
-import { arePremiumKeywordsSeeded, initializeKeywords, seedPremiumKeywords } from './keywordService';
 import { db, expoDb } from './database';
+import { arePremiumKeywordsSeeded, initializeKeywords, seedPremiumKeywords } from './keywordService';
 
 // Re-export db instance
 export { db };
