@@ -13,8 +13,4 @@ export const useStore = create<MyState>()((...a) => ({
   ...createSettingsSlice(...a),
 }))
 
-// Load keywords and settings on store initialization
-useStore.getState().loadKeywords();
-useStore.getState().initializeSettings();
-
 export default useStore
