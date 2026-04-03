@@ -163,6 +163,7 @@ export const PREMIUM_PACKAGES = {
   SCIENCE: 'science_pack',
   ENTERTAINMENT: 'entertainment_pack',
   ULTIMATE: 'ultimate_pack',
+  CUSTOM_KEYWORDS: 'custom_keywords_pack',
 };
 
 export const PACKAGE_NAMES = {
@@ -171,4 +172,5 @@ export const PACKAGE_NAMES = {
   [PREMIUM_PACKAGES.SCIENCE]: 'Science & Education Pack',
   [PREMIUM_PACKAGES.ENTERTAINMENT]: 'Entertainment Pack',
   [PREMIUM_PACKAGES.ULTIMATE]: 'Ultimate Pack (All)',
+  [PREMIUM_PACKAGES.CUSTOM_KEYWORDS]: 'Custom Keywords',
 };

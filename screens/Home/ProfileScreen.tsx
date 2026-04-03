@@ -1,10 +1,13 @@
 import { Ionicons } from '@expo/vector-icons';
+import { useRouter } from 'expo-router';
 import React from 'react';
 import { ScrollView, Switch, Text, TouchableOpacity, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import BottomNavigation from '../../components/BottomNavigation/BottomNavigation';
 import Card from '../../components/Card/Card';
 import LanguageSelector from '../../components/LanguageSelector/LanguageSelector';
+import { PREMIUM_PACKAGES } from '../../constants/defaultKeywords';
+import { isPackageUnlocked } from '../../db/keywordService';
 import { useStore } from '../../store';
 import { t } from '../../utils/i18n';
 
@@ -12,6 +15,8 @@ const ProfileScreen = () => {
   const language = useStore((state) => state.language);
   const soundEnabled = useStore((state) => state.soundEnabled);
   const toggleSound = useStore((state) => state.toggleSound);
+  const router = useRouter();
+  const isCustomKeywordsUnlocked = isPackageUnlocked(PREMIUM_PACKAGES.CUSTOM_KEYWORDS);
 
   return (
     <View className="flex-1 bg-[#e0fee1]">
@@ -108,10 +113,10 @@ const ProfileScreen = () => {
                       }}>
                   <View className="flex-row items-center gap-3">
                     <View className="w-10 h-10 rounded-full bg-[#5b5300]/10 items-center justify-center">
-                      <Ionicons 
-                        name={soundEnabled ? "volume-high" : "volume-mute"} 
-                        size={20} 
-                        color="#5b5300" 
+                      <Ionicons
+                        name={soundEnabled ? "volume-high" : "volume-mute"}
+                        size={20}
+                        color="#5b5300"
                       />
                     </View>
                     <View>
@@ -132,6 +137,40 @@ const ProfileScreen = () => {
                   />
                 </View>
               </View>
+
+              {/* Custom Keywords Setting - Only visible if unlocked */}
+              {isCustomKeywordsUnlocked && (
+                <View>
+                  <Text className="text-xs font-bold text-[#5b5300] uppercase tracking-wider mb-2">
+                    {t('customKeywords.title')}
+                  </Text>
+                  <TouchableOpacity
+                    onPress={() => router.push('/custom-keywords')}
+                    className="flex-row items-center justify-between bg-[#fff8e5] p-4 rounded-xl"
+                    style={{
+                      shadowColor: '#1b3420',
+                      shadowOffset: { width: 4, height: 4 },
+                      shadowOpacity: 0.1,
+                      shadowRadius: 8,
+                      elevation: 3,
+                    }}>
+                    <View className="flex-row items-center gap-3">
+                      <View className="w-10 h-10 rounded-full bg-[#5b5300]/10 items-center justify-center">
+                        <Ionicons name="create" size={20} color="#5b5300" />
+                      </View>
+                      <View>
+                        <Text className="text-sm font-bold text-[#5b5300] uppercase">
+                          {t('customKeywords.manageKeywords')}
+                        </Text>
+                        <Text className="text-xs text-[#5b5300]/70">
+                          {t('customKeywords.manageDescription')}
+                        </Text>
+                      </View>
+                    </View>
+                    <Ionicons name="chevron-forward" size={20} color="#5b5300" />
+                  </TouchableOpacity>
+                </View>
+              )}
             </View>
           </Card>
 

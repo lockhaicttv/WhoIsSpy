@@ -46,6 +46,11 @@ const routeConfigs: Record<string, HeaderConfig> = {
     showBackButton: true,
     rightIcon: 'avatar',
   },
+  '/custom-keywords': {
+    title: 'CUSTOM KEYWORDS',
+    showBackButton: true,
+    rightIcon: 'avatar',
+  },
   '/role-distribution': {
     title: 'The Last Signal',
     showBackButton: true,

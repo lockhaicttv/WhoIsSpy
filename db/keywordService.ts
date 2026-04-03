@@ -2,10 +2,10 @@ import { and, eq } from 'drizzle-orm';
 import { PREMIUM_PACKAGES, flattenByLocale } from '../constants/defaultKeywords';
 import { DEFAULT_KEYWORDS_LOCALIZED } from '../constants/localizedKeywords';
 import {
-  ADVANCED_PACK_KEYWORDS,
-  CULTURE_PACK_KEYWORDS,
-  ENTERTAINMENT_PACK_KEYWORDS,
-  SCIENCE_PACK_KEYWORDS
+    ADVANCED_PACK_KEYWORDS,
+    CULTURE_PACK_KEYWORDS,
+    ENTERTAINMENT_PACK_KEYWORDS,
+    SCIENCE_PACK_KEYWORDS
 } from '../constants/premiumKeywords';
 import { getCurrentLanguage } from '../utils/i18n';
 import db from './database';
@@ -350,6 +350,110 @@ export const deleteKeyword = (id: number): void => {
     db.delete(keywords).where(eq(keywords.id, id)).run();
   } catch (error) {
     console.error('Error deleting keyword:', error);
+    throw error;
+  }
+};
+
+// === CUSTOM KEYWORDS FUNCTIONS ===
+
+// Add multiple custom keywords in bulk
+export const addCustomKeywordsBulk = (
+  pairs: Array<{ civilianWord: string; spyWord: string }>,
+  locale: string
+): void => {
+  try {
+    const currentLocale = locale || getCurrentLanguage();
+
+    const keywordsToInsert: NewKeyword[] = pairs.map((pair) => ({
+      civilianWord: pair.civilianWord.trim(),
+      spyWord: pair.spyWord.trim(),
+      category: 'Custom',
+      difficulty: 'medium',
+      locale: currentLocale,
+      isPremium: false,
+      packageId: PREMIUM_PACKAGES.CUSTOM_KEYWORDS,
+      isActive: true,
+      createdAt: new Date(),
+    }));
+
+    if (keywordsToInsert.length > 0) {
+      db.insert(keywords).values(keywordsToInsert).run();
+      console.log(`✅ Added ${keywordsToInsert.length} custom keywords for locale "${currentLocale}"`);
+    }
+  } catch (error) {
+    console.error('Error adding custom keywords in bulk:', error);
+    throw error;
+  }
+};
+
+// Get all custom keywords for a locale
+export const getCustomKeywords = (locale?: string): Keyword[] => {
+  try {
+    const currentLocale = locale || getCurrentLanguage();
+    return db
+      .select()
+      .from(keywords)
+      .where(
+        and(
+          eq(keywords.packageId, PREMIUM_PACKAGES.CUSTOM_KEYWORDS),
+          eq(keywords.locale, currentLocale),
+          eq(keywords.isActive, true)
+        )
+      )
+      .all();
+  } catch (error) {
+    console.error('Error getting custom keywords:', error);
+    return [];
+  }
+};
+
+// Update a custom keyword
+export const updateCustomKeyword = (
+  id: number,
+  civilianWord: string,
+  spyWord: string
+): void => {
+  try {
+    db.update(keywords)
+      .set({
+        civilianWord: civilianWord.trim(),
+        spyWord: spyWord.trim(),
+      })
+      .where(eq(keywords.id, id))
+      .run();
+    console.log(`✅ Updated custom keyword ID ${id}`);
+  } catch (error) {
+    console.error('Error updating custom keyword:', error);
+    throw error;
+  }
+};
+
+// Delete a custom keyword
+export const deleteCustomKeyword = (id: number): void => {
+  try {
+    db.delete(keywords).where(eq(keywords.id, id)).run();
+    console.log(`✅ Deleted custom keyword ID ${id}`);
+  } catch (error) {
+    console.error('Error deleting custom keyword:', error);
+    throw error;
+  }
+};
+
+// Delete all custom keywords for a locale
+export const deleteAllCustomKeywords = (locale?: string): void => {
+  try {
+    const currentLocale = locale || getCurrentLanguage();
+    db.delete(keywords)
+      .where(
+        and(
+          eq(keywords.packageId, PREMIUM_PACKAGES.CUSTOM_KEYWORDS),
+          eq(keywords.locale, currentLocale)
+        )
+      )
+      .run();
+    console.log(`✅ Deleted all custom keywords for locale "${currentLocale}"`);
+  } catch (error) {
+    console.error('Error deleting all custom keywords:', error);
     throw error;
   }
 };

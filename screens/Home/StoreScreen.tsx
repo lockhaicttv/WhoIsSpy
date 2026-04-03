@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, ScrollView, TouchableOpacity, Alert } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { Ionicons } from '@expo/vector-icons';
-import Card from '../../components/Card/Card';
-import Button from '../../components/Button/Button';
+import React, { useEffect, useState } from 'react';
+import { Alert, ScrollView, Text, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import BottomNavigation from '../../components/BottomNavigation/BottomNavigation';
-import { 
-  getKeywordStats, 
-  getUserPurchases, 
-  unlockPackage, 
-  isPackageUnlocked 
+import Button from '../../components/Button/Button';
+import Card from '../../components/Card/Card';
+import { PACKAGE_NAMES, PREMIUM_PACKAGES } from '../../constants/defaultKeywords';
+import {
+    getKeywordStats,
+    getUserPurchases,
+    unlockPackage
 } from '../../db/keywordService';
-import { PREMIUM_PACKAGES, PACKAGE_NAMES } from '../../constants/defaultKeywords';
 
 interface PackageInfo {
   id: string;
@@ -69,6 +68,15 @@ const PACKAGES: PackageInfo[] = [
     icon: 'diamond',
     color: '#665c00',
   },
+  {
+    id: PREMIUM_PACKAGES.CUSTOM_KEYWORDS,
+    name: PACKAGE_NAMES[PREMIUM_PACKAGES.CUSTOM_KEYWORDS],
+    description: 'Import your own keyword pairs from Excel files',
+    keywordCount: 0,
+    price: '$1.99',
+    icon: 'create',
+    color: '#006b1b',
+  },
 ];
 
 const StoreScreen = () => {
@@ -88,8 +96,8 @@ const StoreScreen = () => {
   };
 
   const handleUnlock = (packageInfo: PackageInfo) => {
-    // Skip if keyword count is 0 (not implemented yet)
-    if (packageInfo.keywordCount === 0) {
+    // Skip if keyword count is 0 (not implemented yet), unless it's the custom keywords pack
+    if (packageInfo.keywordCount === 0 && packageInfo.id !== PREMIUM_PACKAGES.CUSTOM_KEYWORDS) {
       Alert.alert(
         'Coming Soon',
         `${packageInfo.name} is not yet available. Stay tuned for updates!`,
@@ -211,7 +219,7 @@ const StoreScreen = () => {
                         <View className="flex-row items-center gap-2">
                           <View className="bg-[#d8f9d9] px-2 py-1 rounded-full">
                             <Text className="text-[10px] font-bold text-[#006b1b] uppercase">
-                              +{pkg.keywordCount} Keywords
+                              {pkg.id === PREMIUM_PACKAGES.CUSTOM_KEYWORDS ? 'Unlimited' : `+${pkg.keywordCount} Keywords`}
                             </Text>
                           </View>
                           {!unlocked && (
@@ -231,13 +239,13 @@ const StoreScreen = () => {
 
                     {!unlocked ? (
                       <Button
-                        label={pkg.keywordCount === 0 ? "Coming Soon" : "Unlock Now"}
+                        label={pkg.keywordCount === 0 && pkg.id !== PREMIUM_PACKAGES.CUSTOM_KEYWORDS ? "Coming Soon" : "Unlock Now"}
                         variant="primary"
                         size="small"
-                        icon={pkg.keywordCount === 0 ? "time" : "lock-open"}
+                        icon={pkg.keywordCount === 0 && pkg.id !== PREMIUM_PACKAGES.CUSTOM_KEYWORDS ? "time" : "lock-open"}
                         onPress={() => handleUnlock(pkg)}
-                        disabled={pkg.keywordCount === 0}
-                        className={pkg.keywordCount === 0 ? 'opacity-50' : ''}
+                        disabled={pkg.keywordCount === 0 && pkg.id !== PREMIUM_PACKAGES.CUSTOM_KEYWORDS}
+                        className={pkg.keywordCount === 0 && pkg.id !== PREMIUM_PACKAGES.CUSTOM_KEYWORDS ? 'opacity-50' : ''}
                       />
                     ) : (
                       <View className="bg-[#d8f9d9] px-6 py-3 rounded-full flex-row items-center justify-center gap-2">
