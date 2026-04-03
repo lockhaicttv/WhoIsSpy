@@ -20,7 +20,11 @@
     "blank": "Blank",
     "total": "Total",
     "category": "Category",
-    "difficulty": "Difficulty"
+    "difficulty": "Difficulty",
+    "save": "Save",
+    "error": "Error",
+    "success": "Success",
+    "info": "Info"
   },
   "navigation": {
     "missions": "Missions",
@@ -385,6 +389,14 @@
     "editBeforeSave": "You can edit these keywords before saving",
     "customKeywordsSaved": "Custom keywords saved successfully!",
     "deleteConfirm": "Delete this keyword pair?",
-    "updated": "Keyword updated!"
+    "updated": "Keyword updated!",
+    "sharingNotAvailable": "File sharing is not available on this device",
+    "templateDownloaded": "Template downloaded! Fill it in and import back to the app.",
+    "downloadFailed": "Failed to download template",
+    "missingBothWords": "Please enter both civilian and spy words",
+    "addFailed": "Failed to add keyword",
+    "updateFailed": "Failed to update keyword",
+    "deleteFailed": "Failed to delete keyword",
+    "deleteAllFailed": "Failed to delete keywords"
   }
 }

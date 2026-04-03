@@ -118,7 +118,7 @@ const CustomKeywordsScreen = () => {
       console.log('Sharing available:', sharingAvailable);
 
       if (!sharingAvailable) {
-        Alert.alert('Info', 'File sharing is not available on this device');
+        Alert.alert(t('common.info') || 'Info', t('customKeywords.sharingNotAvailable'));
         setIsLoading(false);
         return;
       }
@@ -136,13 +136,13 @@ const CustomKeywordsScreen = () => {
 
       console.log('Template shared successfully');
       setIsLoading(false);
-      Alert.alert('Success', 'Template downloaded! Fill it in and import back to the app.');
+      Alert.alert(t('common.success') || 'Success', t('customKeywords.templateDownloaded'));
     } catch (error) {
       console.error('Error downloading template:', error);
       console.error('Error details:', JSON.stringify(error, null, 2));
       Alert.alert(
-        'Error',
-        `Failed to download template: ${error instanceof Error ? error.message : 'Unknown error'}`
+        t('common.error') || 'Error',
+        t('customKeywords.downloadFailed')
       );
       setIsLoading(false);
     }
@@ -215,7 +215,7 @@ const CustomKeywordsScreen = () => {
 
   const handleAddManually = () => {
     if (!newCivWord.trim() || !newSpyWord.trim()) {
-      Alert.alert('Error', 'Please enter both civilian and spy words');
+      Alert.alert(t('common.error') || 'Error', t('customKeywords.missingBothWords'));
       return;
     }
 
@@ -230,13 +230,13 @@ const CustomKeywordsScreen = () => {
       Alert.alert('Success', t('customKeywords.addKeyword'));
     } catch (error) {
       console.error('Error adding keyword:', error);
-      Alert.alert('Error', 'Failed to add keyword');
+      Alert.alert(t('common.error') || 'Error', t('customKeywords.addFailed'));
     }
   };
 
   const handleUpdateKeyword = (id: number) => {
     if (!editCivWord.trim() || !editSpyWord.trim()) {
-      Alert.alert('Error', 'Please enter both civilian and spy words');
+      Alert.alert(t('common.error') || 'Error', t('customKeywords.missingBothWords'));
       return;
     }
 
@@ -249,7 +249,7 @@ const CustomKeywordsScreen = () => {
       Alert.alert('Success', t('customKeywords.updated'));
     } catch (error) {
       console.error('Error updating keyword:', error);
-      Alert.alert('Error', 'Failed to update keyword');
+      Alert.alert(t('common.error') || 'Error', t('customKeywords.updateFailed'));
     }
   };
 
@@ -268,7 +268,7 @@ const CustomKeywordsScreen = () => {
               loadCustomKeywords();
             } catch (error) {
               console.error('Error deleting keyword:', error);
-              Alert.alert('Error', 'Failed to delete keyword');
+              Alert.alert(t('common.error') || 'Error', t('customKeywords.deleteFailed'));
             }
           },
         },
@@ -291,7 +291,7 @@ const CustomKeywordsScreen = () => {
               loadCustomKeywords();
             } catch (error) {
               console.error('Error deleting all keywords:', error);
-              Alert.alert('Error', 'Failed to delete keywords');
+              Alert.alert(t('common.error') || 'Error', t('customKeywords.deleteAllFailed'));
             }
           },
         },
@@ -448,14 +448,14 @@ const CustomKeywordsScreen = () => {
                         />
                         <View className="gap-2">
                           <Button
-                            label="Save"
+                            label={t('common.save')}
                             variant="primary"
                             size="small"
                             onPress={() => handleUpdateKeyword(kw.id)}
                             className="w-full"
                           />
                           <Button
-                            label="Cancel"
+                            label={t('common.cancel')}
                             variant="secondary"
                             size="small"
                             onPress={() => setEditingId(null)}
@@ -600,7 +600,7 @@ const CustomKeywordsScreen = () => {
                       onChangeText={(value) =>
                         handleUpdateImportedPair(index, 'civilianWord', value)
                       }
-                      placeholder="Civilian"
+                      placeholder={t('customKeywords.civilianPlaceholder')}
                       placeholderTextColor="#47624b/50"
                       className="bg-white p-2 rounded mb-2 text-xs text-[#1b3420] font-bold"
                     />
@@ -609,7 +609,7 @@ const CustomKeywordsScreen = () => {
                       onChangeText={(value) =>
                         handleUpdateImportedPair(index, 'spyWord', value)
                       }
-                      placeholder="Spy"
+                      placeholder={t('customKeywords.spyPlaceholder')}
                       placeholderTextColor="#47624b/50"
                       className="bg-white p-2 rounded text-xs text-[#1b3420] font-bold"
                     />
