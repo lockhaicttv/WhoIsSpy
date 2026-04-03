@@ -5,7 +5,7 @@ import { ScrollView, Text, TextInput, TouchableOpacity, View } from 'react-nativ
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Button from '../../components/Button/Button';
 import Card from '../../components/Card/Card';
-import { getKeywordStats } from '../../db/keywordService';
+import { getKeywordStats, getCustomOnlyKeywords, getRandomCustomKeyword } from '../../db/keywordService';
 import { useStore } from '../../store';
 import { t } from '../../utils/i18n';
 
@@ -22,6 +22,8 @@ const ImportKeywordsScreen = () => {
   const [civWord, setCivWord] = useState('');
   const [spyWord, setSpyWord] = useState('');
   const [stats, setStats] = useState({ total: 0, available: 0, locked: 0, free: 0, premium: 0 });
+  const [keywordSource, setKeywordSource] = useState<'game' | 'custom'>('game');
+  const [customKeywordCount, setCustomKeywordCount] = useState(0);
 
   // Get the configured number of spies and blanks
   const numSpies = params.numSpies ? parseInt(params.numSpies) : 1;
@@ -32,6 +34,10 @@ const ImportKeywordsScreen = () => {
     loadKeywords();
     const keywordStats = getKeywordStats();
     setStats(keywordStats);
+
+    // Load custom keywords count
+    const customKws = getCustomOnlyKeywords(language);
+    setCustomKeywordCount(customKws.length);
   }, [language]);
 
   const startGameWithWord = (civ: string, spy: string) => {
@@ -42,15 +48,56 @@ const ImportKeywordsScreen = () => {
   };
 
   const handleRandom = () => {
-    const random = getRandomKeyword();
-    if (random) startGameWithWord(random.civilian, random.spy);
+    if (keywordSource === 'custom') {
+      const random = getRandomCustomKeyword(language);
+      if (random) startGameWithWord(random.civilianWord, random.spyWord);
+    } else {
+      const random = getRandomKeyword();
+      if (random) startGameWithWord(random.civilian, random.spy);
+    }
   };
 
   return (
     <SafeAreaView className="flex-1 bg-[#e0fee1]" edges={['bottom']}>
       <ScrollView className="flex-1 px-6 pt-6" showsVerticalScrollIndicator={false}>
-        
-        {/* Stats Card */}
+
+        {/* Keyword Source Selector */}
+        <Card variant="primary" className="mb-6 rotate-1">
+          <View className="flex-row items-center gap-3 mb-4">
+            <Ionicons name="library" size={24} color="#006b1b" />
+            <Text className="text-lg font-black text-[#1b3420] tracking-tight uppercase">{t('importKeywords.keywordSource')}</Text>
+          </View>
+
+          {/* Game Keywords Option */}
+          <TouchableOpacity
+            onPress={() => setKeywordSource('game')}
+            className="flex-row items-center gap-3 p-3 bg-white/50 rounded-lg mb-3"
+          >
+            <View className={`w-6 h-6 rounded-full border-2 items-center justify-center ${keywordSource === 'game' ? 'bg-[#006b1b] border-[#006b1b]' : 'border-[#47624b]'}`}>
+              {keywordSource === 'game' && <Ionicons name="checkmark" size={16} color="white" />}
+            </View>
+            <View className="flex-1">
+              <Text className="font-bold text-[#1b3420]">{t('importKeywords.gameKeywords')}</Text>
+              <Text className="text-xs text-[#47624b]">{stats.available} {t('importKeywords.available')}</Text>
+            </View>
+          </TouchableOpacity>
+
+          {/* Custom Keywords Option */}
+          <TouchableOpacity
+            onPress={() => setKeywordSource('custom')}
+            disabled={customKeywordCount === 0}
+            className={`flex-row items-center gap-3 p-3 rounded-lg ${customKeywordCount === 0 ? 'opacity-50' : ''} ${keywordSource === 'custom' ? 'bg-[#91f78e]' : 'bg-white/50'}`}
+          >
+            <View className={`w-6 h-6 rounded-full border-2 items-center justify-center ${keywordSource === 'custom' ? 'bg-[#006b1b] border-[#006b1b]' : 'border-[#47624b]'}`}>
+              {keywordSource === 'custom' && <Ionicons name="checkmark" size={16} color="white" />}
+            </View>
+            <View className="flex-1">
+              <Text className="font-bold text-[#1b3420]">{t('importKeywords.preparedKeywords')}</Text>
+              <Text className="text-xs text-[#47624b]">{customKeywordCount > 0 ? `${customKeywordCount} ${t('importKeywords.available')}` : t('importKeywords.noCustomKeywords')}</Text>
+            </View>
+          </TouchableOpacity>
+        </Card>
+
         <Card variant="secondary" className="mb-6">
           <View className="flex-row items-center gap-3 mb-4">
             <Ionicons name="stats-chart" size={24} color="#5b5300" />

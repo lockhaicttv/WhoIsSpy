@@ -278,6 +278,44 @@ export const getRandomKeyword = (locale?: string): Keyword | null => {
   }
 };
 
+// Get only custom keywords for current locale
+export const getCustomOnlyKeywords = (locale?: string): Keyword[] => {
+  try {
+    const currentLocale = locale || getCurrentLanguage();
+
+    const customKeywords = db
+      .select()
+      .from(keywords)
+      .where(
+        and(
+          eq(keywords.isActive, true),
+          eq(keywords.packageId, PREMIUM_PACKAGES.CUSTOM_KEYWORDS)
+        )
+      )
+      .all()
+      .filter((kw) => kw.locale === currentLocale);
+
+    return customKeywords;
+  } catch (error) {
+    console.error('Error getting custom keywords:', error);
+    return [];
+  }
+};
+
+// Get random custom keyword
+export const getRandomCustomKeyword = (locale?: string): Keyword | null => {
+  try {
+    const customKeywords = getCustomOnlyKeywords(locale);
+    if (customKeywords.length === 0) return null;
+
+    const randomIndex = Math.floor(Math.random() * customKeywords.length);
+    return customKeywords[randomIndex];
+  } catch (error) {
+    console.error('Error getting random custom keyword:', error);
+    return null;
+  }
+};
+
 // Get keywords by category
 export const getKeywordsByCategory = (category: string): Keyword[] => {
   try {
