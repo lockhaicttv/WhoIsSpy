@@ -20,18 +20,19 @@ interface PackageInfo {
   id: string;
   name: string;
   descriptionKey: string;
+  description: string;
   keywordCount: number;
   price: string;
   icon: keyof typeof Ionicons.glyphMap;
   color: string;
 }
 
-const PACKAGES_CONFIG: Omit<PackageInfo, "name">[] = [
+const PACKAGES_CONFIG: Omit<PackageInfo, "name" | "description">[] = [
   {
     id: PREMIUM_PACKAGES.ADVANCED,
     descriptionKey: "store.advancedDesc",
     keywordCount: 200,
-    price: "$2.99",
+    price: "$1.99",
     icon: "trophy",
     color: "#ff9800",
   },
@@ -39,7 +40,7 @@ const PACKAGES_CONFIG: Omit<PackageInfo, "name">[] = [
     id: PREMIUM_PACKAGES.CULTURE,
     descriptionKey: "store.cultureDesc",
     keywordCount: 250,
-    price: "$2.99",
+    price: "$1.99",
     icon: "globe",
     color: "#006b1b",
   },
@@ -47,7 +48,7 @@ const PACKAGES_CONFIG: Omit<PackageInfo, "name">[] = [
     id: PREMIUM_PACKAGES.SCIENCE,
     descriptionKey: "store.scienceDesc",
     keywordCount: 200,
-    price: "$2.99",
+    price: "$1.99",
     icon: "flask",
     color: "#874e00",
   },
@@ -55,7 +56,7 @@ const PACKAGES_CONFIG: Omit<PackageInfo, "name">[] = [
     id: PREMIUM_PACKAGES.ENTERTAINMENT,
     descriptionKey: "store.entertainmentDesc",
     keywordCount: 300,
-    price: "$3.99",
+    price: "$1.99",
     icon: "film",
     color: "#b02500",
   },
@@ -63,7 +64,7 @@ const PACKAGES_CONFIG: Omit<PackageInfo, "name">[] = [
     id: PREMIUM_PACKAGES.ULTIMATE,
     descriptionKey: "store.ultimateDesc",
     keywordCount: 950,
-    price: "$9.99",
+    price: "$5.99",
     icon: "diamond",
     color: "#665c00",
   },
@@ -71,11 +72,13 @@ const PACKAGES_CONFIG: Omit<PackageInfo, "name">[] = [
     id: PREMIUM_PACKAGES.CUSTOM_KEYWORDS,
     descriptionKey: "store.customKeywordsDesc",
     keywordCount: 0,
-    price: "$1.99",
+    price: "$6.99",
     icon: "create",
     color: "#006b1b",
   },
 ];
+
+const IS_DEV = process.env.EXPO_PUBLIC_APP_ENV !== "production";
 
 const StoreScreen = () => {
   const [stats, setStats] = useState({
@@ -95,8 +98,21 @@ const StoreScreen = () => {
   }));
 
   useEffect(() => {
+    if (IS_DEV) {
+      unlockAllPackagesForDev();
+    }
     loadData();
   }, []);
+
+  const unlockAllPackagesForDev = () => {
+    try {
+      Object.values(PREMIUM_PACKAGES).forEach((packageId) => {
+        unlockPackage(packageId, PACKAGE_NAMES[packageId]);
+      });
+    } catch (error) {
+      console.warn("Dev: failed to auto-unlock packages", error);
+    }
+  };
 
   const loadData = () => {
     const keywordStats = getKeywordStats();
@@ -106,21 +122,46 @@ const StoreScreen = () => {
     setUnlockedPackages(purchases.map((p) => p.packageId));
   };
 
-  const handleUnlock = (packageInfo: PackageInfo) => {
-    // Skip if keyword count is 0 (not implemented yet), unless it's the custom keywords pack
-    if (
-      packageInfo.keywordCount === 0 &&
-      packageInfo.id !== PREMIUM_PACKAGES.CUSTOM_KEYWORDS
-    ) {
+  const performUnlock = (packageInfo: PackageInfo) => {
+    try {
+      if (packageInfo.id === PREMIUM_PACKAGES.ULTIMATE) {
+        unlockPackage(
+          PREMIUM_PACKAGES.ADVANCED,
+          PACKAGE_NAMES[PREMIUM_PACKAGES.ADVANCED],
+        );
+        unlockPackage(
+          PREMIUM_PACKAGES.CULTURE,
+          PACKAGE_NAMES[PREMIUM_PACKAGES.CULTURE],
+        );
+        unlockPackage(
+          PREMIUM_PACKAGES.SCIENCE,
+          PACKAGE_NAMES[PREMIUM_PACKAGES.SCIENCE],
+        );
+        unlockPackage(
+          PREMIUM_PACKAGES.ENTERTAINMENT,
+          PACKAGE_NAMES[PREMIUM_PACKAGES.ENTERTAINMENT],
+        );
+        unlockPackage(packageInfo.id, packageInfo.name);
+      } else {
+        unlockPackage(packageInfo.id, packageInfo.name);
+      }
       Alert.alert(
-        t("store.comingSoon"),
-        t("store.comingSoonMsg", { name: packageInfo.name }),
-        [{ text: t("common.confirm") || "OK" }],
+        t("store.successUnlock"),
+        t("store.successUnlockMsg", { name: packageInfo.name }),
       );
+      loadData();
+    } catch (error) {
+      Alert.alert(t("common.error"), t("store.failedUnlock"));
+    }
+  };
+
+  const handleUnlock = (packageInfo: PackageInfo) => {
+    if (IS_DEV) {
+      performUnlock(packageInfo);
       return;
     }
 
-    // Simulate purchase
+    // Production: require purchase confirmation
     Alert.alert(
       t("store.unlockPackage"),
       t("store.unlockConfirm", {
@@ -131,40 +172,7 @@ const StoreScreen = () => {
         { text: t("common.cancel"), style: "cancel" },
         {
           text: t("store.unlockNow"),
-          onPress: () => {
-            try {
-              // If unlocking Ultimate Pack, unlock all premium packs
-              if (packageInfo.id === PREMIUM_PACKAGES.ULTIMATE) {
-                unlockPackage(
-                  PREMIUM_PACKAGES.ADVANCED,
-                  PACKAGE_NAMES[PREMIUM_PACKAGES.ADVANCED],
-                );
-                unlockPackage(
-                  PREMIUM_PACKAGES.CULTURE,
-                  PACKAGE_NAMES[PREMIUM_PACKAGES.CULTURE],
-                );
-                unlockPackage(
-                  PREMIUM_PACKAGES.SCIENCE,
-                  PACKAGE_NAMES[PREMIUM_PACKAGES.SCIENCE],
-                );
-                unlockPackage(
-                  PREMIUM_PACKAGES.ENTERTAINMENT,
-                  PACKAGE_NAMES[PREMIUM_PACKAGES.ENTERTAINMENT],
-                );
-                unlockPackage(packageInfo.id, packageInfo.name);
-              } else {
-                unlockPackage(packageInfo.id, packageInfo.name);
-              }
-
-              Alert.alert(
-                t("store.successUnlock"),
-                t("store.successUnlockMsg", { name: packageInfo.name }),
-              );
-              loadData();
-            } catch (error) {
-              Alert.alert(t("common.error"), t("store.failedUnlock"));
-            }
-          },
+          onPress: () => performUnlock(packageInfo),
         },
       ],
     );
@@ -295,31 +303,11 @@ const StoreScreen = () => {
 
                     {!unlocked ? (
                       <Button
-                        label={
-                          pkg.keywordCount === 0 &&
-                          pkg.id !== PREMIUM_PACKAGES.CUSTOM_KEYWORDS
-                            ? t("store.comingSoon")
-                            : t("store.unlockNow")
-                        }
+                        label={t("store.unlockNow")}
                         variant="primary"
                         size="small"
-                        icon={
-                          pkg.keywordCount === 0 &&
-                          pkg.id !== PREMIUM_PACKAGES.CUSTOM_KEYWORDS
-                            ? "time"
-                            : "lock-open"
-                        }
+                        icon="lock-open"
                         onPress={() => handleUnlock(pkg)}
-                        disabled={
-                          pkg.keywordCount === 0 &&
-                          pkg.id !== PREMIUM_PACKAGES.CUSTOM_KEYWORDS
-                        }
-                        className={
-                          pkg.keywordCount === 0 &&
-                          pkg.id !== PREMIUM_PACKAGES.CUSTOM_KEYWORDS
-                            ? "opacity-50"
-                            : ""
-                        }
                       />
                     ) : (
                       <View className="bg-[#d8f9d9] px-6 py-3 rounded-full flex-row items-center justify-center gap-2">
@@ -339,10 +327,11 @@ const StoreScreen = () => {
             })}
           </View>
 
-          {/* Info Card */}
+          {/* Info Card - dev mode only */}
+          {IS_DEV && (
           <Card variant="secondary" className="mb-32 -rotate-1">
             <View className="flex-row items-start gap-3">
-              <Ionicons name="information-circle" size={24} color="#5b5300" />
+              <Ionicons name="code-slash" size={24} color="#5b5300" />
               <View className="flex-1">
                 <Text className="text-sm font-bold text-[#5b5300] mb-2">
                   {t("store.demoModeActive")}
@@ -353,6 +342,8 @@ const StoreScreen = () => {
               </View>
             </View>
           </Card>
+          )}
+          {!IS_DEV && <View className="mb-32" />}
         </ScrollView>
       </SafeAreaView>
 
