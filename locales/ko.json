@@ -398,5 +398,31 @@
     "updateFailed": "키워드 업데이트 실패",
     "deleteFailed": "키워드 삭제 실패",
     "deleteAllFailed": "키워드 삭제 실패"
+  },
+  "store": {
+    "yourCollection": "당신의 컬렉션",
+    "availableKeywords": "사용 가능한 키워드",
+    "keywordsUnlocked": "{{available}} / {{total}} 키워드 잠금 해제",
+    "premiumPackages": "프리미엄 패키지",
+    "unlockPackage": "패키지 잠금 해제",
+    "unlockConfirm": "\"{{name}}\" 을(를) {{price}} 로(으로) 잠금 해제하시겠습니까?\n\n(데모: 무료로 잠금 해제됩니다)",
+    "unlockNow": "지금 잠금 해제",
+    "comingSoon": "곧 출시",
+    "unlocked": "잠금 해제됨",
+    "owned": "소유함",
+    "keywords": "키워드",
+    "unlimited": "무제한",
+    "advancedDesc": "숙련된 플레이어를 위한 도전적인 키워드",
+    "cultureDesc": "역사적 인물, 랜드마크 및 문화 용어",
+    "scienceDesc": "과학, 수학, 천문학 및 교육 관련 키워드",
+    "entertainmentDesc": "영화, TV 쇼, 게임, 음악 및 팝 컬처",
+    "ultimateDesc": "모든 프리미엄 패키지(950개 키워드)를 최저 가격으로 받으세요!",
+    "customKeywordsDesc": "Excel 파일에서 자신의 키워드 쌍 가져오기",
+    "successUnlock": "성공!",
+    "successUnlockMsg": "{{name}} 이(가) 잠금 해제되었습니다!",
+    "failedUnlock": "패키지 잠금 해제 실패",
+    "comingSoonMsg": "{{name}} 은(는) 아직 사용할 수 없습니다. 업데이트를 기다려주세요!",
+    "demoModeActive": "데모 모드 활성",
+    "demoModeDesc": "이것은 시연입니다. 전체 버전에서는 앱 스토어에서 패키지를 구입할 수 있습니다."
   }
 }

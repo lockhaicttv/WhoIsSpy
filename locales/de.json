@@ -398,5 +398,31 @@
     "updateFailed": "Fehler beim Aktualisieren des Schlüsselworts",
     "deleteFailed": "Fehler beim Löschen des Schlüsselworts",
     "deleteAllFailed": "Fehler beim Löschen der Schlüsselwörter"
+  },
+  "store": {
+    "yourCollection": "Deine Sammlung",
+    "availableKeywords": "Verfügbare Schlüsselwörter",
+    "keywordsUnlocked": "{{available}} von {{total}} Schlüsselwörtern freigeschaltet",
+    "premiumPackages": "Premium-Pakete",
+    "unlockPackage": "Paket Freischalten",
+    "unlockConfirm": "Möchtest du \"{{name}}\" für {{price}} freischalten?\n\n(Demo: Dies wird kostenlos freigeschaltet)",
+    "unlockNow": "Jetzt Freischalten",
+    "comingSoon": "Demnächst Verfügbar",
+    "unlocked": "FREIGESCHALTET",
+    "owned": "GEHÖRT DIR",
+    "keywords": "Schlüsselwörter",
+    "unlimited": "Unbegrenzt",
+    "advancedDesc": "Herausfordernde Schlüsselwörter für erfahrene Spieler",
+    "cultureDesc": "Historische Figuren, Wahrzeichen und Kulturelle Begriffe",
+    "scienceDesc": "Schlüsselwörter aus Wissenschaft, Mathematik, Astronomie und Bildung",
+    "entertainmentDesc": "Filme, TV-Shows, Spiele, Musik und Popkultur",
+    "ultimateDesc": "Holen dir ALLE Premium-Pakete (950 Schlüsselwörter) zum besten Preis!",
+    "customKeywordsDesc": "Importiere deine eigenen Schlüsselwortpaare aus Excel-Dateien",
+    "successUnlock": "Erfolg!",
+    "successUnlockMsg": "{{name}} wurde freigeschaltet!",
+    "failedUnlock": "Fehler beim Freischalten des Pakets",
+    "comingSoonMsg": "{{name}} ist noch nicht verfügbar. Bleibe dran für Updates!",
+    "demoModeActive": "Demo-Modus Aktiv",
+    "demoModeDesc": "Dies ist eine Demonstration. In der Vollversion sind Pakete im App Store erhältlich."
   }
 }

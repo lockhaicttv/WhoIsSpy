@@ -398,5 +398,31 @@
     "updateFailed": "キーワードの更新に失敗しました",
     "deleteFailed": "キーワードの削除に失敗しました",
     "deleteAllFailed": "キーワードの削除に失敗しました"
+  },
+  "store": {
+    "yourCollection": "あなたのコレクション",
+    "availableKeywords": "利用可能なキーワード",
+    "keywordsUnlocked": "{{available}} / {{total}} キーワード解除",
+    "premiumPackages": "プレミアムパッケージ",
+    "unlockPackage": "パッケージを解除",
+    "unlockConfirm": "\"{{name}}\" を {{price}} で解除しますか？\n\n(デモ: これは無料で解除されます)",
+    "unlockNow": "今すぐ解除",
+    "comingSoon": "近日公開",
+    "unlocked": "解除済",
+    "owned": "所有",
+    "keywords": "キーワード",
+    "unlimited": "無制限",
+    "advancedDesc": "経験豊富なプレイヤー向けの難しいキーワード",
+    "cultureDesc": "歴史上の人物、ランドマーク、文化用語",
+    "scienceDesc": "科学、数学、天文学、教育関連のキーワード",
+    "entertainmentDesc": "映画、テレビ番組、ゲーム、音楽、ポップカルチャー",
+    "ultimateDesc": "すべてのプレミアムパック (950 キーワード) を最安値で手に入れよう！",
+    "customKeywordsDesc": "Excel ファイルからカスタムキーワードペアをインポート",
+    "successUnlock": "成功！",
+    "successUnlockMsg": "{{name}} は解除されました！",
+    "failedUnlock": "パッケージの解除に失敗しました",
+    "comingSoonMsg": "{{name}} はまだ利用できません。最新情報をお待ちください！",
+    "demoModeActive": "デモモード有効",
+    "demoModeDesc": "これはデモンストレーションです。完全版では、パッケージはアプリストアから購入できます。"
   }
 }

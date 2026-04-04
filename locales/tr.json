@@ -398,5 +398,31 @@
     "updateFailed": "Anahtar kelime güncellemesi başarısız",
     "deleteFailed": "Anahtar kelime silme başarısız",
     "deleteAllFailed": "Anahtar kelimeler silme başarısız"
+  },
+  "store": {
+    "yourCollection": "Koleksiyonunuz",
+    "availableKeywords": "Mevcut Anahtar Kelimeler",
+    "keywordsUnlocked": "{{available}} / {{total}} anahtar kelime kilidinin açılmış",
+    "premiumPackages": "Premium Paketler",
+    "unlockPackage": "Paketi Aç",
+    "unlockConfirm": "\"{{name}}\" paketini {{price}} karşılığında açmak istiyor musunuz?\n\n(Demo: Bu ücretsiz olarak açılacak)",
+    "unlockNow": "Şimdi Aç",
+    "comingSoon": "Yakında",
+    "unlocked": "AÇILMIŞ",
+    "owned": "SAHİBİ",
+    "keywords": "Anahtar Kelimeler",
+    "unlimited": "Sınırsız",
+    "advancedDesc": "Deneyimli oyuncular için zorlayıcı anahtar kelimeler",
+    "cultureDesc": "Tarihi kişiler, anıtlar ve kültürel terimler",
+    "scienceDesc": "Bilim, matematik, astronomi ve eğitim anahtar kelimeleri",
+    "entertainmentDesc": "Filmler, TV şovları, oyunlar, müzik ve pop kültürü",
+    "ultimateDesc": "Tüm premium paketleri (950 anahtar kelime) en iyi fiyatla alın!",
+    "customKeywordsDesc": "Excel dosyalarından kendi anahtar kelime çiftlerinizi içeri aktarın",
+    "successUnlock": "Başarılı!",
+    "successUnlockMsg": "{{name}} açılmıştır!",
+    "failedUnlock": "Paketi açma başarısız",
+    "comingSoonMsg": "{{name}} henüz mevcut değil. Güncellemeler için bizi takip edin!",
+    "demoModeActive": "Demo Modu Etkin",
+    "demoModeDesc": "Bu bir gösteridir. Tam sürümde, paketler uygulama mağazanız aracılığıyla satın alınabilir."
   }
 }

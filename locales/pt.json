@@ -398,5 +398,31 @@
     "updateFailed": "Falha ao atualizar palavra-chave",
     "deleteFailed": "Falha ao excluir palavra-chave",
     "deleteAllFailed": "Falha ao excluir palavras-chave"
+  },
+  "store": {
+    "yourCollection": "Sua Coleção",
+    "availableKeywords": "Palavras-chave Disponíveis",
+    "keywordsUnlocked": "{{available}} de {{total}} palavras-chave desbloqueadas",
+    "premiumPackages": "Pacotes Premium",
+    "unlockPackage": "Desbloquear Pacote",
+    "unlockConfirm": "Deseja desbloquear \"{{name}}\" por {{price}}?\n\n(Demo: Isso será desbloqueado gratuitamente)",
+    "unlockNow": "Desbloquear Agora",
+    "comingSoon": "Em Breve",
+    "unlocked": "DESBLOQUEADO",
+    "owned": "POSSUÍDO",
+    "keywords": "Palavras-chave",
+    "unlimited": "Ilimitado",
+    "advancedDesc": "Palavras-chave desafiadoras para jogadores experientes",
+    "cultureDesc": "Figuras históricas, marcos e termos culturais",
+    "scienceDesc": "Palavras-chave de ciência, matemática, astronomia e educação",
+    "entertainmentDesc": "Filmes, programas de TV, jogos, música e cultura pop",
+    "ultimateDesc": "Obtenha TODOS os pacotes premium (950 palavras-chave) ao melhor preço!",
+    "customKeywordsDesc": "Importe seus próprios pares de palavras-chave de arquivos do Excel",
+    "successUnlock": "Sucesso!",
+    "successUnlockMsg": "{{name}} foi desbloqueado!",
+    "failedUnlock": "Falha ao desbloquear pacote",
+    "comingSoonMsg": "{{name}} ainda não está disponível. Fique ligado para atualizações!",
+    "demoModeActive": "Modo Demo Ativo",
+    "demoModeDesc": "Este é uma demonstração. Na versão completa, os pacotes estarão disponíveis para compra através de sua loja de aplicativos."
   }
 }

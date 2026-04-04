@@ -398,5 +398,31 @@
     "updateFailed": "Échec de la mise à jour du mot-clé",
     "deleteFailed": "Échec de la suppression du mot-clé",
     "deleteAllFailed": "Échec de la suppression des mots-clés"
+  },
+  "store": {
+    "yourCollection": "Votre Collection",
+    "availableKeywords": "Mots-clés Disponibles",
+    "keywordsUnlocked": "{{available}} sur {{total}} mots-clés débloqués",
+    "premiumPackages": "Paquets Premium",
+    "unlockPackage": "Débloquer le Paquet",
+    "unlockConfirm": "Voulez-vous débloquer \"{{name}}\" pour {{price}} ?\n\n(Démo : Ceci sera débloqué gratuitement)",
+    "unlockNow": "Débloquer Maintenant",
+    "comingSoon": "À Venir",
+    "unlocked": "DÉBLOQUÉ",
+    "owned": "POSSÉDÉ",
+    "keywords": "Mots-clés",
+    "unlimited": "Illimité",
+    "advancedDesc": "Mots-clés difficiles pour les joueurs expérimentés",
+    "cultureDesc": "Figures historiques, monuments et termes culturels",
+    "scienceDesc": "Mots-clés de science, mathématiques, astronomie et éducation",
+    "entertainmentDesc": "Films, émissions télévisées, jeux, musique et culture populaire",
+    "ultimateDesc": "Obtenez TOUS les paquets premium (950 mots-clés) au meilleur prix !",
+    "customKeywordsDesc": "Importez vos propres paires de mots-clés à partir de fichiers Excel",
+    "successUnlock": "Succès !",
+    "successUnlockMsg": "{{name}} a été débloqué !",
+    "failedUnlock": "Échec du déverrouillage du paquet",
+    "comingSoonMsg": "{{name}} n'est pas encore disponible. Restez à l'écoute pour les mises à jour !",
+    "demoModeActive": "Mode Démo Actif",
+    "demoModeDesc": "Ceci est une démonstration. Dans la version complète, les paquets seront disponibles à l'achat via votre app store."
   }
 }

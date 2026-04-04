@@ -398,5 +398,31 @@
     "updateFailed": "Gagal memperbarui kata kunci",
     "deleteFailed": "Gagal menghapus kata kunci",
     "deleteAllFailed": "Gagal menghapus kata kunci"
+  },
+  "store": {
+    "yourCollection": "Koleksi Anda",
+    "availableKeywords": "Kata Kunci Tersedia",
+    "keywordsUnlocked": "{{available}} dari {{total}} kata kunci terbuka",
+    "premiumPackages": "Paket Premium",
+    "unlockPackage": "Buka Kunci Paket",
+    "unlockConfirm": "Apakah Anda ingin membuka kunci \"{{name}}\" untuk {{price}}?\n\n(Demo: Ini akan dibuka tanpa biaya)",
+    "unlockNow": "Buka Kunci Sekarang",
+    "comingSoon": "Segera Hadir",
+    "unlocked": "TIDAK TERKUNCI",
+    "owned": "DIMILIKI",
+    "keywords": "Kata Kunci",
+    "unlimited": "Tanpa Batas",
+    "advancedDesc": "Kata kunci yang menantang untuk pemain berpengalaman",
+    "cultureDesc": "Tokoh historis, landmark, dan istilah budaya",
+    "scienceDesc": "Kata kunci sains, matematika, astronomi, dan pendidikan",
+    "entertainmentDesc": "Film, acara TV, game, musik, dan budaya pop",
+    "ultimateDesc": "Dapatkan SEMUA paket premium (950 kata kunci) dengan harga terbaik!",
+    "customKeywordsDesc": "Impor pasangan kata kunci Anda sendiri dari file Excel",
+    "successUnlock": "Berhasil!",
+    "successUnlockMsg": "{{name}} telah dibuka!",
+    "failedUnlock": "Gagal membuka kunci paket",
+    "comingSoonMsg": "{{name}} belum tersedia. Nantikan pembaruan!",
+    "demoModeActive": "Mode Demo Aktif",
+    "demoModeDesc": "Ini adalah demonstrasi. Dalam versi lengkap, paket akan tersedia untuk dibeli melalui app store Anda."
   }
 }

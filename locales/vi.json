@@ -398,5 +398,31 @@
     "updateFailed": "Lỗi cập nhật từ khóa",
     "deleteFailed": "Lỗi xóa từ khóa",
     "deleteAllFailed": "Lỗi xóa các từ khóa"
+  },
+  "store": {
+    "yourCollection": "Bộ Sưu Tập Của Bạn",
+    "availableKeywords": "Từ Khóa Có Sẵn",
+    "keywordsUnlocked": "{{available}} trong {{total}} từ khóa đã mở khóa",
+    "premiumPackages": "Gói Premium",
+    "unlockPackage": "Mở Khóa Gói",
+    "unlockConfirm": "Bạn có muốn mở khóa \"{{name}}\" cho {{price}}?\n\n(Bản Demo: Điều này sẽ được mở khóa miễn phí)",
+    "unlockNow": "Mở Khóa Ngay Bây Giờ",
+    "comingSoon": "Sắp Có",
+    "unlocked": "ĐÃ MỞ KHÓA",
+    "owned": "SỞ HỮU",
+    "keywords": "Từ Khóa",
+    "unlimited": "Không Giới Hạn",
+    "advancedDesc": "Từ khóa thử thách cho những người chơi có kinh nghiệm",
+    "cultureDesc": "Các nhân vật lịch sử, danh lam thắng cảnh và thuật ngữ văn hóa",
+    "scienceDesc": "Từ khóa khoa học, toán học, thiên văn học và giáo dục",
+    "entertainmentDesc": "Phim, chương trình TV, trò chơi, nhạc và văn hóa đại chúng",
+    "ultimateDesc": "Nhận TẤT CẢ các gói premium (950 từ khóa) với giá tốt nhất!",
+    "customKeywordsDesc": "Nhập các cặp từ khóa của riêng bạn từ các tệp Excel",
+    "successUnlock": "Thành công!",
+    "successUnlockMsg": "{{name}} đã được mở khóa!",
+    "failedUnlock": "Mở khóa gói không thành công",
+    "comingSoonMsg": "{{name}} chưa có sẵn. Đón chờ các bản cập nhật!",
+    "demoModeActive": "Chế Độ Demo Đang Hoạt Động",
+    "demoModeDesc": "Đây là một bản demo. Trong phiên bản đầy đủ, các gói sẽ có sẵn để mua thông qua cửa hàng ứng dụng của bạn."
   }
 }

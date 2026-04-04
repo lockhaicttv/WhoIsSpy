@@ -398,5 +398,31 @@
     "updateFailed": "更新关键字失败",
     "deleteFailed": "删除关键字失败",
     "deleteAllFailed": "删除关键字失败"
+  },
+  "store": {
+    "yourCollection": "你的收藏",
+    "availableKeywords": "可用关键词",
+    "keywordsUnlocked": "已解锁 {{available}} / {{total}} 个关键词",
+    "premiumPackages": "高级包",
+    "unlockPackage": "解锁包",
+    "unlockConfirm": "要以 {{price}} 解锁\"{{name}}\"吗？\n\n(演示: 将免费解锁)",
+    "unlockNow": "立即解锁",
+    "comingSoon": "即将推出",
+    "unlocked": "已解锁",
+    "owned": "已拥有",
+    "keywords": "关键词",
+    "unlimited": "无限",
+    "advancedDesc": "为经验丰富的玩家提供的具有挑战性的关键字",
+    "cultureDesc": "历史人物、地标和文化术语",
+    "scienceDesc": "科学、数学、天文学和教育关键词",
+    "entertainmentDesc": "电影、电视节目、游戏、音乐和流行文化",
+    "ultimateDesc": "以最佳价格获得所有高级包(950个关键词)！",
+    "customKeywordsDesc": "从 Excel 文件导入您自己的关键词对",
+    "successUnlock": "成功！",
+    "successUnlockMsg": "{{name}} 已解锁！",
+    "failedUnlock": "包解锁失败",
+    "comingSoonMsg": "{{name}} 尚不可用。敬请期待更新！",
+    "demoModeActive": "演示模式激活",
+    "demoModeDesc": "这是一个演示。在完整版本中，包将可从您的应用商店购买。"
   }
 }

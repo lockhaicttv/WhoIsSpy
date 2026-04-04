@@ -398,5 +398,31 @@
     "updateFailed": "فشل تحديث الكلمة المفتاحية",
     "deleteFailed": "فشل حذف الكلمة المفتاحية",
     "deleteAllFailed": "فشل حذف الكلمات المفتاحية"
+  },
+  "store": {
+    "yourCollection": "مجموعتك",
+    "availableKeywords": "الكلمات المفتاحية المتاحة",
+    "keywordsUnlocked": "{{available}} من {{total}} كلمات رئيسية غير مقفلة",
+    "premiumPackages": "الحزم الممتازة",
+    "unlockPackage": "فتح الحزمة",
+    "unlockConfirm": "هل تريد فتح \"{{name}}\" مقابل {{price}}؟\n\n(العرض التوضيحي: سيتم فتح هذا مجانًا)",
+    "unlockNow": "فتح الآن",
+    "comingSoon": "قريبا",
+    "unlocked": "غير مقفول",
+    "owned": "مملوك",
+    "keywords": "كلمات رئيسية",
+    "unlimited": "غير محدود",
+    "advancedDesc": "كلمات رئيسية تحديثية للاعبين ذوي الخبرة",
+    "cultureDesc": "شخصيات تاريخية وأماكن معالم وشروط ثقافية",
+    "scienceDesc": "كلمات رئيسية في العلوم والرياضيات والفلك والتعليم",
+    "entertainmentDesc": "الأفلام والعروض التلفزيونية والألعاب والموسيقى والثقافة الشعبية",
+    "ultimateDesc": "احصل على جميع الحزم الممتازة (950 كلمة رئيسية) بأفضل سعر!",
+    "customKeywordsDesc": "استيراد أزواج الكلمات المفتاحية الخاصة بك من ملفات Excel",
+    "successUnlock": "نجح!",
+    "successUnlockMsg": "تم فتح {{name}}!",
+    "failedUnlock": "فشل فتح الحزمة",
+    "comingSoonMsg": "{{name}} غير متاح حاليا. كن منتظرا للتحديثات!",
+    "demoModeActive": "وضع العرض التوضيحي نشط",
+    "demoModeDesc": "هذا عرض توضيحي. في الإصدار الكامل، ستكون الحزم متاحة للشراء من متجر التطبيقات الخاص بك."
   }
 }

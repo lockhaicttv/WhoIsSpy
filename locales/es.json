@@ -398,5 +398,31 @@
     "updateFailed": "Error al actualizar palabra clave",
     "deleteFailed": "Error al eliminar palabra clave",
     "deleteAllFailed": "Error al eliminar palabras clave"
+  },
+  "store": {
+    "yourCollection": "Tu Colección",
+    "availableKeywords": "Palabras Clave Disponibles",
+    "keywordsUnlocked": "{{available}} de {{total}} palabras clave desbloqueadas",
+    "premiumPackages": "Paquetes Premium",
+    "unlockPackage": "Desbloquear Paquete",
+    "unlockConfirm": "¿Deseas desbloquear \"{{name}}\" por {{price}}?\n\n(Demo: Esto se desbloqueará gratis)",
+    "unlockNow": "Desbloquear Ahora",
+    "comingSoon": "Próximamente",
+    "unlocked": "DESBLOQUEADO",
+    "owned": "POSEÍDO",
+    "keywords": "Palabras Clave",
+    "unlimited": "Ilimitado",
+    "advancedDesc": "Palabras clave desafiantes para jugadores experimentados",
+    "cultureDesc": "Figuras históricas, monumentos y términos culturales",
+    "scienceDesc": "Palabras clave de ciencia, matemáticas, astronomía y educación",
+    "entertainmentDesc": "Películas, programas de TV, juegos, música y cultura pop",
+    "ultimateDesc": "¡Obtén TODOS los paquetes premium (950 palabras clave) al mejor precio!",
+    "customKeywordsDesc": "Importa tus propios pares de palabras clave desde archivos de Excel",
+    "successUnlock": "¡Éxito!",
+    "successUnlockMsg": "¡{{name}} ha sido desbloqueado!",
+    "failedUnlock": "Error al desbloquear paquete",
+    "comingSoonMsg": "{{name}} aún no está disponible. ¡Permanece atento para actualizaciones!",
+    "demoModeActive": "Modo Demo Activo",
+    "demoModeDesc": "Esta es una demostración. En la versión completa, los paquetes estarán disponibles para comprar a través de su tienda de aplicaciones."
   }
 }

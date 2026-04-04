@@ -398,5 +398,31 @@
     "updateFailed": "Failed to update keyword",
     "deleteFailed": "Failed to delete keyword",
     "deleteAllFailed": "Failed to delete keywords"
+  },
+  "store": {
+    "yourCollection": "Your Collection",
+    "availableKeywords": "Available Keywords",
+    "keywordsUnlocked": "{{available}} of {{total}} keywords unlocked",
+    "premiumPackages": "Premium Packages",
+    "unlockPackage": "Unlock Package",
+    "unlockConfirm": "Do you want to unlock \"{{name}}\" for {{price}}?\n\n(Demo: This will unlock for free)",
+    "unlockNow": "Unlock Now",
+    "comingSoon": "Coming Soon",
+    "unlocked": "UNLOCKED",
+    "owned": "OWNED",
+    "keywords": "Keywords",
+    "unlimited": "Unlimited",
+    "advancedDesc": "Challenging keywords for experienced players",
+    "cultureDesc": "Historical figures, landmarks, and cultural terms",
+    "scienceDesc": "Science, math, astronomy, and educational keywords",
+    "entertainmentDesc": "Movies, TV shows, games, music, and pop culture",
+    "ultimateDesc": "Get ALL premium packs (950 keywords) at best value!",
+    "customKeywordsDesc": "Import your own keyword pairs from Excel files",
+    "successUnlock": "Success!",
+    "successUnlockMsg": "{{name}} has been unlocked!",
+    "failedUnlock": "Failed to unlock package",
+    "comingSoonMsg": "{{name}} is not yet available. Stay tuned for updates!",
+    "demoModeActive": "Demo Mode Active",
+    "demoModeDesc": "This is a demonstration. In the full version, packages will be available for purchase through your app store."
   }
 }
