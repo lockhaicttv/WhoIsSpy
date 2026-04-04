@@ -6,13 +6,13 @@ import BottomNavigation from "../../components/BottomNavigation/BottomNavigation
 import Button from "../../components/Button/Button";
 import Card from "../../components/Card/Card";
 import {
-    PACKAGE_NAMES,
-    PREMIUM_PACKAGES,
+  PACKAGE_NAMES,
+  PREMIUM_PACKAGES,
 } from "../../constants/defaultKeywords";
 import {
-    getKeywordStats,
-    getUserPurchases,
-    unlockPackage,
+  getKeywordStats,
+  getUserPurchases,
+  unlockPackage,
 } from "../../db/keywordService";
 import { t } from "../../utils/i18n";
 
@@ -329,19 +329,19 @@ const StoreScreen = () => {
 
           {/* Info Card - dev mode only */}
           {IS_DEV && (
-          <Card variant="secondary" className="mb-32 -rotate-1">
-            <View className="flex-row items-start gap-3">
-              <Ionicons name="code-slash" size={24} color="#5b5300" />
-              <View className="flex-1">
-                <Text className="text-sm font-bold text-[#5b5300] mb-2">
-                  {t("store.demoModeActive")}
-                </Text>
-                <Text className="text-xs text-[#5b5300]/70">
-                  {t("store.demoModeDesc")}
-                </Text>
+            <Card variant="secondary" className="mb-32 -rotate-1">
+              <View className="flex-row items-start gap-3">
+                <Ionicons name="code-slash" size={24} color="#5b5300" />
+                <View className="flex-1">
+                  <Text className="text-sm font-bold text-[#5b5300] mb-2">
+                    {t("store.demoModeActive")}
+                  </Text>
+                  <Text className="text-xs text-[#5b5300]/70">
+                    {t("store.demoModeDesc")}
+                  </Text>
+                </View>
               </View>
-            </View>
-          </Card>
+            </Card>
           )}
           {!IS_DEV && <View className="mb-32" />}
         </ScrollView>
