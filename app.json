@@ -10,18 +10,36 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "icon": "./assets/images/ios-icon.png"
+      "icon": "./assets/images/ios-icon.png",
+      "bundleIdentifier": "com.lockhaicttv.thelastsignal"
     },
     "android": {
+      "versionCode": 3,
+      "permissions": [],
+      "blockedPermissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.READ_EXTERNAL_STORAGE",
+        "android.permission.WRITE_EXTERNAL_STORAGE"
+      ],
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/android-icon-foreground.png",
         "backgroundImage": "./assets/images/android-icon-background.png",
         "monochromeImage": "./assets/images/android-icon-monochrome.png"
       },
+      "splash": {
+        "image": "./assets/images/android-icon-foreground.png",
+        "resizeMode": "contain",
+        "backgroundColor": "#E6F4FE",
+        "dark": {
+          "image": "./assets/images/android-icon-foreground.png",
+          "resizeMode": "contain",
+          "backgroundColor": "#1a1a1a"
+        }
+      },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false,
-      "package": "com.lockhaicttv.TheLastSignal"
+      "package": "com.lockhaicttv.thelastsignal"
     },
     "web": {
       "output": "static",
@@ -37,14 +55,41 @@
           "resizeMode": "contain",
           "backgroundColor": "#ffffff",
           "dark": {
+            "image": "./assets/images/splash-icon.png",
             "backgroundColor": "#000000"
+          },
+          "android": {
+            "image": "./assets/images/android-icon-foreground.png",
+            "resizeMode": "contain",
+            "backgroundColor": "#E6F4FE",
+            "dark": {
+              "image": "./assets/images/android-icon-foreground.png",
+              "backgroundColor": "#1a1a1a"
+            }
           }
         }
       ],
       "./plugins/withProguard",
-      "expo-audio",
+      [
+        "expo-audio",
+        {
+          "microphonePermission": false
+        }
+      ],
+      [
+        "expo-file-system",
+        {
+          "readPermission": false,
+          "writePermission": false
+        }
+      ],
       "expo-document-picker"
     ],
+    "splash": {
+      "image": "./assets/images/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#E6F4FE"
+    },
     "experiments": {
       "typedRoutes": true,
       "reactCompiler": true
