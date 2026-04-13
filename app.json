@@ -2,7 +2,7 @@
   "expo": {
     "name": "The Last Signal",
     "slug": "TheLastSignal",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
     "scheme": "thelastsignal",
@@ -14,7 +14,7 @@
       "bundleIdentifier": "com.lockhaicttv.thelastsignal"
     },
     "android": {
-      "versionCode": 3,
+      "versionCode": 4,
       "permissions": [],
       "blockedPermissions": [
         "android.permission.RECORD_AUDIO",
