@@ -1,7 +1,8 @@
 import { Ionicons } from "@expo/vector-icons";
 import React, { useEffect, useState } from "react";
-import { Alert, ScrollView, Text, View } from "react-native";
+import { Alert, ScrollView, Text, View, ActivityIndicator } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import * as RNIap from "react-native-iap";
 import BottomNavigation from "../../components/BottomNavigation/BottomNavigation";
 import Button from "../../components/Button/Button";
 import Card from "../../components/Card/Card";
@@ -14,6 +15,16 @@ import {
   getUserPurchases,
   unlockPackage,
 } from "../../db/keywordService";
+import {
+  initializeIAP,
+  getProducts,
+  requestPurchase,
+  acknowledgePurchase,
+  restorePurchases,
+  setupPurchaseListener,
+  PRODUCT_IDS,
+  PRODUCT_TO_PACKAGE_MAP,
+} from "../../services/iapService";
 import { t } from "../../utils/i18n";
 
 interface PackageInfo {
@@ -23,6 +34,7 @@ interface PackageInfo {
   description: string;
   keywordCount: number;
   price: string;
+  productId: string; // Google Play product ID
   icon: keyof typeof Ionicons.glyphMap;
   color: string;
 }
@@ -30,46 +42,52 @@ interface PackageInfo {
 const PACKAGES_CONFIG: Omit<PackageInfo, "name" | "description">[] = [
   {
     id: PREMIUM_PACKAGES.ADVANCED,
+    productId: PRODUCT_IDS.ADVANCED,
     descriptionKey: "store.advancedDesc",
     keywordCount: 200,
-    price: "$1.99",
+    price: "$2.99",
     icon: "trophy",
     color: "#ff9800",
   },
   {
     id: PREMIUM_PACKAGES.CULTURE,
+    productId: PRODUCT_IDS.CULTURE,
     descriptionKey: "store.cultureDesc",
     keywordCount: 250,
-    price: "$1.99",
+    price: "$2.99",
     icon: "globe",
     color: "#006b1b",
   },
   {
     id: PREMIUM_PACKAGES.SCIENCE,
+    productId: PRODUCT_IDS.SCIENCE,
     descriptionKey: "store.scienceDesc",
     keywordCount: 200,
-    price: "$1.99",
+    price: "$2.99",
     icon: "flask",
     color: "#874e00",
   },
   {
     id: PREMIUM_PACKAGES.ENTERTAINMENT,
+    productId: PRODUCT_IDS.ENTERTAINMENT,
     descriptionKey: "store.entertainmentDesc",
     keywordCount: 300,
-    price: "$1.99",
+    price: "$3.99",
     icon: "film",
     color: "#b02500",
   },
   {
     id: PREMIUM_PACKAGES.ULTIMATE,
+    productId: PRODUCT_IDS.ULTIMATE,
     descriptionKey: "store.ultimateDesc",
     keywordCount: 950,
-    price: "$5.99",
+    price: "$9.99",
     icon: "diamond",
     color: "#665c00",
   },
   {
     id: PREMIUM_PACKAGES.CUSTOM_KEYWORDS,
+    productId: PRODUCT_IDS.CUSTOM_KEYWORDS,
     descriptionKey: "store.customKeywordsDesc",
     keywordCount: 0,
     price: "$6.99",
@@ -89,19 +107,62 @@ const StoreScreen = () => {
     premium: 0,
   });
   const [unlockedPackages, setUnlockedPackages] = useState<string[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isPurchasing, setIsPurchasing] = useState(false);
+  const [storeProducts, setStoreProducts] = useState<RNIap.Product[]>([]);
 
-  // Build packages array with translated descriptions
-  const packages: PackageInfo[] = PACKAGES_CONFIG.map((pkg) => ({
-    ...pkg,
-    name: PACKAGE_NAMES[pkg.id],
-    description: t(pkg.descriptionKey) || "",
-  }));
+  // Build packages array with translated descriptions and real prices
+  const packages: PackageInfo[] = PACKAGES_CONFIG.map((pkg) => {
+    const storeProduct = storeProducts.find((p) => p.id === pkg.productId);
+    return {
+      ...pkg,
+      name: PACKAGE_NAMES[pkg.id],
+      description: t(pkg.descriptionKey) || "",
+      price: storeProduct?.displayPrice || pkg.price, // Use real price from store
+    };
+  });
 
   useEffect(() => {
-    if (IS_DEV) {
-      unlockAllPackagesForDev();
-    }
-    loadData();
+    let purchaseListener: (() => void) | null = null;
+
+    const initStore = async () => {
+      try {
+        // Initialize IAP connection
+        const initialized = await initializeIAP();
+
+        if (initialized) {
+          // Get real products from Google Play Store
+          const products = await getProducts();
+          setStoreProducts(products);
+
+          // Restore previous purchases
+          await syncPurchasesFromStore();
+
+          // Set up purchase listener
+          purchaseListener = setupPurchaseListener(
+            handlePurchaseUpdate,
+            handlePurchaseError
+          );
+        } else if (IS_DEV) {
+          // In development, auto-unlock all packages if IAP not available
+          unlockAllPackagesForDev();
+        }
+      } catch (error) {
+        console.error("Failed to initialize store:", error);
+      } finally {
+        setIsLoading(false);
+        loadData();
+      }
+    };
+
+    initStore();
+
+    // Cleanup
+    return () => {
+      if (purchaseListener) {
+        purchaseListener();
+      }
+    };
   }, []);
 
   const unlockAllPackagesForDev = () => {
@@ -109,9 +170,94 @@ const StoreScreen = () => {
       Object.values(PREMIUM_PACKAGES).forEach((packageId) => {
         unlockPackage(packageId, PACKAGE_NAMES[packageId]);
       });
+      console.log("🔓 Dev mode: All packages unlocked");
     } catch (error) {
       console.warn("Dev: failed to auto-unlock packages", error);
     }
+  };
+
+  const syncPurchasesFromStore = async () => {
+    try {
+      // Get all purchases from Google Play
+      const purchasedProductIds = await restorePurchases();
+
+      // Unlock corresponding packages in local database
+      for (const productId of purchasedProductIds) {
+        const packageId = PRODUCT_TO_PACKAGE_MAP[productId];
+        if (packageId) {
+          const packageName = PACKAGE_NAMES[packageId];
+
+          // Handle Ultimate Pack (unlocks all individual packs)
+          if (packageId === PREMIUM_PACKAGES.ULTIMATE) {
+            unlockPackage(PREMIUM_PACKAGES.ADVANCED, PACKAGE_NAMES[PREMIUM_PACKAGES.ADVANCED]);
+            unlockPackage(PREMIUM_PACKAGES.CULTURE, PACKAGE_NAMES[PREMIUM_PACKAGES.CULTURE]);
+            unlockPackage(PREMIUM_PACKAGES.SCIENCE, PACKAGE_NAMES[PREMIUM_PACKAGES.SCIENCE]);
+            unlockPackage(PREMIUM_PACKAGES.ENTERTAINMENT, PACKAGE_NAMES[PREMIUM_PACKAGES.ENTERTAINMENT]);
+          }
+
+          unlockPackage(packageId, packageName);
+        }
+      }
+
+      console.log(`✅ Synced ${purchasedProductIds.length} purchases from store`);
+    } catch (error) {
+      console.error("Failed to sync purchases:", error);
+    }
+  };
+
+  const handlePurchaseUpdate = async (purchase: RNIap.Purchase) => {
+    try {
+      const { productId, purchaseToken } = purchase;
+
+      // Get package ID from product ID
+      const packageId = PRODUCT_TO_PACKAGE_MAP[productId];
+      if (!packageId) {
+        console.warn("Unknown product purchased:", productId);
+        return;
+      }
+
+      const packageName = PACKAGE_NAMES[packageId];
+
+      // Unlock the package in local database
+      if (packageId === PREMIUM_PACKAGES.ULTIMATE) {
+        // Ultimate pack unlocks all individual packs
+        unlockPackage(PREMIUM_PACKAGES.ADVANCED, PACKAGE_NAMES[PREMIUM_PACKAGES.ADVANCED]);
+        unlockPackage(PREMIUM_PACKAGES.CULTURE, PACKAGE_NAMES[PREMIUM_PACKAGES.CULTURE]);
+        unlockPackage(PREMIUM_PACKAGES.SCIENCE, PACKAGE_NAMES[PREMIUM_PACKAGES.SCIENCE]);
+        unlockPackage(PREMIUM_PACKAGES.ENTERTAINMENT, PACKAGE_NAMES[PREMIUM_PACKAGES.ENTERTAINMENT]);
+      }
+
+      unlockPackage(packageId, packageName);
+
+      // Acknowledge the purchase with Google Play
+      if (purchaseToken) {
+        await acknowledgePurchase(purchaseToken);
+      }
+
+      // Show success message
+      Alert.alert(
+        t("store.successUnlock"),
+        t("store.successUnlockMsg", { name: packageName })
+      );
+
+      // Reload data
+      loadData();
+      setIsPurchasing(false);
+    } catch (error) {
+      console.error("Failed to process purchase:", error);
+      Alert.alert(t("common.error"), t("store.failedUnlock"));
+      setIsPurchasing(false);
+    }
+  };
+
+  const handlePurchaseError = (error: RNIap.PurchaseError) => {
+    console.error("Purchase error:", error);
+
+    if (error.code !== RNIap.ErrorCode.UserCancelled) {
+      Alert.alert(t("common.error"), error.message || t("store.failedUnlock"));
+    }
+
+    setIsPurchasing(false);
   };
 
   const loadData = () => {
@@ -122,64 +268,82 @@ const StoreScreen = () => {
     setUnlockedPackages(purchases.map((p) => p.packageId));
   };
 
-  const performUnlock = (packageInfo: PackageInfo) => {
+  const handleUnlock = async (packageInfo: PackageInfo) => {
+    if (isPurchasing) return;
+
+    // In dev mode, just unlock directly
+    if (IS_DEV) {
+      performDirectUnlock(packageInfo);
+      return;
+    }
+
+    try {
+      setIsPurchasing(true);
+
+      // Request purchase from Google Play
+      await requestPurchase(packageInfo.productId);
+
+      // Purchase listener will handle the rest
+    } catch (error: any) {
+      console.error("Purchase request failed:", error);
+
+      if (error.code !== RNIap.ErrorCode.UserCancelled) {
+        Alert.alert(t("common.error"), t("store.failedUnlock"));
+      }
+
+      setIsPurchasing(false);
+    }
+  };
+
+  const performDirectUnlock = (packageInfo: PackageInfo) => {
     try {
       if (packageInfo.id === PREMIUM_PACKAGES.ULTIMATE) {
-        unlockPackage(
-          PREMIUM_PACKAGES.ADVANCED,
-          PACKAGE_NAMES[PREMIUM_PACKAGES.ADVANCED],
-        );
-        unlockPackage(
-          PREMIUM_PACKAGES.CULTURE,
-          PACKAGE_NAMES[PREMIUM_PACKAGES.CULTURE],
-        );
-        unlockPackage(
-          PREMIUM_PACKAGES.SCIENCE,
-          PACKAGE_NAMES[PREMIUM_PACKAGES.SCIENCE],
-        );
-        unlockPackage(
-          PREMIUM_PACKAGES.ENTERTAINMENT,
-          PACKAGE_NAMES[PREMIUM_PACKAGES.ENTERTAINMENT],
-        );
-        unlockPackage(packageInfo.id, packageInfo.name);
-      } else {
-        unlockPackage(packageInfo.id, packageInfo.name);
+        unlockPackage(PREMIUM_PACKAGES.ADVANCED, PACKAGE_NAMES[PREMIUM_PACKAGES.ADVANCED]);
+        unlockPackage(PREMIUM_PACKAGES.CULTURE, PACKAGE_NAMES[PREMIUM_PACKAGES.CULTURE]);
+        unlockPackage(PREMIUM_PACKAGES.SCIENCE, PACKAGE_NAMES[PREMIUM_PACKAGES.SCIENCE]);
+        unlockPackage(PREMIUM_PACKAGES.ENTERTAINMENT, PACKAGE_NAMES[PREMIUM_PACKAGES.ENTERTAINMENT]);
       }
+
+      unlockPackage(packageInfo.id, packageInfo.name);
+
       Alert.alert(
         t("store.successUnlock"),
-        t("store.successUnlockMsg", { name: packageInfo.name }),
+        t("store.successUnlockMsg", { name: packageInfo.name })
       );
+
       loadData();
     } catch (error) {
       Alert.alert(t("common.error"), t("store.failedUnlock"));
     }
   };
 
-  const handleUnlock = (packageInfo: PackageInfo) => {
-    if (IS_DEV) {
-      performUnlock(packageInfo);
-      return;
+  const handleRestorePurchases = async () => {
+    try {
+      setIsLoading(true);
+      await syncPurchasesFromStore();
+      loadData();
+      Alert.alert(t("store.restoreSuccess"), t("store.restoreSuccessMsg"));
+    } catch (error) {
+      console.error("Failed to restore purchases:", error);
+      Alert.alert(t("common.error"), t("store.restoreFailed"));
+    } finally {
+      setIsLoading(false);
     }
-
-    // Production: require purchase confirmation
-    Alert.alert(
-      t("store.unlockPackage"),
-      t("store.unlockConfirm", {
-        name: packageInfo.name,
-        price: packageInfo.price,
-      }),
-      [
-        { text: t("common.cancel"), style: "cancel" },
-        {
-          text: t("store.unlockNow"),
-          onPress: () => performUnlock(packageInfo),
-        },
-      ],
-    );
   };
 
   const isUnlocked = (packageId: string) =>
     unlockedPackages.includes(packageId);
+
+  if (isLoading) {
+    return (
+      <View className="flex-1 bg-[#e0fee1] items-center justify-center">
+        <ActivityIndicator size="large" color="#006b1b" />
+        <Text className="text-[#47624b] mt-4 font-bold">
+          {t("store.loading")}
+        </Text>
+      </View>
+    );
+  }
 
   return (
     <View className="flex-1 bg-[#e0fee1]">
@@ -326,6 +490,20 @@ const StoreScreen = () => {
               );
             })}
           </View>
+
+          {/* Restore Purchases Button */}
+          {!IS_DEV && (
+            <View className="mb-6">
+              <Button
+                label={t("store.restorePurchases")}
+                variant="secondary"
+                size="small"
+                icon="refresh"
+                onPress={handleRestorePurchases}
+                disabled={isLoading}
+              />
+            </View>
+          )}
 
           {/* Info Card - dev mode only */}
           {IS_DEV && (

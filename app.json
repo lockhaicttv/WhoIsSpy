@@ -14,8 +14,9 @@
       "bundleIdentifier": "com.lockhaicttv.thelastsignal"
     },
     "android": {
-      "versionCode": 4,
-      "permissions": [],
+      "permissions": [
+        "com.android.vending.BILLING"
+      ],
       "blockedPermissions": [
         "android.permission.RECORD_AUDIO",
         "android.permission.READ_EXTERNAL_STORAGE",
@@ -83,7 +84,9 @@
           "writePermission": false
         }
       ],
-      "expo-document-picker"
+      "expo-document-picker",
+      "react-native-iap",
+      "expo-asset"
     ],
     "splash": {
       "image": "./assets/images/splash-icon.png",

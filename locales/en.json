@@ -423,6 +423,11 @@
     "failedUnlock": "Failed to unlock package",
     "comingSoonMsg": "{{name}} is not yet available. Stay tuned for updates!",
     "demoModeActive": "Demo Mode Active",
-    "demoModeDesc": "This is a demonstration. In the full version, packages will be available for purchase through your app store."
+    "demoModeDesc": "This is a demonstration. In the full version, packages will be available for purchase through your app store.",
+    "loading": "Loading Store...",
+    "restorePurchases": "Restore Purchases",
+    "restoreSuccess": "Purchases Restored",
+    "restoreSuccessMsg": "Your previous purchases have been restored successfully!",
+    "restoreFailed": "Failed to restore purchases. Please try again later."
   }
 }
